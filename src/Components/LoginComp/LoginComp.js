@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-import "./Login.css"
+import "./LoginComp.css"
 import { Button } from "@mui/material";
 
-const Login = (props) => {
+const LoginComp = (props) => {
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -45,4 +45,4 @@ const Login = (props) => {
   )
 };
 
-export default Login;
+export default LoginComp;
