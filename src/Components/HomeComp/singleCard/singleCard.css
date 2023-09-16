@@ -1,0 +1,35 @@
+.single-card {
+    background: #1B2A41;
+    border-radius: 20px;
+    width: 24vw;
+    height: 22vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjust the values for your desired shadow */
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    
+}
+.single-card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Adjust the values for your desired hover shadow */
+}
+.single-card-title{
+    font-family: 'Syne', sans-serif;
+    align-self: center;
+    color: white;
+    font-size: 1.4rem;
+    
+}
+
+
+/* Media query for phone screen sizes (less than or equal to 600px) */
+@media (max-width: 600px) {
+    .single-card {
+        width: 80vw; /* Adjust the width as needed */
+        height: 30vh; /* Adjust the height as needed */
+    }
+
+    .single-card-title {
+        font-size: 1.2rem; /* Adjust the font size as needed */
+    }
+}
