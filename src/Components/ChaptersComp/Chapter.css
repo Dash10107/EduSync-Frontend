@@ -1,0 +1,22 @@
+.chapters-main{
+width: 100%;
+display: flex;
+flex-direction: column;
+}
+.subject-header{
+width: 100%;
+height: 15vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+vertical-align: middle;
+align-self: center;
+align-content: center;
+}
+
+.subject-heading-text{
+    font-size: 3rem;
+    font-family: 'Syne', sans-serif;
+    color: #1B2A41;
+}

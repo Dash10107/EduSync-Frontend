@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import  "./Chapter.css"
 import axios from "axios";
+import Navbar from "../../Layouts/Navbar/Navbar";
+import SingleChapter from "./singleChapter/SingleChapter";
 
 const ChapterComp = (props) => {
   const moduleId = localStorage.getItem("moduleId");
@@ -48,22 +50,24 @@ useEffect(()=>{
 },[module])
   
   return (
-    <div>
+    <div className="chapters-main">
+    <Navbar />
     {loading?(
       <p>Loading</p>
     ):(
       <div>
-      <h3>{module.name}</h3>
-      <p>{module.description}</p>
-      <br/>
-      <br/>
+      <div className="subject-header">
+      <h3 className="subject-heading-text">{module.name}</h3>
+      </div>
+    
       <ul>
         {chapters?.map((item) => (
-          <li key={item.id}>{item.title}</li>
+         <SingleChapter item={item} />
         ))}
         <br/>
       </ul>
       </div>)}
+      
      
     </div>
   )

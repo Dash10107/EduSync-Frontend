@@ -3,7 +3,8 @@
     border-radius: 20px;
     width: 24vw;
     height: 22vh;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adjust the values for your desired shadow */
+   
+/* Adjust the values for your desired shadow */
     align-items: center;
     justify-content: center;
     display: flex;
@@ -11,7 +12,8 @@
     
 }
 .single-card:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Adjust the values for your desired hover shadow */
+    transform: scale(1.05); /* Zoom out on hover */
+    box-shadow: 0 12px 18px inherit; /* Adjust the values for your desired hover shadow */
 }
 .single-card-title{
     font-family: 'Syne', sans-serif;
