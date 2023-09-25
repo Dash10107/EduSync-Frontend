@@ -8,7 +8,7 @@ const SingleTopic = (props) => {
       return (
     <div onClick={()=>{
       localStorage.setItem("subChapterId",subtopic.id);
-      navigate("/question");
+      navigate("/questions");
     }}>
         <li key={subtopic.id}>{subtopic.name}<br/><br/></li>
   <br/>

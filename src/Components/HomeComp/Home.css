@@ -23,10 +23,10 @@ padding-left: 2vw;
     -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
     scrollbar-width: none; /* Hide scrollbar in Firefox */
   
-    /* Hide scrollbar in Webkit-based browsers (Chrome, Safari, etc.) */
+    /* Hide scrollbar in Webkit-based browsers (Chrome, Safari, etc.)
     &::-webkit-scrollbar {
       display: none;
-    }
+    } */
   }
 
   .all-courses-main{

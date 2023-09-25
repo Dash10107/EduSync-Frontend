@@ -4,6 +4,7 @@ import Login from "../Pages/Login";
 import HomePage from "../Pages/Home";
 import Chapters from "../Pages/Chapters";
 import Subjects from "../Pages/Subjects";
+import Question from "../Pages/Question";
 
 
 
@@ -27,5 +28,9 @@ export const router = createBrowserRouter([
     {
         path:"/subjects",
         element:<Subjects/>
+    },
+    {
+        path:"/questions",
+        element:<Question/>
     },
 ])
