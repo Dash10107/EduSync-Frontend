@@ -3,6 +3,7 @@ import QuestionComp from '../Components/QuestionsComp/QuestionComp'
 
 const Question = () => {
   return (
+    
   <QuestionComp/>
   )
 }
