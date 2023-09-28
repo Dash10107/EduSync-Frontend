@@ -10,16 +10,7 @@ const LoginComp = (props) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-//code to ping backend
-  //   useEffect(()=>{
-// try {
-//        axios.get('http://localhost:5000/').then(res => {
-//       console.log(res.data.message);
-//       })
-//     } catch (error) {
-//       console.log("error", error)
-//     }
-//   },[])
+
 
   const onSubmit = async (e) => {
     e.preventDefault(); 
@@ -58,7 +49,7 @@ try{
           setUserName("");
           setPassword("");
           toast.success("Successfully Logged In")
-          navigate("/");
+          navigate("/home");
         }else{
           console.log(result.token);
         }

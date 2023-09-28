@@ -89,7 +89,7 @@ fetchProgress();
         <Navbar />
         <div className="continue-courses-main">
           <p className="continue-courses-header">Continue With Courses  <EastIcon /></p>
-          {isLoading ? (
+          {filteredModules.length<0 && isLoading===true ? (
             <p>Loading...</p> // Display a loading indicator while data is being fetched
           ) : (
             <div className="continue-courses-content">
