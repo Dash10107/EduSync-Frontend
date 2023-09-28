@@ -25,7 +25,7 @@ try {
           const modulesData = response?.data;
           setModules(modulesData);
           console.log(modules);
-          fetchProgress();
+         
 
         }else{console.log("Status Code",response.status);
         }
@@ -56,11 +56,12 @@ try {
             const moduleIds = lastThreeProgress.map((progress) => progress.moduleId);
 
             // Filter the modules array based on the extracted moduleIds
-            const filteredModulesData = modules.filter((module) =>
+            const filteredModulesData = modules?.filter((module) =>
               moduleIds.includes(module.id)
             );
 
             setFilteredModules(filteredModulesData);
+           
             
   
           }else{console.log("Status Code",response.status);
@@ -76,6 +77,7 @@ try {
     }
     useEffect(()=>{
 fetchModules();
+fetchProgress();
 
     },[]);
 
