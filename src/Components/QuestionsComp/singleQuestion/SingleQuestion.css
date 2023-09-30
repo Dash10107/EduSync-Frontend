@@ -1,75 +1,41 @@
 .single-question {
-    margin-bottom: 30px; /* Increase the margin to add more spacing between questions */
-    padding: 20px; /* Add padding to the question component for better sizing */
- 
-  }
-  
-  .question-text {
-    font-size: 20px; /* Increase the font size of the question */
-    font-family: "Poppins";
-    margin-bottom: 10px; /* Increase the margin to add spacing between question and options */
-  }
-  
-
-/* Base styles for options */
-.single-option,
-.grid-option,
-.vertical-option {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-/* Styles for radio buttons */
-.single-option input[type="radio"] {
-  margin-right: 10px;
-}
-
-/* Styles for the grid container */
-.grid-options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  background-color: #f0f0f0;
-}
-
-/* Styles for each grid option */
-.grid-option button {
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.grid-option button:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-/* Styles for vertical options */
-.vertical-options {
+  padding: 20px;
   display: flex;
   flex-direction: column;
- 
+}
+
+.question-text {
+  font-size: 20px;
+  font-family: "Poppins";
+  margin-bottom: 10%;
+  margin-top: 10%; /* Adjust this value for 30% top space */
+  padding: 10px; /* Add padding to the question-text */
+  
+  
   
 }
 
-.vertical-option button {
+/* Common styles for both grid and vertical options */
+.grid-option,
+.vertical-option {
+  flex: 1; /* Equal distribution of remaining space */
+  display: flex;
+  flex-direction: column;
   padding: 10px;
-  margin-bottom: 20px;
-  border: none;
-  cursor: pointer;
+  border: 2px solid transparent;
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: #f0f0f0;
 }
 
-.vertical-option button:hover {
+/* Hover styles for both grid and vertical options */
+.grid-option:hover,
+.vertical-option:hover {
   background-color: #007bff;
   color: #fff;
 }
 
 /* Styles for the selected option */
-.option-button.selected {
+.selected {
   background-color: #007bff;
   color: #fff;
   font-weight: bold;
@@ -88,6 +54,63 @@
   }
 }
 
-.option-button.selected {
+.selected {
   animation: optionSelected 0.5s ease;
+}
+
+/* Specific styles for the grid container */
+.grid-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px; /* Increase the gap as needed */
+  margin-top: 20px; /* Add margin to separate options from question-text */
+}
+
+/* Add margin between vertical options */
+.vertical-option {
+  margin-bottom: 20px; /* Adjust this value to set the desired gap */
+}
+
+/* Add a class for correct answers */
+.correct-answer {
+  background-color: #4caf50; /* Green background for correct answers */
+  color: #fff; /* White text color */
+}
+
+/* Add a class for incorrect answers */
+.incorrect-answer {
+  background-color: #ff5722; /* Red background for incorrect answers */
+  color: #fff; /* White text color */
+}
+
+
+.single-option {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content:flex-start;
+  .option-text {
+    text-align: left;
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  
+    /* Add spacing between upper and lower text */
+    margin-top: 10px; /* Adjust the margin-top as needed */
+  }
+}
+
+/* Add this to your CSS file or component styles */
+.result-message {
+  background-color: #ff5722; /* Red background for incorrect answers */
+  color: #fff; /* White text color */
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.result-message.correct {
+  background-color: #4caf50; /* Green background for correct answers */
 }

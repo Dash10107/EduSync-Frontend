@@ -19,9 +19,11 @@
     flex-grow: 1; /* This makes the div take up the remaining vertical space */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically center content */
+    justify-content:flex-start; /* Vertically center content */
     align-items: center; /* Horizontally center content */
+    gap: 20px; /* Add spacing between elements */
   }
+  
   
 
 .progress-section{
@@ -37,6 +39,29 @@ margin-top: 1vh;
     
 }
 
+/* Add this to your CSS file or component styles */
+.next-button {
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.next-button:hover {
+  background-color: #0056b3; /* Button background color on hover */
+  transform: scale(1.05); /* Scale up the button on hover */
+}
+
+.next-button:active {
+  transform: scale(0.95); /* Scale down the button when clicked */
+}
+
+
 
 /* Media query for larger screens (e.g., tablets and desktops) */
 @media screen and (min-width: 768px) {
@@ -45,3 +70,4 @@ margin-top: 1vh;
         
     }
 }
+

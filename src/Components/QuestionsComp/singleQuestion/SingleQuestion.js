@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./SingleQuestion.css";
+import { getRandomNegativeMessage, getRandomPositiveMessage } from "../../../Utils";
 
 const SingleQuestion = (props) => {
-  const { question, selectedOption, handleOptionChange, showResult, currentQuestionIndex } = props;
+  const {
+    question,
+    selectedOption,
+    handleOptionChange,
+    showResult,
+    currentQuestionIndex,
+  } = props;
   const isAnswerCorrect = question.correctAnswer === selectedOption;
+  const [selectedClass, setSelectedClass] = useState("");
+
+
+  useEffect(() => {
+    if (showResult) {
+      setSelectedClass(isAnswerCorrect ? "correct-answer" : "incorrect-answer");
+    } else {
+      setSelectedClass(selectedOption ? "selected" : "");
+    }
+  }, [showResult, isAnswerCorrect, selectedOption]);
 
   return (
     <div key={question.id} className="single-question">
@@ -12,7 +29,10 @@ const SingleQuestion = (props) => {
         {currentQuestionIndex % 3 === 0 && (
           // Render options as radio buttons for the first question
           question.options.map((option, index) => (
-            <div className="single-option" key={index}>
+            <div
+              className={`single-option`}
+              key={index}
+            >
               <input
                 type="radio"
                 name="options"
@@ -22,7 +42,7 @@ const SingleQuestion = (props) => {
                 onChange={() => handleOptionChange(option)}
                 disabled={showResult} // Disable options when showing results
               />
-              <label className={`option-text ${showResult && question.correctAnswer === option ? "correct" : question.correctAnswer !== option && selectedOption === option ? "incorrect" : ""}`} htmlFor={`option-${index}`}>
+              <label className="option-text" htmlFor={`option-${index}`}>
                 {option}
               </label>
             </div>
@@ -32,11 +52,12 @@ const SingleQuestion = (props) => {
           // Render options as a 2x2 grid for the second question
           <div className="grid-options">
             {question.options.map((option, index) => (
-              <div className="grid-option" key={index}>
+              <div
+                className={`grid-option ${selectedOption === option ? selectedClass : ""}`}
+                key={index}
+              >
                 <button
-                  className={`option-button ${
-                    selectedOption === option ? "selected" : ""
-                  }`}
+                  className={`option-button`}
                   onClick={() => handleOptionChange(option)}
                   disabled={showResult} // Disable options when showing results
                 >
@@ -50,11 +71,12 @@ const SingleQuestion = (props) => {
           // Render options as vertical buttons for the third question and beyond
           <div className="vertical-options">
             {question.options.map((option, index) => (
-              <div className="vertical-option" key={index}>
+              <div
+                className={`vertical-option ${selectedOption === option ? selectedClass : ""}`}
+                key={index}
+              >
                 <button
-                  className={`option-button ${
-                    selectedOption === option ? "selected" : ""
-                  }`}
+                  className={`option-button`}
                   onClick={() => handleOptionChange(option)}
                   disabled={showResult} // Disable options when showing results
                 >
@@ -65,10 +87,17 @@ const SingleQuestion = (props) => {
           </div>
         )}
       </div>
-      {showResult && (
-        <p className={`correct-incorrect ${isAnswerCorrect ? "correct" : "incorrect"}`}>
-          {isAnswerCorrect ? " Correct!" : "Incorrect."}
-        </p>
+      {showResult && !isAnswerCorrect && (
+        <div className={`result-message ${isAnswerCorrect ? 'correct' : ''}`}>
+        <p>{getRandomNegativeMessage()}</p>
+          <p>{`Correct Answer: ${question.correctAnswer}`}</p>
+      
+        </div>
+      )}
+      {showResult && isAnswerCorrect && (
+        <div className={`result-message ${isAnswerCorrect ? 'correct' : ''}`}>
+          <p>{getRandomPositiveMessage()}</p>
+        </div>
       )}
     </div>
   );

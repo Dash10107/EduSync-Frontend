@@ -97,34 +97,77 @@ const QuestionComp = (props) => {
     if (!selectedOption) {
       console.log("Please select an option before proceeding.");
       return;
+    }
+
+    const currentQuestion = questions[currentQuestionIndex];
+    if (currentQuestion.correctAnswer === selectedOption) {
+      setCorrectAnswersCount(correctAnswersCount + 1);
+      console.log("Correct!");
     } else {
-      if (currentQuestionIndex < questions.length - 1) {
-        const currentQuestion = questions[currentQuestionIndex];
-        if (currentQuestion.correctAnswer === selectedOption) {
-          setCorrectAnswersCount(correctAnswersCount + 1);
-          console.log("Correct!");
-        } else {
-          console.log("Incorrect.");
+      console.log("Incorrect.");
+    }
+
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      console.log("Test Completed");
+      console.log(
+        `You got ${correctAnswersCount} questions correct out of ${questions.length}`
+      );
+    }
+
+    setSelectedOption("");
+    setShowResult(false);
+  };
+
+// Inside the QuestionComp component
+useEffect(() => {
+  // Add event listener for keypress
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      if (!showResult && selectedOption !== "") {
+        // If not showing results and an option is selected, show results
+        handleShowResult();
+      } else if (currentQuestionIndex < questions.length - 1) {
+        // If there are more questions, go to the next question
+        handleNextQuestion();
+      } else if (showResult) {
+        // If showing results and there are no more questions, end the test
+        handleEndTest(event);
+      }
+    } else if (!showResult) {
+      // Check if a number key (1, 2, 3, 4) was pressed
+      if (event.key >= "1" && event.key <= "4") {
+        const selectedIndex = parseInt(event.key) - 1; // Convert key to index
+        if (
+          selectedIndex >= 0 &&
+          selectedIndex < questions[currentQuestionIndex].options.length &&
+          selectedOption !== questions[currentQuestionIndex].options[selectedIndex]
+        ) {
+          // Select the option if it's not already selected
+          handleOptionChange(questions[currentQuestionIndex].options[selectedIndex]);
         }
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setSelectedOption("");
-        setShowResult(false);
-      } else {
-        console.log("Test Completed");
-        console.log(
-          `You got ${correctAnswersCount} questions correct out of ${questions.length}`
-        );
       }
     }
   };
 
-  useEffect(() => {
-    fetchQuestions();
-  }, []);
+  document.addEventListener("keydown", handleKeyPress);
 
-// Calculate the progress based on the current question index
-const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
-console.log(progressPercentage);
+  // Clean up the event listener when the component unmounts
+  return () => {
+    document.removeEventListener("keydown", handleKeyPress);
+  };
+}, [selectedOption, showResult, questions, currentQuestionIndex]);
+
+
+
+
+
+
+  
+useEffect(()=>{fetchQuestions()},[])
+  // Calculate the progress based on the current question index
+  const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   return (
     <div className="questions-div">
@@ -139,14 +182,14 @@ console.log(progressPercentage);
         </div>
       </div>
       <div className="progress-section">
-      <div className="progress-content">
+        <div className="progress-content">
           <Progress
             strokeLinecap="butt"
             percent={progressPercentage}
             showInfo={false}
           />
-          </div>
         </div>
+      </div>
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -158,24 +201,24 @@ console.log(progressPercentage);
             showResult={showResult}
             currentQuestionIndex={currentQuestionIndex}
           />
-          {!showResult ? (
-            <button onClick={handleShowResult}>Next</button>
-          ) : (
-            <div>
-              {currentQuestionIndex < questions.length - 1 ? (
-                <button onClick={handleNextQuestion}>Next</button>
-              ) : (
-                <div>
-                  <p>Test Completed</p>
-                  <p>
-                    You got {correctAnswersCount} questions correct out of{" "}
-                    {questions.length}
-                  </p>
-                  <button onClick={handleEndTest}>End Test</button>
-                </div>
-              )}
-            </div>
-          )}
+        {!showResult ? (
+  <button className="next-button" onClick={handleShowResult}>Next</button>
+) : (
+  <div>
+    {currentQuestionIndex < questions.length - 1 ? (
+      <button className="next-button" onClick={handleNextQuestion}>Next</button>
+    ) : (
+      <div>
+        <p>Test Completed</p>
+        <p>
+          You got {correctAnswersCount} questions correct out of{" "}
+          {questions.length}
+        </p>
+        <button className="next-button" onClick={handleEndTest}>End Test</button>
+      </div>
+    )}
+  </div>
+)}
         </div>
       )}
     </div>
