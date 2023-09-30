@@ -1,0 +1,93 @@
+.single-question {
+    margin-bottom: 30px; /* Increase the margin to add more spacing between questions */
+    padding: 20px; /* Add padding to the question component for better sizing */
+ 
+  }
+  
+  .question-text {
+    font-size: 20px; /* Increase the font size of the question */
+    font-family: "Poppins";
+    margin-bottom: 10px; /* Increase the margin to add spacing between question and options */
+  }
+  
+
+/* Base styles for options */
+.single-option,
+.grid-option,
+.vertical-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Styles for radio buttons */
+.single-option input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Styles for the grid container */
+.grid-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  background-color: #f0f0f0;
+}
+
+/* Styles for each grid option */
+.grid-option button {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.grid-option button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Styles for vertical options */
+.vertical-options {
+  display: flex;
+  flex-direction: column;
+ 
+  
+}
+
+.vertical-option button {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #f0f0f0;
+}
+
+.vertical-option button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Styles for the selected option */
+.option-button.selected {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* CSS for animations on selecting an option */
+@keyframes optionSelected {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.option-button.selected {
+  animation: optionSelected 0.5s ease;
+}

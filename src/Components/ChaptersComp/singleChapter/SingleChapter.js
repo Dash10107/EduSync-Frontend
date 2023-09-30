@@ -8,6 +8,7 @@ const SingleChapter = (props) => {
     return (
   <div onClick={()=>{
     localStorage.setItem("chapterId",item.id);
+    localStorage.setItem("ChapterName",item.title);
     navigate("/subjects");
   }}>
       <li key={item.id}>{item.title}</li>
