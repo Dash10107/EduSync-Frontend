@@ -5,6 +5,8 @@ import Navbar from "../../Layouts/Navbar/Navbar";
 import SingleQuestion from "./singleQuestion/SingleQuestion";
 import { useNavigate } from "react-router-dom";
 import { Progress } from "antd";
+import { getCompletionMessage } from "../../Utils";
+import RetryModal from "./retryModal/RetryModal";
 
 const QuestionComp = (props) => {
   const moduleId = localStorage.getItem("moduleId");
@@ -21,10 +23,40 @@ const QuestionComp = (props) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [showResult, setShowResult] = useState(false); // To control when to show the result button
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0); // To count correct answers
+const [testOver,setTestOver] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [showRetryModal, setShowRetryModal] = useState(false);
+  const handleHover = () => {
+    setIsAnimating(true);
+  };
 
+  const handleMouseLeave = () => {
+    setIsAnimating(false);
+  };
+
+  const resetQuiz = () => {
+    setCorrectAnswersCount(0);
+    setCurrentQuestionIndex(0);
+    setSelectedOption("");
+    setShowResult(false);
+    setTestOver(false);
+    // Reset any other relevant state variables here
+  };
+  
+  const handleRetry = () => {
+    // Implement the logic to reset the quiz for retry
+    resetQuiz();
+    setShowRetryModal(false);
+  };
   const handleEndTest = async (e) => {
     e.preventDefault();
-
+    if(correctAnswersCount < 7){
+      console.log("Please Try Again");
+      setShowRetryModal(true);
+   
+    }else{
+      
+  
     const formData = {
       moduleId: moduleId,
       chapterId: chapterId,
@@ -48,13 +80,14 @@ const QuestionComp = (props) => {
         console.log("Progress saved successfully");
         console.log("Response", response);
         setCorrectAnswersCount(0);
-        navigate(-1);
+        navigate("/subjects");
       } else {
         console.error("Failed to save progress");
       }
     } catch (error) {
       console.error("Error:", error);
     }
+  }
   };
 
   const fetchQuestions = async () => {
@@ -78,6 +111,7 @@ const QuestionComp = (props) => {
     } finally {
       setLoading(false);
     }
+    
   };
 
   const handleOptionChange = (option) => {
@@ -110,58 +144,53 @@ const QuestionComp = (props) => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+     
       console.log("Test Completed");
       console.log(
         `You got ${correctAnswersCount} questions correct out of ${questions.length}`
       );
+      setTestOver(true);
     }
 
     setSelectedOption("");
     setShowResult(false);
   };
 
-// Inside the QuestionComp component
-useEffect(() => {
-  // Add event listener for keypress
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      if (!showResult && selectedOption !== "") {
-        // If not showing results and an option is selected, show results
-        handleShowResult();
-      } else if (currentQuestionIndex < questions.length - 1) {
-        // If there are more questions, go to the next question
-        handleNextQuestion();
-      } else if (showResult) {
-        // If showing results and there are no more questions, end the test
-        handleEndTest(event);
-      }
-    } else if (!showResult) {
-      // Check if a number key (1, 2, 3, 4) was pressed
-      if (event.key >= "1" && event.key <= "4") {
-        const selectedIndex = parseInt(event.key) - 1; // Convert key to index
-        if (
-          selectedIndex >= 0 &&
-          selectedIndex < questions[currentQuestionIndex].options.length &&
-          selectedOption !== questions[currentQuestionIndex].options[selectedIndex]
-        ) {
-          // Select the option if it's not already selected
-          handleOptionChange(questions[currentQuestionIndex].options[selectedIndex]);
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        if (!showResult && selectedOption !== "") {
+          // If not showing results and an option is selected, show results
+          handleShowResult();
+        } else if (currentQuestionIndex < questions.length - 1) {
+          // If there are more questions, go to the next question
+          handleNextQuestion();
+        } else if (showResult && !testOver) { // Check if test is not over
+          // If showing results and there are no more questions, end the test
+          setTestOver(true);
+        }
+      } else if (!showResult) {
+        // Check if a number key (1, 2, 3, 4) was pressed
+        if (event.key >= "1" && event.key <= "4") {
+          const selectedIndex = parseInt(event.key) - 1;
+          if (
+            selectedIndex >= 0 &&
+            selectedIndex < questions[currentQuestionIndex].options.length &&
+            selectedOption !== questions[currentQuestionIndex].options[selectedIndex]
+          ) {
+            handleOptionChange(questions[currentQuestionIndex].options[selectedIndex]);
+          }
         }
       }
-    }
-  };
-
-  document.addEventListener("keydown", handleKeyPress);
-
-  // Clean up the event listener when the component unmounts
-  return () => {
-    document.removeEventListener("keydown", handleKeyPress);
-  };
-}, [selectedOption, showResult, questions, currentQuestionIndex]);
-
-
-
-
+    };
+  
+    document.addEventListener("keydown", handleKeyPress);
+  
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [selectedOption, showResult, questions, currentQuestionIndex, testOver]);
+  
 
 
   
@@ -174,9 +203,25 @@ useEffect(()=>{fetchQuestions()},[])
       <Navbar />
       <div className="questions-heading">
         <div>
-          <span onClick={() => navigate(-3)}>{subjectName}</span>
-          <span onClick={() => navigate(-2)}> {">"} {chapterName} </span>
-          <span onClick={() => navigate(-1)}>
+          <span   style={{
+    textDecoration: "none", // Remove underline by default
+    cursor: "pointer",
+ 
+    
+  }}
+  onClick={() => navigate("/home")}>{subjectName}</span>
+          <span   style={{
+    textDecoration: "none", // Remove underline by default
+    cursor: "pointer",
+  
+  }}
+  onClick={() => navigate("/chapters")}> {">"} {chapterName} </span>
+          <span   style={{
+    textDecoration: "none", // Remove underline by default
+    cursor: "pointer",
+  
+  }}
+  onClick={() => navigate("/subjects")}>
             {">"} {subChapterName.split(" ")[0]}
           </span>
         </div>
@@ -194,32 +239,81 @@ useEffect(()=>{fetchQuestions()},[])
         <p>Loading...</p>
       ) : (
         <div className="single-question-main">
-          <SingleQuestion
-            question={questions[currentQuestionIndex]}
-            selectedOption={selectedOption}
-            handleOptionChange={handleOptionChange}
-            showResult={showResult}
-            currentQuestionIndex={currentQuestionIndex}
-          />
-        {!showResult ? (
-  <button className="next-button" onClick={handleShowResult}>Next</button>
-) : (
-  <div>
-    {currentQuestionIndex < questions.length - 1 ? (
-      <button className="next-button" onClick={handleNextQuestion}>Next</button>
-    ) : (
-      <div>
-        <p>Test Completed</p>
+  {!testOver ? (
+    // Render SingleQuestion and Next button when the test is not over
+    <>
+      <SingleQuestion
+        question={questions[currentQuestionIndex]}
+        selectedOption={selectedOption}
+        handleOptionChange={handleOptionChange}
+        showResult={showResult}
+        currentQuestionIndex={currentQuestionIndex}
+      />
+      {!showResult ? (
+        <button
+          className={`animated-button ${
+            isAnimating ? "animated next-button" : "next-button"
+          }`}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleShowResult}
+        >
+          Next
+        </button>
+      ) : (
+        <button
+          className={`animated-button ${
+            isAnimating ? "animated next-button" : "next-button"
+          }`}
+          onClick={handleNextQuestion}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleMouseLeave}
+        >
+          Next
+        </button>
+      )}
+    </>
+  ) : (
+    // Render the completion message and "End Test" button when the test is over
+    <div style={{ textAlign: "center" }}>
+      {/* Display the completion message here */}
+      <div
+        className={`completion-message ${getCompletionMessage(
+          correctAnswersCount,
+          questions.length
+        ).className}`}
+      >
+        <p>
+          {getCompletionMessage(correctAnswersCount, questions.length).message}
+        </p>
         <p>
           You got {correctAnswersCount} questions correct out of{" "}
           {questions.length}
         </p>
-        <button className="next-button" onClick={handleEndTest}>End Test</button>
       </div>
-    )}
-  </div>
-)}
-        </div>
+
+      <button
+        className={`animated-button ${
+          isAnimating ? "animated next-button" : "next-button"
+        }`}
+        onMouseEnter={handleHover}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleEndTest}
+      >
+        End Test
+      </button>
+
+      {showRetryModal && (
+            <RetryModal
+              modalOpen={showRetryModal}
+              setModalOpen = {setShowRetryModal}
+              handleRetry={handleRetry}
+            />
+              )}
+    </div>
+  )}
+</div>
+
       )}
     </div>
   );
