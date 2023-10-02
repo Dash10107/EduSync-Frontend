@@ -8,6 +8,7 @@ import { Progress } from "antd";
 import { getCompletionMessage } from "../../Utils";
 import RetryModal from "./retryModal/RetryModal";
 
+import { Alert, Snackbar } from "@mui/material";
 const QuestionComp = (props) => {
   const moduleId = localStorage.getItem("moduleId");
   const chapterId = parseInt(localStorage.getItem("chapterId"));
@@ -16,7 +17,7 @@ const QuestionComp = (props) => {
   const chapterName = localStorage.getItem("ChapterName");
   const subjectName = localStorage.getItem("SubjectName");
   const navigate = useNavigate();
-
+const [toastOpen,setToastOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -34,6 +35,14 @@ const [testOver,setTestOver] = useState(false);
     setIsAnimating(false);
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setToastOpen(false);
+  };
+
   const resetQuiz = () => {
     setCorrectAnswersCount(0);
     setCurrentQuestionIndex(0);
@@ -42,7 +51,9 @@ const [testOver,setTestOver] = useState(false);
     setTestOver(false);
     // Reset any other relevant state variables here
   };
-  
+const   handleGoBack = ()=>{
+  navigate("/subjects")
+} 
   const handleRetry = () => {
     // Implement the logic to reset the quiz for retry
     resetQuiz();
@@ -121,6 +132,7 @@ const [testOver,setTestOver] = useState(false);
   const handleShowResult = () => {
     if (!selectedOption) {
       console.log("Please select an option before proceeding.");
+     setToastOpen(true);
       return;
     } else {
       setShowResult(true);
@@ -130,8 +142,11 @@ const [testOver,setTestOver] = useState(false);
   const handleNextQuestion = () => {
     if (!selectedOption) {
       console.log("Please select an option before proceeding.");
+      setToastOpen(true);   
       return;
     }
+
+
 
     const currentQuestion = questions[currentQuestionIndex];
     if (currentQuestion.correctAnswer === selectedOption) {
@@ -156,40 +171,43 @@ const [testOver,setTestOver] = useState(false);
     setShowResult(false);
   };
 
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        if (!showResult && selectedOption !== "") {
-          // If not showing results and an option is selected, show results
-          handleShowResult();
-        } else if (currentQuestionIndex < questions.length - 1) {
-          // If there are more questions, go to the next question
-          handleNextQuestion();
-        } else if (showResult && !testOver) { // Check if test is not over
-          // If showing results and there are no more questions, end the test
-          setTestOver(true);
-        }
-      } else if (!showResult) {
-        // Check if a number key (1, 2, 3, 4) was pressed
-        if (event.key >= "1" && event.key <= "4") {
-          const selectedIndex = parseInt(event.key) - 1;
-          if (
-            selectedIndex >= 0 &&
-            selectedIndex < questions[currentQuestionIndex].options.length &&
-            selectedOption !== questions[currentQuestionIndex].options[selectedIndex]
-          ) {
-            handleOptionChange(questions[currentQuestionIndex].options[selectedIndex]);
-          }
-        }
+// Define a function to handle keyboard shortcuts
+const handleKeyboardShortcuts = (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    if (!showResult && selectedOption !== "") {
+      // If not showing results and an option is selected, show results
+      handleShowResult();
+    } else if (currentQuestionIndex < questions.length - 1) {
+      // If there are more questions, go to the next question
+      handleNextQuestion();
+    } else if (showResult && !testOver) {
+      // If showing results and there are no more questions, end the test
+      setTestOver(true);
+    }
+  } else if (!showResult) {
+    // Check if a number key (1, 2, 3, 4) was pressed
+    if (event.key >= "1" && event.key <= "4") {
+      const selectedIndex = parseInt(event.key) - 1;
+      if (
+        selectedIndex >= 0 &&
+        selectedIndex < questions[currentQuestionIndex].options.length &&
+        selectedOption !== questions[currentQuestionIndex].options[selectedIndex]
+      ) {
+        handleOptionChange(questions[currentQuestionIndex].options[selectedIndex]);
       }
-    };
-  
-    document.addEventListener("keydown", handleKeyPress);
-  
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [selectedOption, showResult, questions, currentQuestionIndex, testOver]);
+    }
+  }
+};
+
+
+// Remove the event listener in the cleanup function
+useEffect(() => {
+  document.addEventListener("keydown", handleKeyboardShortcuts);
+  return () => {
+    document.removeEventListener("keydown", handleKeyboardShortcuts);
+  };
+}, [selectedOption, showResult, questions, currentQuestionIndex, testOver]);
+
   
 
 
@@ -199,6 +217,7 @@ useEffect(()=>{fetchQuestions()},[])
   const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   return (
+    <>
     <div className="questions-div">
       <Navbar />
       <div className="questions-heading">
@@ -308,6 +327,7 @@ useEffect(()=>{fetchQuestions()},[])
               modalOpen={showRetryModal}
               setModalOpen = {setShowRetryModal}
               handleRetry={handleRetry}
+              handleGoBack={handleGoBack}
             />
               )}
     </div>
@@ -316,6 +336,13 @@ useEffect(()=>{fetchQuestions()},[])
 
       )}
     </div>
+   
+    <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+  <Alert onClose={handleClose} severity="warning"     sx={{ width: '100%' }}>
+  Please select an option before proceeding
+  </Alert>
+</Snackbar>
+    </>
   );
 };
 

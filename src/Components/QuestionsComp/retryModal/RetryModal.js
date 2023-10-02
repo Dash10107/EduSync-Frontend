@@ -1,23 +1,33 @@
 import React from "react"
-import  "./RetryModal.css"
+import "./RetryModal.css"
 import { Button, Modal } from "antd";
-
+import RefreshIcon from '@mui/icons-material/Refresh';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 const RetryModal = (props) => {
-    const {modalOpen,setModalOpen,handleRetry} = props;
+  const { modalOpen, setModalOpen, handleRetry, handleGoBack } = props;
   return (
-  <Modal
-   title="Please Retry Again "
-        className='modal-text'
-        centered
-        width={"25vw"}
-        open={modalOpen}
-        onOk={() => setModalOpen(false)}
-       
-        onCancel={() => setModalOpen(false)}
-        footer={[<Button      onClick={handleRetry}>Retry</Button>,]}
-           >
-  <p>Your marks are low. Do you want to retry?</p>
-  </Modal>
+    <Modal
+      title="Please Retry Again"
+      className='modal-text'
+      centered
+      width={"25vw"}
+      open={modalOpen}
+      onOk={() => setModalOpen(false)}
+      onCancel={() => setModalOpen(false)}
+      footer={null} // Remove the default footer
+    >
+      <div className="modal-content">
+        <p>Your marks are low. Do you want to</p>
+        <div className="button-container">
+          <Button className="modal-button btn-x" onClick={handleRetry}>
+            Retry Quiz <RefreshIcon fontSize="small" style={{ marginLeft: "4px" }}/>
+          </Button>
+          <Button className="modal-button btn-y" onClick={handleGoBack}>
+            Go Back <KeyboardReturnIcon fontSize="small" style={{ marginLeft: "4px" }}/>
+          </Button>
+        </div>
+      </div>
+    </Modal>
   )
 };
 

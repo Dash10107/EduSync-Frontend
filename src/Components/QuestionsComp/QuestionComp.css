@@ -39,46 +39,26 @@ margin-top: 1vh;
     
 }
 
-/* Add this to your CSS file or component styles */
 .next-button {
-  
-  padding: 10px 20px; /* Adjust padding as needed */
+  padding: 10px;
   cursor: pointer;
-  /* transition: background-color 0.3s ease, transform 0.2s ease; */
   font-size: 16px;
-  width: auto; /* Remove fixed width to allow content to determine width */
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap;
+  background-color: #007bff;
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 5px; /* Reduce border radius to match the vertical-option button */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  padding: 0.5% 20%;
+}
 
-
-
+.next-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  transform: scale(1.1);
 }
 
 
-.animated-button {
-  border: 2px solid #007bff;
-border-radius: 25px;
-  background-color: white;
-  color: #007bff;
-  background-image: linear-gradient(
-    to right,
-    white 0%,
-    white 50%,
-    #007bff 50%,
-    #007bff 100%
-  );
-  background-size: 200% 100%;
-  transition: background-position 0.5s, color 0.5s;
-}
-
-.animated-button.animated {
-  background-position: -100% 0;
-  color: white;
-}
-
-.animated-button.animated:hover {
-  color: white;
-  transform: scale(1.1); /* Scale up the button on hover */
-}
 
 
 /* Add styles for the completion message */
