@@ -10,7 +10,7 @@ const RetryModal = (props) => {
       title="Please Retry Again"
       className='modal-text'
       centered
-      width={"25vw"}
+      width={"auto"}
       open={modalOpen}
       onOk={() => setModalOpen(false)}
       onCancel={() => setModalOpen(false)}

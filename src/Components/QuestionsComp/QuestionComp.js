@@ -171,42 +171,44 @@ const   handleGoBack = ()=>{
     setShowResult(false);
   };
 
-// Define a function to handle keyboard shortcuts
-const handleKeyboardShortcuts = (event) => {
-  if (event.key === "Enter" || event.key === " ") {
-    if (!showResult && selectedOption !== "") {
-      // If not showing results and an option is selected, show results
-      handleShowResult();
-    } else if (currentQuestionIndex < questions.length - 1) {
-      // If there are more questions, go to the next question
-      handleNextQuestion();
-    } else if (showResult && !testOver) {
-      // If showing results and there are no more questions, end the test
-      setTestOver(true);
-    }
-  } else if (!showResult) {
-    // Check if a number key (1, 2, 3, 4) was pressed
-    if (event.key >= "1" && event.key <= "4") {
-      const selectedIndex = parseInt(event.key) - 1;
-      if (
-        selectedIndex >= 0 &&
-        selectedIndex < questions[currentQuestionIndex].options.length &&
-        selectedOption !== questions[currentQuestionIndex].options[selectedIndex]
-      ) {
-        handleOptionChange(questions[currentQuestionIndex].options[selectedIndex]);
+  // Define a function to handle keyboard shortcuts
+  const handleKeyboardShortcuts = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      if (!showResult && selectedOption !== "") {
+        // If not showing results and an option is selected, show results
+        handleShowResult();
+      } else if (currentQuestionIndex < questions.length - 1) {
+        // If there are more questions, go to the next question
+        handleNextQuestion();
+      } else if (showResult && testOver) {
+        // If showing results and the test is over, end the test
+        handleEndTest(event); // Call handleEndTest here
+      }
+    } else if (!showResult) {
+      if (event.key >= "1" && event.key <= "4") {
+        // Handle number key presses (1, 2, 3, 4) for selecting options
+        const selectedIndex = parseInt(event.key) - 1;
+        if (
+          selectedIndex >= 0 &&
+          selectedIndex < questions[currentQuestionIndex].options.length &&
+          selectedOption !==
+            questions[currentQuestionIndex].options[selectedIndex]
+        ) {
+          handleOptionChange(
+            questions[currentQuestionIndex].options[selectedIndex]
+          );
+        }
       }
     }
-  }
-};
-
-
-// Remove the event listener in the cleanup function
-useEffect(() => {
-  document.addEventListener("keydown", handleKeyboardShortcuts);
-  return () => {
-    document.removeEventListener("keydown", handleKeyboardShortcuts);
   };
-}, [selectedOption, showResult, questions, currentQuestionIndex, testOver]);
+
+  // Add event listeners for keyboard shortcuts
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyboardShortcuts);
+    return () => {
+      document.removeEventListener("keydown", handleKeyboardShortcuts);
+    };
+  }, [selectedOption, showResult, questions, currentQuestionIndex, testOver]);
 
   
 
