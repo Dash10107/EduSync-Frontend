@@ -6,8 +6,13 @@ import Chapters from "../Pages/Chapters";
 import Subjects from "../Pages/Subjects";
 import Question from "../Pages/Question";
 import Profile from "../Pages/Profile";
+import Signup from "../Pages/Signup";
 
 export const router = createBrowserRouter([
+  {
+    path:"/signup",
+    element:<Signup/>
+  },
   {
     path: "/",
     element: <Landing />,
