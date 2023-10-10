@@ -45,7 +45,15 @@ const [errors,setErrors] = useState({});
       console.log("Response",response)
       if(response.status===200){
            // If the registration is successful, you can handle the response here
-      console.log("Registration successful", response.data);
+     setFormData({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
+  setErrors("Signed Up Successfully");
+  setToastOpen(true);
+  navigate("/login");
       
       }else{ console.log(response.status)}
    
@@ -65,6 +73,7 @@ const [errors,setErrors] = useState({});
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
+     setToastOpen(false);
       return;
     }
   }
