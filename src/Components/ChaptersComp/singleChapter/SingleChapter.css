@@ -1,0 +1,57 @@
+/* SingleChapter.css */
+.circle-div {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background: #1B2A41;
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px; /* Add margin-right to create gaps */
+    margin-bottom: 10px; /* Add margin-bottom to separate rows */
+  }
+
+  .circle-border {
+    width: 10rem;
+    height: 10rem;
+  border-radius: 50%; /* Make it a circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  .center {
+    margin: 0 auto !important;  /* Center the first div by setting margin to auto */
+    margin-bottom: 30px !important;
+  }
+  
+  /* Apply margin-left to the divs on the left */
+  .left {
+    margin-left: 0;
+  }
+  
+  /* Apply margin-right to the divs on the right */
+  .right {
+    margin-left: auto;
+  }
+  
+
+/* Media query for desktop screens */
+@media (min-width: 768px) {
+    .zigzag-list {
+      max-width: 720px; /* Adjust the maximum width based on your design preferences */
+      margin: 0 auto; /* Center-align the list within the container */
+    }
+  }
+
+  .ant-progress-text {
+    color: white !important; /* Set the desired color for the format text */
+  }
+
+  .ant-progress-inner{
+
+        width: 10rem !important;
+        height: 10rem !important;
+        font-size: 16px !important;
+  }

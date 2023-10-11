@@ -4,13 +4,15 @@ import axios from "axios";
 import SingleCard from "./singleCard/singleCard";
 import Navbar from "../../Layouts/Navbar/Navbar";
 import EastIcon from '@mui/icons-material/East';
-import { Box, Grid } from "@mui/material";
-
+import { Box, Grid, Input, InputAdornment } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 const Home = (props) => {
     const [modules,setModules] = useState([]);
     const [isLoading, setIsLoading] = useState(true);  
     const [allLoading,setAllLoading] = useState(true);
     const [filteredModules, setFilteredModules] = useState([]); 
+    const [searchInput, setSearchInput] = useState(""); 
+    const [searchModules,setSearchModules] = useState([]);
     const fetchModules = async()=>{
 try {
       await axios.get('http://localhost:5000/module/',{
@@ -81,7 +83,19 @@ fetchProgress();
 
     },[]);
 
+      // Event handler for updating the search input value
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
 
+    // Filter modules based on search input
+    useEffect(() => {
+      // Filter modules based on the search input value
+      const searchedModulesData = modules.filter((module) =>
+        module.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      setSearchModules(searchedModulesData)
+    }, [searchInput, modules]);
 
 
     return (
@@ -114,44 +128,91 @@ fetchProgress();
 
 
         <div className="all-courses-main">
-        <p className="all-courses-title">All Courses  <EastIcon /> </p>
+        <div className="all-courses-title">
+        <p >All Courses  <EastIcon /> </p>
+        <Input disableUnderline={true} className='search-input-for-home'
+              startAdornment={
+                <InputAdornment position='start'>
+                  <SearchIcon className='searchicon' />
+                </InputAdornment>
+              }
+              placeholder='Search' type="text"
+            value={searchInput} // Bind the input value to the state
+            onChange={handleSearchInputChange} // Handle input changes
+            >
+
+            </Input>
+        
+        </div>
 {
   allLoading ? (
     <p>Loading...</p> // Display a loading indicator while data is being fetched
   ):(
     <div className="all-courses-content">
-       
-       <Box sx={{ flexGrow: 1 }}>
-<Grid
- container
- spacing={{ xs: 2, md: 3 }}
- columns={{ xs: 4, sm: 8, md: 12 }}
- style={{ paddingBottom: "3vh" }}
->
- {modules?.map((module, _i) => {
-   const borderLeftColor =
-     _i % 3 === 1 ? "#7A00F3" : _i % 3 === 2 ? "#EB8338" : "#569bf7";
+  <Box sx={{ flexGrow: 1 }}>
+    <Grid
+      container
+      spacing={{ xs: 2, md: 3 }}
+      columns={{ xs: 4, sm: 8, md: 12 }}
+      style={{ paddingBottom: "3vh" }}
+    >
+      {searchInput !== "" ? (
+        searchModules.map((module, _i) => {
+          const borderLeftColor =
+            _i % 3 === 1 ? "#7A00F3" : _i % 3 === 2 ? "#EB8338" : "#569bf7";
 
-     // Calculate a lighter shadow color
-const lighterShadowColor = `rgba(${parseInt(borderLeftColor.slice(1, 3), 16)}, ${parseInt(borderLeftColor.slice(3, 5), 16)}, ${parseInt(borderLeftColor.slice(5, 7), 16)}, 0.5)`;
+          // Calculate a lighter shadow color
+          const lighterShadowColor = `rgba(${parseInt(
+            borderLeftColor.slice(1, 3),
+            16
+          )}, ${parseInt(borderLeftColor.slice(3, 5), 16)}, ${parseInt(
+            borderLeftColor.slice(5, 7),
+            16
+          )}, 0.5)`;
 
-   return (
-     <Grid item xs={12} sm={6} md={4} key={module.id}>
-       <SingleCard
-         module={module}
-         style={{
-           borderLeft: `10px solid ${borderLeftColor}`,
-           boxShadow: `0 5px 10px ${lighterShadowColor}`  
-         
-         }}
-       />
-     </Grid>
-   );
- })}
-</Grid>
-</Box>
+          return (
+            <Grid item xs={12} sm={6} md={4} key={module.id}>
+              <SingleCard
+                module={module}
+                style={{
+                  borderLeft: `10px solid ${borderLeftColor}`,
+                  boxShadow: `0 5px 10px ${lighterShadowColor}`,
+                }}
+              />
+            </Grid>
+          );
+        })
+      ) : (
+        modules.map((module, _i) => {
+          const borderLeftColor =
+            _i % 3 === 1 ? "#7A00F3" : _i % 3 === 2 ? "#EB8338" : "#569bf7";
 
-   </div>
+          // Calculate a lighter shadow color
+          const lighterShadowColor = `rgba(${parseInt(
+            borderLeftColor.slice(1, 3),
+            16
+          )}, ${parseInt(borderLeftColor.slice(3, 5), 16)}, ${parseInt(
+            borderLeftColor.slice(5, 7),
+            16
+          )}, 0.5)`;
+
+          return (
+            <Grid item xs={12} sm={6} md={4} key={module.id}>
+              <SingleCard
+                module={module}
+                style={{
+                  borderLeft: `10px solid ${borderLeftColor}`,
+                  boxShadow: `0 5px 10px ${lighterShadowColor}`,
+                }}
+              />
+            </Grid>
+          );
+        })
+      )}
+    </Grid>
+  </Box>
+</div>
+
   )
 }
         </div>

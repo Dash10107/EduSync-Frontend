@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Alert, Snackbar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
+import Navbar from "../../Layouts/Navbar/Navbar";
 
 
 
@@ -88,13 +88,11 @@ const LoginComp = (props) => {
   return (
     <div className="login-main-div overflow-hidden">
 
-      <div className="login-header justify-start pl-5 text-2xl text-red-500 ">
-        Header
-      </div>
+<Navbar />
 
 {/* daksh ye div mene add kiya hai image and login ko ek container mein daalne k liye  */}
       <div className="flex md:space-x-14 lg:space-x-6 bg-[#f3f2f7] h-full justify-center">
-
+     
       {/* ye img hai login card k baju wala */}
 
       <div>

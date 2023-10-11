@@ -52,24 +52,27 @@ useEffect(()=>{
   return (
     <div className="chapters-main">
     <Navbar />
-    {loading?(
+    {loading ? (
       <p>Loading</p>
-    ):(
+    ) : (
       <div>
-      <div className="subject-header">
-      <h3 className="subject-heading-text">{module.name}</h3>
+        <div className="subject-header">
+          <h3 className="subject-heading-text">{module.name}</h3>
+        </div>
+
+        <ul className="zigzag-list">
+  {chapters?.map((item, index) => (
+    <SingleChapter
+      item={item}
+      key={item.id}
+      position={index === 0 ? "center" : (index % 2 === 1 ? "left" : "right")}
+    />
+  ))}
+</ul>
+
       </div>
-    
-      <ul>
-        {chapters?.map((item) => (
-         <SingleChapter item={item} />
-        ))}
-        <br/>
-      </ul>
-      </div>)}
-      
-     
-    </div>
+    )}
+  </div>
   )
 };
 
