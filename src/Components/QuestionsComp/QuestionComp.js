@@ -27,6 +27,10 @@ const [toastOpen,setToastOpen] = useState(false);
 const [testOver,setTestOver] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showRetryModal, setShowRetryModal] = useState(false);
+  const [completionMessage, setCompletionMessage] = useState({
+    className: "",
+    message: "",
+  });
   const handleHover = () => {
     setIsAnimating(true);
   };
@@ -171,7 +175,6 @@ const   handleGoBack = ()=>{
     setShowResult(false);
   };
 
-  // Define a function to handle keyboard shortcuts
   const handleKeyboardShortcuts = (event) => {
     if (event.key === "Enter" || event.key === " ") {
       if (!showResult && selectedOption !== "") {
@@ -182,7 +185,7 @@ const   handleGoBack = ()=>{
         handleNextQuestion();
       } else if (showResult && testOver) {
         // If showing results and the test is over, end the test
-        handleEndTest(event); // Call handleEndTest here
+        handleEndTest(event);
       }
     } else if (!showResult) {
       if (event.key >= "1" && event.key <= "4") {
@@ -198,9 +201,24 @@ const   handleGoBack = ()=>{
             questions[currentQuestionIndex].options[selectedIndex]
           );
         }
+      } else if (event.key === "ArrowLeft" || event.key ==="ArrowUp") {
+        // Handle left arrow key to go to the previous option
+        const options = questions[currentQuestionIndex].options;
+        const currentIndex = options.findIndex((option) => option === selectedOption);
+        if (currentIndex > 0) {
+          handleOptionChange(options[currentIndex - 1]);
+        }
+      } else if (event.key === "ArrowRight" || event.key==="ArrowDown") {
+        // Handle right arrow key to go to the next option
+        const options = questions[currentQuestionIndex].options;
+        const currentIndex = options.findIndex((option) => option === selectedOption);
+        if (currentIndex < options.length - 1) {
+          handleOptionChange(options[currentIndex + 1]);
+        }
       }
     }
   };
+  
 
   // Add event listeners for keyboard shortcuts
   useEffect(() => {
@@ -217,7 +235,14 @@ const   handleGoBack = ()=>{
 useEffect(()=>{fetchQuestions()},[])
   // Calculate the progress based on the current question index
   const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
-
+// Calculate the completion message based on correctAnswersCount and questions.length
+useEffect(() => {
+  if (testOver) {
+    // Calculate the completion message based on correctAnswersCount and questions.length
+    const message = getCompletionMessage(correctAnswersCount, questions.length);
+    setCompletionMessage(message);
+  }
+}, [testOver, correctAnswersCount, questions.length]);
   return (
     <>
     <div className="questions-div">
@@ -295,24 +320,17 @@ useEffect(()=>{fetchQuestions()},[])
       )}
     </>
   ) : (
-    // Render the completion message and "End Test" button when the test is over
-    <div style={{ textAlign: "center" }}>
-      {/* Display the completion message here */}
-      <div
-        className={`completion-message ${getCompletionMessage(
-          correctAnswersCount,
-          questions.length
-        ).className}`}
-      >
-        <p>
-          {getCompletionMessage(correctAnswersCount, questions.length).message}
-        </p>
-        <p>
-          You got {correctAnswersCount} questions correct out of{" "}
-          {questions.length}
-        </p>
-      </div>
-
+     // Render the completion message outside the button
+    <>
+    <div
+                className={`completion-message ${completionMessage.className}`}
+              >
+                <p>{completionMessage.message}</p>
+                <p>
+                  You got {correctAnswersCount} questions correct out of{" "}
+                  {questions.length}
+                </p>
+              </div>
       <button
         className={`animated-button ${
           isAnimating ? "animated next-button" : "next-button"
@@ -323,7 +341,6 @@ useEffect(()=>{fetchQuestions()},[])
       >
         End Test
       </button>
-
       {showRetryModal && (
             <RetryModal
               modalOpen={showRetryModal}
@@ -332,7 +349,7 @@ useEffect(()=>{fetchQuestions()},[])
               handleGoBack={handleGoBack}
             />
               )}
-    </div>
+    </>
   )}
 </div>
 

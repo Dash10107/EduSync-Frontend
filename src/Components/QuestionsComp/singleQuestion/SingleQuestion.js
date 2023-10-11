@@ -12,7 +12,22 @@ const SingleQuestion = (props) => {
   } = props;
   const isAnswerCorrect = question.correctAnswer === selectedOption;
   const [selectedClass, setSelectedClass] = useState("");
+  const [negativeMessage, setNegativeMessage] = useState("");
+  const [positiveMessage, setPositiveMessage] = useState("");
 
+  useEffect(() => {
+    if (showResult) {
+      setSelectedClass(isAnswerCorrect ? "correct-answer" : "incorrect-answer");
+      if (!isAnswerCorrect) {
+        setNegativeMessage(getRandomNegativeMessage());
+      }
+      if (isAnswerCorrect) {
+        setPositiveMessage(getRandomPositiveMessage());
+      }
+    } else {
+      setSelectedClass(selectedOption ? "selected" : "");
+    }
+  }, [showResult, isAnswerCorrect, selectedOption]);
 
   useEffect(() => {
     if (showResult) {
@@ -89,14 +104,14 @@ const SingleQuestion = (props) => {
       </div>
       {showResult && !isAnswerCorrect && (
         <div className={`result-message ${isAnswerCorrect ? 'correct' : ''}`}>
-        <p>{getRandomNegativeMessage()}</p>
+        <p>{negativeMessage}</p>
           <p>{`Correct Answer: ${question.correctAnswer}`}</p>
       
         </div>
       )}
       {showResult && isAnswerCorrect && (
         <div className={`result-message ${isAnswerCorrect ? 'correct' : ''}`}>
-          <p>{getRandomPositiveMessage()}</p>
+        <p>{positiveMessage}</p>
         </div>
       )}
     </div>
