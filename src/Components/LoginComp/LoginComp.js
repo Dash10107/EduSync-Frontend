@@ -2,8 +2,11 @@ import React, { useState } from "react"
 import "./LoginComp.css"
 // import { Button } from "@mui/material";
 // import axios from "axios"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { Alert, Snackbar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+
 
 
 
@@ -12,17 +15,20 @@ const LoginComp = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  //code to ping backend
-  //   useEffect(()=>{
-  // try {
-  //        axios.get('http://localhost:5000/').then(res => {
-  //       console.log(res.data.message);
-  //       })
-  //     } catch (error) {
-  //       console.log("error", error)
-  //     }
-  //   },[])
+  const [errors,setErrors] = useState({});
+  const [toastOpen,setToastOpen] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+  const eye = passwordShown?<FontAwesomeIcon icon={faEye} />:<FontAwesomeIcon icon={faEyeSlash} />
+  
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+     setToastOpen(false);
+      return;
+    }
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +37,8 @@ const LoginComp = (props) => {
 
     if (!userName.endsWith(phrase)) {
       console.log("The string does not end with 'somaiya.edu'");
-      toast.warning("Please use somaiya.edu");
+      setErrors({error:"Please use somaiya.edu Email"});
+      setToastOpen(true);
       setUserName("");
       setPassword("");
       return;
@@ -60,7 +67,6 @@ const LoginComp = (props) => {
           localStorage.setItem("token", result.token);
           setUserName("");
           setPassword("");
-          toast.success("Successfully Logged In")
           navigate("/home");
         } else {
           console.log(result.token);
@@ -72,7 +78,8 @@ const LoginComp = (props) => {
 
     } catch (error) {
       console.error(error);
-      toast.error(error);
+      setErrors(error.response.data);
+      setToastOpen(true);
     }
 
   }
@@ -99,21 +106,33 @@ const LoginComp = (props) => {
       md:w-[33rem] md:ml-0 lg:w-[33rem] lg:ml-0">
 
           <form onSubmit={onSubmit} className="login-card ">
-
-            <div className="input-group">
-              {/* <label htmlFor="email" className="login-label ">Email ID</label> */}
-              <input type="email" id="email"
+          <div className="input-group">
+              <input
+                type="email"
                 className="rounded py-1 text-center bg-gray-200 placeholder-black  border-b-2 border-black text-black "
-                name="email" placeholder="Enter Your Mail" onChange={(e) => { setUserName(e.target.value) }} value={userName} required={true}></input>
+                name="name"
+                placeholder="Enter Your Email"
+                value={userName}
+                onChange={(e)=>{setUserName(e.target.value) }}
+                required={true}
+              ></input>
             </div>
-
-            <div className="input-group">
-              {/* <label htmlFor="password" className="login-label">Password</label> */}
-              <input type="password" id="password"
-                className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black  border-b-2 border-black text-black "
-                name="password" placeholder="Enter Password" onChange={(e) => { setPassword(e.target.value) }} required={true} value={password}></input>
-            </div>
-
+          <div className="input-group" style={{ display: "flex", alignItems: "center" }}>
+  <input
+    type={passwordShown ? "text" : "password"}
+    id="password"
+    className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black"
+    name="password"
+    placeholder="Enter Password"
+    value={password}
+    onChange={(e) => { setPassword(e.target.value) }} 
+    required={true}
+  />
+  <i onClick={togglePasswordVisiblity} className="eyeImgsec" style={{ marginLeft: "10%", cursor: "pointer",color:"black" }}>
+    {eye}
+  </i>
+</div>
+           
             <div className="sm:ml-[0rem] md:ml-[0rem] lg:ml-[3.5rem] space-y-1">
               <div className="flex ">
                 <hr className="bg-black text-black w-[7rem] lg:w-[10rem] mt-3 mr-3" />
@@ -131,7 +150,17 @@ const LoginComp = (props) => {
             </div>
           </form>
         </div>
-        <ToastContainer />
+        <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+  <Alert onClose={handleClose} severity="error"     sx={{ width: '100%' }}>
+  <ul>
+        {Object.entries(errors).map(([key, value]) => (
+          <li key={key}>
+          {value}
+          </li>
+        ))}
+      </ul>
+  </Alert>
+</Snackbar>
       </div>
     </div>
 

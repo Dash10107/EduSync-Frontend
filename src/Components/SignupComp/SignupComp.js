@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SignupComp.css";
-import { ToastContainer, toast } from "react-toastify";
+
 import axios from "axios";
 import Navbar from "../../Layouts/Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,15 @@ const [errors,setErrors] = useState({});
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Submitted");
+    const phrase = "somaiya.edu";
 
+    if (!email.endsWith(phrase)) {
+      console.log("The email does not end with 'somaiya.edu",);
+      setErrors({error:"Please use somaiya.edu Email",email});
+      setToastOpen(true);
+      return;
+    }
     try {
       // Send a POST request to the server
       const response = await axios.post(
@@ -45,15 +53,15 @@ const [errors,setErrors] = useState({});
       console.log("Response",response)
       if(response.status===200){
            // If the registration is successful, you can handle the response here
+      
+      Login(email,password);
      setFormData({
     name: "",
     email: "",
     password: "",
     password2: "",
   });
-  setErrors("Signed Up Successfully");
-  setToastOpen(true);
-  navigate("/login");
+
       
       }else{ console.log(response.status)}
    
@@ -76,6 +84,55 @@ const [errors,setErrors] = useState({});
      setToastOpen(false);
       return;
     }
+  }
+
+
+  const Login = async (userName,passWord) => {
+    const phrase = "somaiya.edu";
+
+    if (!userName.endsWith(phrase)) {
+
+      console.log("The string does not end with 'somaiya.edu : ",userName);
+      return;
+    }
+
+    let loginInfo = {
+      email: userName,
+      password: passWord
+    }
+    console.log(loginInfo);
+    try {
+      const response = await fetch('http://localhost:5000/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginInfo)
+
+      });
+
+      const result = await response.json();
+      console.warn("Result", result);
+
+      if (result.success) {
+        if (result.token) {
+          localStorage.setItem("token", result.token);
+       
+          navigate("/home");
+        } else {
+          console.log(result.token);
+        }
+      } else {
+        console.log(result);
+
+      }
+
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+      setToastOpen(true);
+    }
+
   }
   return (
     <div className="login-main-div overflow-hidden">
@@ -164,7 +221,7 @@ const [errors,setErrors] = useState({});
           </form>
         </div>
         <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-  <Alert onClose={handleClose} severity="warning"     sx={{ width: '100%' }}>
+  <Alert onClose={handleClose} severity="error"     sx={{ width: '100%' }}>
   <ul>
         {Object.entries(errors).map(([key, value]) => (
           <li key={key}>
