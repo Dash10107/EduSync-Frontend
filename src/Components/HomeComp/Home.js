@@ -10,7 +10,7 @@ const Home = (props) => {
     const [modules,setModules] = useState([]);
     const [isLoading, setIsLoading] = useState(true);  
     const [allLoading,setAllLoading] = useState(true);
-    const [filteredModules, setFilteredModules] = useState([]); 
+    const [progressIds,setProgressIds] = useState([]);
     const [searchInput, setSearchInput] = useState(""); 
     const [searchModules,setSearchModules] = useState([]);
     const fetchModules = async()=>{
@@ -55,16 +55,8 @@ try {
             let progressData = response?.data?.progress
             // Extract the moduleId values from the last 3 entries of user's progress data
             const lastThreeProgress = progressData.slice(-3);
-            const moduleIds = lastThreeProgress.map((progress) => progress.moduleId);
-
-            // Filter the modules array based on the extracted moduleIds
-            const filteredModulesData = modules?.filter((module) =>
-              moduleIds.includes(module.id)
-            );
-
-            setFilteredModules(filteredModulesData);
-           
-            
+             const moduleIds = lastThreeProgress.map((progress) => progress.moduleId);
+            setProgressIds(moduleIds);           
   
           }else{console.log("Status Code",response.status);
           }
@@ -80,7 +72,6 @@ try {
     useEffect(()=>{
 fetchModules();
 fetchProgress();
-
     },[]);
 
       // Event handler for updating the search input value
@@ -103,24 +94,40 @@ fetchProgress();
         <Navbar />
         <div className="continue-courses-main">
           <p className="continue-courses-header">Continue With Courses  <EastIcon /></p>
-          {filteredModules.length<0 && isLoading===true ? (
-            <p>Loading...</p> // Display a loading indicator while data is being fetched
+          { isLoading===true ? (
+            <h1>Loading...</h1> // Display a loading indicator while data is being fetched
           ) : (
             <div className="continue-courses-content">
-              {filteredModules?.map((module,_i) => {
-
+            {modules
+              .filter((module) => progressIds.includes(module.id)) // Filter modules based on progressIds
+              .map((module, _i) => {
                 const borderLeftColor =
-        _i % 3 === 1 ? "#7A00F3" : _i % 3 === 2 ? "#EB8338" : "#569bf7";
+                  _i % 3 === 1
+                    ? "#7A00F3"
+                    : _i % 3 === 2
+                    ? "#EB8338"
+                    : "#569bf7";
 
-        const lighterShadowColor = `rgba(${parseInt(borderLeftColor.slice(1, 3), 16)}, ${parseInt(borderLeftColor.slice(3, 5), 16)}, ${parseInt(borderLeftColor.slice(5, 7), 16)}, 0.5)`;
+                const lighterShadowColor = `rgba(${parseInt(
+                  borderLeftColor.slice(1, 3),
+                  16
+                )}, ${parseInt(borderLeftColor.slice(3, 5), 16)}, ${parseInt(
+                  borderLeftColor.slice(5, 7),
+                  16
+                )}, 0.5)`;
 
-
-               console.log(module)
-                return(
-                <SingleCard module={module} style={{ height: "22vh", width: "24vw",    borderLeft: `10px solid ${borderLeftColor}`,
-                 boxShadow: `0 5px 10px ${lighterShadowColor}` 
-                  }} />
-              )
+                return (
+                  <SingleCard
+                    module={module}
+                    style={{
+                      height: "22vh",
+                      width: "24vw",
+                      borderLeft: `10px solid ${borderLeftColor}`,
+                      boxShadow: `0 5px 10px ${lighterShadowColor}`,
+                    }}
+                    key={module.id}
+                  />
+                );
               })}
             </div>
           )}

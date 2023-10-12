@@ -229,9 +229,6 @@ const   handleGoBack = ()=>{
   }, [selectedOption, showResult, questions, currentQuestionIndex, testOver]);
 
   
-
-
-  
 useEffect(()=>{fetchQuestions()},[])
   // Calculate the progress based on the current question index
   const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;

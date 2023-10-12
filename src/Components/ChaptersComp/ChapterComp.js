@@ -7,8 +7,32 @@ import SingleChapter from "./singleChapter/SingleChapter";
 const ChapterComp = (props) => {
   const moduleId = localStorage.getItem("moduleId");
   const [chapters,setChapters] = useState([]);
-const [module,setModule] = useState({});
+  const [module,setModule] = useState({});
   const [loading,setLoading] = useState(true);
+  const [progressPercentages, setProgressPercentages] = useState([]);
+
+  const fetchProgressPercentages = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/progress/${moduleId}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+
+      if (response.status === 200) {
+        setProgressPercentages(response.data.progressPercentages);
+      } else {
+        console.log("Status Code", response.status);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProgressPercentages();
+  }, []);
+
 
   const fetchChapters=async()=>{
     try {
@@ -40,14 +64,6 @@ useEffect(()=>{
 fetchChapters();
 },[])
 
-// useEffect(()=>{
-//   console.log(chapters);
-  
-// },[chapters])
-useEffect(()=>{
-  console.log(module);
-  
-},[module])
   
   return (
     <div className="chapters-main">
@@ -61,13 +77,15 @@ useEffect(()=>{
         </div>
 
         <ul className="zigzag-list">
-  {chapters?.map((item, index) => (
-    <SingleChapter
-      item={item}
-      key={item.id}
-      position={index === 0 ? "center" : (index % 2 === 1 ? "left" : "right")}
-    />
-  ))}
+        {chapters?.map((item, index) => (
+  <SingleChapter
+    item={item}
+    key={item.id}
+    position={index === 0 ? "center" : (index % 2 === 1 ? "left" : "right")}
+    progress={progressPercentages[index] || null} // Pass progress or null
+  />
+))}
+
 </ul>
 
       </div>

@@ -37,6 +37,9 @@ const SingleQuestion = (props) => {
     }
   }, [showResult, isAnswerCorrect, selectedOption]);
 
+
+
+
   return (
     <div key={question.id} className="single-question">
       <p className="question-text">{question.question}</p>
@@ -74,6 +77,7 @@ const SingleQuestion = (props) => {
                 <button
                   className={`option-button`}
                   onClick={() => handleOptionChange(option)}
+        
                   disabled={showResult} // Disable options when showing results
                 >
                   {option}
@@ -93,6 +97,7 @@ const SingleQuestion = (props) => {
                 <button
                   className={`option-button`}
                   onClick={() => handleOptionChange(option)}
+         
                   disabled={showResult} // Disable options when showing results
                 >
                   {option}

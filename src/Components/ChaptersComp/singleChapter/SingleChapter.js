@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Popover, Progress } from 'antd';
 
 const SingleChapter = (props) => {
-  const { item, position } = props;
+  const { item, position,progress } = props;
   const navigate = useNavigate();
 
+  console.log(progress);
   
   
   const content = (
@@ -23,11 +24,18 @@ const SingleChapter = (props) => {
     }}>
     
         <div className="circle-border">
-          <Progress
+        {progress? (    <Progress
+              type="circle"
+              percent={progress.progressPercentage}
+              format={() => item.title}
+            />):(
+               <Progress
             type="circle"
-            percent={40} // Set the percentage to 0 to hide it
+            percent={0} // Set the percentage to 0 to hide it
             format={() => item.title}
           />
+            )}
+         
         </div>
   
     </div>
