@@ -9,6 +9,7 @@ import { getCompletionMessage } from "../../Utils";
 import RetryModal from "./retryModal/RetryModal";
 
 import { Alert, Snackbar } from "@mui/material";
+import LeaveModal from "./leaveModal/LeaveModal";
 const QuestionComp = (props) => {
   const moduleId = localStorage.getItem("moduleId");
   const chapterId = parseInt(localStorage.getItem("chapterId"));
@@ -27,6 +28,12 @@ const [toastOpen,setToastOpen] = useState(false);
 const [testOver,setTestOver] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [showRetryModal, setShowRetryModal] = useState(false);
+
+
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [routeToNavigate, setRouteToNavigate] = useState(""); // Store the route path
+
+
   const [completionMessage, setCompletionMessage] = useState({
     className: "",
     message: "",
@@ -252,22 +259,42 @@ useEffect(() => {
  
     
   }}
-  onClick={() => navigate("/home")}>{subjectName}</span>
+  onClick={() =>{
+    setRouteToNavigate("/home")
+    setShowConfirmationModal(true);
+
+  } }>{subjectName}</span>
           <span   style={{
     textDecoration: "none", // Remove underline by default
     cursor: "pointer",
   
   }}
-  onClick={() => navigate("/chapters")}> {">"} {chapterName} </span>
+  onClick={() =>{
+    setRouteToNavigate("/chapters")
+    setShowConfirmationModal(true);
+
+  } }> {">"} {chapterName} </span>
           <span   style={{
     textDecoration: "none", // Remove underline by default
     cursor: "pointer",
   
   }}
-  onClick={() => navigate("/subjects")}>
+  onClick={() =>{
+    setRouteToNavigate("/subjects")
+    setShowConfirmationModal(true);
+
+  } }>
             {">"} {subChapterName.split(" ")[0]}
           </span>
         </div>
+        {showConfirmationModal && 
+      <LeaveModal
+        modalOpen={showConfirmationModal}
+              setModalOpen = {setShowConfirmationModal}
+              routeToNavigate={routeToNavigate}
+              setRouteToNavigate={setRouteToNavigate}
+   />
+   }
       </div>
       <div className="progress-section">
         <div className="progress-content">
@@ -346,13 +373,17 @@ useEffect(() => {
               handleGoBack={handleGoBack}
             />
               )}
+             
     </>
   )}
 </div>
 
       )}
     </div>
-   
+
+
+
+
     <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
   <Alert onClose={handleClose} severity="warning"     sx={{ width: '100%' }}>
   Please select an option before proceeding

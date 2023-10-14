@@ -6,8 +6,6 @@ import { Popover, Progress } from 'antd';
 const SingleChapter = (props) => {
   const { item, position,progress } = props;
   const navigate = useNavigate();
-
-  console.log(progress);
   
   
   const content = (
