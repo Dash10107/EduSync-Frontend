@@ -28,7 +28,9 @@
 @media (max-width: 600px) {
     .single-card {
         width: 80vw; /* Adjust the width as needed */
-        height: 30vh; /* Adjust the height as needed */
+        height: 27vh; /* Adjust the height as needed */
+        margin-left: 7vw;
+        margin-bottom: 2vh;
     }
 
     .single-card-title {

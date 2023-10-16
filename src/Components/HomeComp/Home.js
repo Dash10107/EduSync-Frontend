@@ -92,12 +92,20 @@ fetchProgress();
     return (
       <div>
         <Navbar />
+        
         <div className="continue-courses-main">
           <p className="continue-courses-header">Continue With Courses  <EastIcon /></p>
           { isLoading===true ? (
             <h1>Loading...</h1> // Display a loading indicator while data is being fetched
           ) : (
             <div className="continue-courses-content">
+              <Box sx={{ flexGrow: 1 }}>
+    <Grid
+      container
+      spacing={{ xs: 2, md: 3 }}
+      columns={{ xs: 4, sm: 8, md: 12 }}
+      style={{ paddingBottom: "3vh" }}
+    >
             {modules
               .filter((module) => progressIds.includes(module.id)) // Filter modules based on progressIds
               .map((module, _i) => {
@@ -117,18 +125,20 @@ fetchProgress();
                 )}, 0.5)`;
 
                 return (
+                  <Grid item xs={12} sm={6} md={4} key={module.id}>
                   <SingleCard
                     module={module}
                     style={{
-                      height: "22vh",
-                      width: "24vw",
                       borderLeft: `10px solid ${borderLeftColor}`,
                       boxShadow: `0 5px 10px ${lighterShadowColor}`,
                     }}
                     key={module.id}
                   />
+                  </Grid>
                 );
               })}
+              </Grid>
+    </Box>
             </div>
           )}
         </div>

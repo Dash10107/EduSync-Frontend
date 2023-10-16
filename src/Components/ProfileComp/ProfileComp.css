@@ -1,0 +1,25 @@
+/* ProfileComp.css */
+.profile-details-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Add this line to space the image and text evenly */
+    width: 100%;
+  }
+  
+  .profile-image {
+    flex: 1; /* Make the image section take 50% of the width */
+    text-align: right; /* Right-align the image within its section */
+    display: flex;
+    justify-content: flex-end ;
+}
+  
+  .profile-image img {
+    max-width: 100%; /* Adjust image size to fit the section */
+
+  }
+  
+  .profile-text {
+    flex: 1; /* Make the text section take 50% of the width */
+    font-size: 18px; /* Adjust font size as needed */
+  }
+  

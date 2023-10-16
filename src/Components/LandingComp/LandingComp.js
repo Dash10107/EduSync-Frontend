@@ -7,8 +7,6 @@ import Slider from "react-slick";
 import image1 from "../../Assets/Bg_Image.png";
 import image2 from "../../Assets/image-removebg-preview (23) 1.png";
 import image3 from "../../Assets/image-removebg-preview (26) 1.png";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const LandingComp = () => {
   const navigate = useNavigate();
@@ -27,25 +25,24 @@ const LandingComp = () => {
     <button {...props} className="custom-prev-arrow bg-[#1B2A41] text-white px-2.5 py-1 rounded-full absolute
      hover:text-lg hover:shadow-lg shadow-black 
     // responsive css
-    top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+     top-[44%] left-[16%] 
      sm:left-[0%] sm:top-[50%] 
      md:text-xl 
     lg:text-3xl lg:left-[0%] hover:lg:text-4xl">
-      <ArrowBackIosIcon/>
+      --
     </button>
   );
 
   // Custom component for the right arrow
   const CustomNextArrow = (props) => (
-<button {...props} className="custom-next-arrow bg-[#1B2A41] text-white px-1.5 py-1 rounded-full absolute hover:text-4xl hover:shadow-lg shadow-black
-  // responsive css
-  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-  md:text-xl
-  lg:text-3xl lg:left-[60%] hover:lg:text-4xl"
->
-  <ArrowForwardIosIcon />
-</button>
-
+    <button {...props} className="custom-next-arrow bg-[#1B2A41] text-white px-1.5 py-1 rounded-full absolute hover:text-4xl hover:shadow-lg shadow-black 
+    // responsive css
+    top-[44%] left-[80%] 
+    sm:left-[80%] sm:top-[50%] 
+    md:text-xl 
+    lg:text-3xl lg:left-[60%] hover:lg:text-4xl">
+      ++
+    </button>
   );
 
   const settings = {
@@ -65,7 +62,7 @@ const LandingComp = () => {
 
 
   return (
-    <div className='bg-[#FFFFFF] h-screen '>
+    <div className='bg-[#E4E0FB] h-screen '>
 
     {/* This is carousel */}
       <div className='pt-[55%] sm:pt-[40%] sm:pl-[16%] 

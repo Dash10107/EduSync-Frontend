@@ -24,11 +24,22 @@ export const router = createBrowserRouter([
   {
     path: "/home",
     element: localStorage.getItem("token") ? (
-      <HomePage />
+      localStorage.getItem("firstLogin") === "true" ? (
+        // User has logged in for the first time, redirect to the home page and set firstLogin to false
+        <>
+          {localStorage.setItem("firstLogin", "false")}
+          <Navigate to="/home" replace />
+        </>
+      ) : (
+        // User has previously logged in, show the HomePage component
+        <HomePage />
+      )
     ) : (
+      // User is not logged in, redirect to the login page
       <Navigate to="/login" replace />
     ),
   },
+  
   {
     path: "/chapters",
     element: localStorage.getItem("token")  ? (

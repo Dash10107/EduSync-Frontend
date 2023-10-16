@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ProfileComp.css";
+import profile from "../../Assets/Profile.png";
+import Navbar from "../../Layouts/Navbar/Navbar";
+
 const ProfileComp = () => {
 
   const [userData, setUserData] = useState(null);
@@ -46,16 +49,23 @@ fetchUser();
 
   return (
     <div>
+    <Navbar/>
       <h2>Profile Details</h2>
       {loading ? (
         <p>Loading...</p>
       ) : userData ? (
         <div>
-          <p>Access granted!</p>
-          <p>User ID: {userData.id}</p>
-          <p>User Name: {userData.name}</p>
-          <p>Email : {userDetails.email}</p>
-          <p>Date Joined: {formatDate(userDetails.date)}</p>
+        <div className="profile-details-container">
+      <div className="profile-image">
+        <img src={profile} alt="Profile" />
+      </div>
+      <div className="profile-text">
+        <p>User Name: {userData.name}</p>
+        <p>Email: {userDetails.email}</p>
+        <p>Date Joined: {formatDate(userDetails.date)}</p>
+      </div>
+    </div>
+
           <h3>Progress Details:</h3>
           <ul>
             {userDetails.progress.map((progressItem, index) => (
