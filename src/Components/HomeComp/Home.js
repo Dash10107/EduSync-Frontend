@@ -169,8 +169,9 @@ fetchProgress();
   <Box sx={{ flexGrow: 1 }}>
     <Grid
       container
-      spacing={{ xs: 2, md: 3 }}
-      columns={{ xs: 4, sm: 8, md: 12 }}
+      // spacing={{ xs: 2, sm: 2, md: 3 }}
+      // columns={{ xs: 4, sm: 6, md: 12 }}
+       rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
       style={{ paddingBottom: "3vh" }}
     >
       {searchInput !== "" ? (
@@ -188,7 +189,7 @@ fetchProgress();
           )}, 0.5)`;
 
           return (
-            <Grid item xs={12} sm={6} md={4} key={module.id}>
+            <Grid item xs={6}  key={module.id}>
               <SingleCard
                 module={module}
                 style={{
