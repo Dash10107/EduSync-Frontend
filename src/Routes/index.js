@@ -7,6 +7,7 @@ import Subjects from "../Pages/Subjects";
 import Question from "../Pages/Question";
 import Profile from "../Pages/Profile";
 import Signup from "../Pages/Signup";
+import ModulesProgress from "../Pages/ModulesProgress";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,14 @@ export const router = createBrowserRouter([
     path: "/profile",
     element: localStorage.getItem("token")? (
       <Profile />
+    ) : (
+      <Navigate to="/login" replace />
+    ),
+  },
+  {
+    path: "/profile/modules",
+    element: localStorage.getItem("token")? (
+      <ModulesProgress/>
     ) : (
       <Navigate to="/login" replace />
     ),

@@ -2,13 +2,22 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ProfileComp.css";
 import profile from "../../Assets/Profile.png";
+import joining from "../../Assets/icons8-date-50 1.png"
 import Navbar from "../../Layouts/Navbar/Navbar";
+import { Progress } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const ProfileComp = () => {
-
+  const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userDetails,setUserDetails] = useState({});
+  const [progressPercentage,setProgressPercentage] = useState(0);
+  const [chaptersStarted,setChapterStarted] = useState(0);
+  const [modulesStarted,setModulesStarted] = useState(0);
+  const [subchaptersStarted,setSubChapterStarted] = useState(0);
+
+
 
   const fetchUser= async()=>{
         // Make a GET request to the protected route
@@ -37,9 +46,6 @@ const ProfileComp = () => {
           setLoading(false);
         });
   }
-  useEffect(() => {
-fetchUser();
-  }, []);
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -47,10 +53,70 @@ fetchUser();
     return formattedDate;
   };
 
+  const fetchMainProgress = async()=>{
+    try {
+      await axios.get('http://localhost:5000/progress/',{
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        }
+       }).then(response => {
+        console.log("Response",response);
+        
+        if(response.status===200){
+          console.log("Response for Progress", response);
+setProgressPercentage(Number(response.data.progressPercentage).toFixed(2));   
+
+// Initialize counters
+let chaptersStarted = 0;
+let subchaptersCompleted = 0;
+let modulesStarted = 0;
+
+// Create a Set to keep track of unique chapters and modules
+const uniqueChapters = new Set();
+const uniqueModules = new Set();
+
+const progressData = response.data.progressData;
+// Iterate through the progressData
+progressData.forEach((item) => {
+  // Count unique chapters and modules
+  uniqueChapters.add(item.chapterId);
+  uniqueModules.add(item.moduleId);
+
+  // Check if subchapter is completed (assuming correctPercentage >= 80 indicates completion)
+  if (item.correctPercentage >= 80) {
+    subchaptersCompleted++;
+  }
+});
+
+// Count the total number of chapters and modules started
+chaptersStarted = uniqueChapters.size;
+modulesStarted = uniqueModules.size;
+
+console.log('Total Chapters Started:', chaptersStarted);
+console.log('Total Subchapters Completed:', subchaptersCompleted);
+console.log('Total Modules Started:', modulesStarted);
+
+setChapterStarted(chaptersStarted)
+setSubChapterStarted(subchaptersCompleted)
+setModulesStarted(modulesStarted);
+
+        }else{console.log("Status Code",response.status);
+        }
+       
+      })
+    } catch (error) {
+      console.log("error", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchUser();
+    fetchMainProgress();
+      }, []);
+
   return (
     <div>
     <Navbar/>
-      <h2>Profile Details</h2>
       {loading ? (
         <p>Loading...</p>
       ) : userData ? (
@@ -60,14 +126,67 @@ fetchUser();
         <img src={profile} alt="Profile" />
       </div>
       <div className="profile-text">
-        <p>User Name: {userData.name}</p>
-        <p>Email: {userDetails.email}</p>
-        <p>Date Joined: {formatDate(userDetails.date)}</p>
+        <p> {userData.name}</p>
+        <p> {userDetails.email}</p>
+        <div className="joining-container">
+  <div className="joining-image">
+    <img src={joining} alt="" />
+  </div>
+  <div className="joining-text">
+    <p>Date of Joining</p>
+    <p>{formatDate(userDetails.date)}</p>
+  </div>
+</div>
+
+
       </div>
     </div>
 
-          <h3>Progress Details:</h3>
-          <ul>
+        
+    <div className="progress-card">
+  <div className="progress-container">
+    <Progress
+      type="circle"
+      percent={progressPercentage}
+      strokeColor="#e92061" // Set the color to your desired col
+      format={() => `${progressPercentage}%`}
+      width={100}
+      trailColor="#5f3d9b" // Set the color of the empty progress bar
+    />
+  </div>
+  <div className="text-container">
+    <p>Complete Progress</p>
+  </div>
+</div>
+<div className="modules-progress-container" onClick={()=>{navigate("/profile/modules")}}>
+  {/* Top part: Progress */}
+  <div className="top-part">
+    <Progress
+      type="circle"
+      percent={80} // Replace with your modulesStarted variable
+      strokeColor="#e92061"
+      format={() => `${modulesStarted}%`}
+      width={100}
+      trailColor="#5f3d9b"
+    />
+  </div>
+  {/* Bottom part: Chapters and Subchapters */}
+  <div className="bottom-part">
+    {/* Left side: Chapters */}
+    <div className="left-side">
+      <p>{chaptersStarted}</p>
+      <p>Chapters Started</p>
+    </div>
+    {/* Right side: Subchapters */}
+    <div className="right-side">
+      <p>{subchaptersStarted}</p>
+      <p>Subchapters Completed</p>
+    </div>
+  </div>
+</div>
+
+
+          {/* <ul>
             {userDetails.progress.map((progressItem, index) => (
               <li key={index}>
                 Module ID: {progressItem.moduleId} &nbsp;
@@ -78,8 +197,9 @@ fetchUser();
               </li>
             ))}
             <br/>
-          </ul>
+          </ul> */}
           {/* Display other user properties as needed */}
+
         </div>
       ) : (
         <p>Access denied</p>

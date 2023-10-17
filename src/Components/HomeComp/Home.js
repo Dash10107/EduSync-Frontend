@@ -52,7 +52,7 @@ try {
           
           if(response.status===200){
             console.log(response);
-            let progressData = response?.data?.progress
+            let progressData = response?.data?.progressData
             // Extract the moduleId values from the last 3 entries of user's progress data
             const lastThreeProgress = progressData.slice(-3);
              const moduleIds = lastThreeProgress.map((progress) => progress.moduleId);
