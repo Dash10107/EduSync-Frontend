@@ -9,3 +9,10 @@
 color: white;
 margin-bottom: 2vh;
 }
+
+.profile{
+    background-color:#0f0c29; 
+    background-color: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  
+    background-color:linear-gradient(to right, #24243e, #302b63, #0f0c29); 
+
+}

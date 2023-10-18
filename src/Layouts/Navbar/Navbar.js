@@ -2,6 +2,7 @@ import React from "react"
 import  "./Navbar.css"
 import { Dropdown } from 'antd';
 import { useNavigate } from "react-router-dom";
+import logo from "../../Assets/logo.png";
 const Navbar = (props) => {
 
   const navigate = useNavigate();
@@ -38,16 +39,21 @@ const Navbar = (props) => {
   ];
 
   return (
-    <div className="navbar-main">
-      <div>
+    <div className="navbar-main  ">
+      <div className="justify-start">
     c
       </div>
-<div>
-    logo
+<div className=" justify-center">
+<img src={logo} className='h-[5vh] rounded'   alt=" 1" />
 </div>
 <div>
 <Dropdown menu={{ items }} trigger={['click']}>
-<div>Profile Image</div>
+
+<div className=" justify-end">
+  <div className="profile rounded-full bg-white mr-3 font-bold py-1  px-2 ">
+    DJ
+  </div>
+</div>
 </Dropdown>
 </div>
     </div>

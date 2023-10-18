@@ -2,7 +2,9 @@
 
 .single-card {
     /* background: #1B2A41; */ 
-    background: linear-gradient(135deg , #132140, #3f5e99);      
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);    
     /*  #5076bf */
     color:black;
     border-radius: 20px;
