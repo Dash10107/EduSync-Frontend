@@ -2,7 +2,7 @@ import React from "react"
 import  "./Navbar.css"
 import { Dropdown } from 'antd';
 import { useNavigate } from "react-router-dom";
-import logo from "../../Assets/logo.png";
+import logo from "../../Assets/logo.jpeg";
 const Navbar = (props) => {
 
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ const Navbar = (props) => {
     c
       </div>
 <div className=" justify-center">
-<img src={logo} className='h-[5vh] rounded'   alt=" 1" />
+<img src={logo} className='h-[5vh] rounded remove-white-bg'   alt=" 1" />
 </div>
 <div>
 <Dropdown menu={{ items }} trigger={['click']}>

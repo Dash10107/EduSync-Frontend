@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import image1 from "../../Assets/Bg_Image.png";
 import image2 from "../../Assets/image-removebg-preview (23) 1.png";
 import image3 from "../../Assets/image-removebg-preview (26) 1.png";
+import  "./LandingComp.css"
 
 const LandingComp = () => {
   const navigate = useNavigate();
@@ -39,9 +40,10 @@ const LandingComp = () => {
     // responsive css
     top-[44%] left-[80%] 
     sm:left-[80%] sm:top-[50%] 
-    md:text-xl 
-    lg:text-3xl lg:left-[60%] hover:lg:text-4xl">
-      ++
+    md:text-xl md:left-[70%]
+    lg:text-3xl lg:left-[60%] hover:lg:text-4xl
+    2xl:left-[44%]">
+      +
     </button>
   );
 
@@ -65,32 +67,33 @@ const LandingComp = () => {
     <div className='bg-[#E4E0FB] h-screen '>
 
     {/* This is carousel */}
-      <div className='pt-[55%] sm:pt-[40%] sm:pl-[16%] 
-      md:pl-[10%] 
-      lg:pt-[25%] 
-      xl:pt-[0%] xl:pl-[33%] 
-      2xl:pt-[2%] 2xl:pl-[30%]'>
+      <div className='pt-[30%] sm:pt-[30%] sm:pl-[16%] 
+      md:pl-[25%] md:pt-[5%]
+      lg:pt-[1%] lg:pl-[26%]
+      xl:pt-[5%] xl:pl-[33%] 
+      2xl:pt-[2%] 2xl:pl-[37%]'>
         <Slider {...settings}>
         
           <div>
-            <img src={image1} className='sm:h-[27rem] md:h-[30rem] md:pl-3 lg:h-[40rem] lg:pl-0 xl:h-[25rem] xl:pl-0 2xl:h-[40rem] ' alt=" 1" />
+            <img src={image1} className='sm:h-[27rem] md:h-[20rem] md:pl-3 lg:h-[25rem] lg:pl-0 xl:h-[25rem] xl:pl-0 2xl:h-[20rem] ' alt=" 1" />
           </div>
           <div>
-            <img src={image2} className='sm:h-[22rem] md:h-[25rem] lg:h-[35rem] xl:h-[20rem] xl:pl-3 2xl:h-[30rem]' alt=" 2" />
+            <img src={image2} className='sm:h-[22rem] md:h-[15rem] lg:h-[20rem] xl:h-[20rem] xl:pl-3 2xl:h-[10rem]' alt=" 2" />
           </div>
           <div>
-            <img src={image3} className='sm:h-[27rem] md:h-[30rem] md:pl-2 lg:h-[40rem] lg:pl-0 xl:h-[25rem] xl:pl-0 2xl:h-[35rem] 2xl:pl-16' alt=" 3" />
+            <img src={image3} className='sm:h-[27rem] md:h-[20rem] md:pl-2 lg:h-[25rem] lg:pl-0 xl:h-[25rem] xl:pl-0 2xl:h-[15rem] 2xl:pl-16' alt=" 3" />
           </div>
         </Slider>
-        <button onClick={() => { navigate("/home") }} className='bg-[#1B2A41] text-white rounded text-lg hover:font-semi-bold hover:text-xl hover:shadow-lg shadow-black px-7 py-1  
-
-        // responsive css
+        <button onClick={() => { navigate("/home") }} className='nextButton text-white rounded text-lg hover:font-semi-bold hover:text-xl hover:shadow-lg shadow-black px-7 py-1  
+  
+        // responsive css 
         ml-[35%] 
         sm:ml-[35%] 
-        md:ml-[32%] md:py-2 md:px-10 md:text-xl md:hover:text-2xl
-        lg:text-2xl lg:py-3 lg:px-14 lg:ml-[30%] lg:hover:text-3xl
-        xl:text-3xl xl:py-4 xl:px-16 xl:ml-[16%] xl:hover:text-4xl
-        2xl:text-4xl 2xl:py-5 2xl:px-20 2xl:ml-[16%] 2xl:hover:text-5xl
+        md:ml-[26%]
+        lg:ml-[25%] 
+        xl:ml-[23%]
+        2xl:ml-[16%]    
+        
         '>Lets Go</button>
 
       </div>
@@ -99,3 +102,13 @@ const LandingComp = () => {
 }
 
 export default LandingComp;
+
+// md:hover:text-2xl
+// lg:hover:text-3xl
+// xl:hover:text-4xl
+// 2xl:hover:text-5xl
+
+// md:ml-[32%] md:py-2 md:px-10 md:text-xl 
+//         lg:text-2xl lg:py-3 lg:px-14 lg:ml-[30%] 
+//         xl:text-3xl xl:py-4 xl:px-16 xl:ml-[16%]
+//         2xl:text-4xl 2xl:py-5 2xl:px-20 2xl:ml-[16%]    

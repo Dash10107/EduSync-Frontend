@@ -143,14 +143,14 @@ setModulesStarted(modulesStarted);
     </div>
 
         
-    <div className="progress-card">
+    <div className="progress-card" onClick={()=>{navigate("/profile/modules")}}>
   <div className="progress-container">
     <Progress
       type="circle"
       percent={progressPercentage}
       strokeColor="#e92061" // Set the color to your desired col
       format={() => `${progressPercentage}%`}
-      width={100}
+      size={100}
       trailColor="#5f3d9b" // Set the color of the empty progress bar
     />
   </div>
@@ -158,32 +158,38 @@ setModulesStarted(modulesStarted);
     <p>Complete Progress</p>
   </div>
 </div>
-<div className="modules-progress-container" onClick={()=>{navigate("/profile/modules")}}>
-  {/* Top part: Progress */}
-  <div className="top-part">
+ 
+  <div className="progress-card" onClick={()=>{navigate("/profile/modules")}}>
+  <div className="progress-container">
     <Progress
       type="circle"
-      percent={80} // Replace with your modulesStarted variable
-      strokeColor="#e92061"
-      format={() => `${modulesStarted}%`}
-      width={100}
-      trailColor="#5f3d9b"
+      percent={chaptersStarted}
+      strokeColor="#e92061" // Set the color to your desired col
+      format={() => `${chaptersStarted}%`}
+      size={100}
+      trailColor="#5f3d9b" // Set the color of the empty progress bar
     />
   </div>
-  {/* Bottom part: Chapters and Subchapters */}
-  <div className="bottom-part">
-    {/* Left side: Chapters */}
-    <div className="left-side">
-      <p>{chaptersStarted}</p>
-      <p>Chapters Started</p>
-    </div>
-    {/* Right side: Subchapters */}
-    <div className="right-side">
-      <p>{subchaptersStarted}</p>
-      <p>Subchapters Completed</p>
-    </div>
+  <div className="text-container">
+    <p>Chapters Started</p>
   </div>
 </div>
+  <div className="progress-card" onClick={()=>{navigate("/profile/modules")}}>
+  <div className="progress-container">
+    <Progress
+      type="circle"
+      percent={subchaptersStarted}
+      strokeColor="#e92061" // Set the color to your desired col
+      format={() => `${subchaptersStarted}%`}
+      size={100}
+      trailColor="#5f3d9b" // Set the color of the empty progress bar
+    />
+  </div>
+  <div className="text-container">
+    <p>Subchapters Completed</p>
+  </div>
+</div>
+
 
 
           {/* <ul>

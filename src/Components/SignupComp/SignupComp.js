@@ -166,7 +166,7 @@ const SignupComp = (props) => {
             <div className="input-group">
               <input
                 type="text"
-                className="rounded py-1 text-center bg-gray-200 placeholder-black  border-b-2 border-black text-black "
+                className="rounded py-1 text-center bg-gray-200 placeholder-black  border-b-2 border-black text-black  signup-input"
                 name="name"
                 placeholder="Enter Your Name "
                 value={name}
@@ -178,7 +178,7 @@ const SignupComp = (props) => {
             <div className="input-group">
               <input
                 type="email"
-                className="rounded py-1 text-center bg-gray-200 placeholder-black  border-b-2 border-black text-black "
+                className="rounded py-1 text-center bg-gray-200 placeholder-black  border-b-2 border-black text-black signup-input "
                 name="email"
                 placeholder="Enter Your Email"
                 value={email}
@@ -191,7 +191,7 @@ const SignupComp = (props) => {
               <input
                 type={passwordShown ? "text" : "password"}
                 id="password"
-                className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black"
+                className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black signup-input"
                 name="password"
                 placeholder="Enter Password"
                 value={password}
@@ -207,7 +207,7 @@ const SignupComp = (props) => {
               <input
                 type={passwordShown2 ? "text" : "password"}
                 id="password2"
-                className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black"
+                className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black signup-input"
                 name="password2"
                 placeholder="Confirm Password"
                 value={password2}
@@ -226,7 +226,7 @@ const SignupComp = (props) => {
                 <hr className="bg-black text-black w-[7rem] lg:w-[10rem] mt-3 ml-3" />
               </div>
 
-              <div>Not an Account? <span onClick={() => { navigate("/signup") }}>Signup</span></div>
+              <div className="underlining" onClick={() => { navigate("/login") }}> Already An User ? <span >Login</span></div>
             </div>
             {/* sm:ml-[0rem] md:ml-[4rem] lg:ml-[10rem] */}
             <div className=" bg-[#CCC9DC] border-2 border-blue-950 text-black px-10  font-bold py-0.5 rounded-lg text-xl font-serif hover:ring-2 ring-[#CCC9DC] self-center">

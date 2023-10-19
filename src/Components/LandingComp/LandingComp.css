@@ -1,0 +1,6 @@
+.nextButton{
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); 
+    transform: scale(1.05);
+    
+}

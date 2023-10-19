@@ -124,7 +124,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
             <div className="input-group">
               <input
                 type="email"
-                className="rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black "
+                className="rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black login-input "
                 name="name"
                 placeholder="Enter Your Email"
                 value={userName}
@@ -137,7 +137,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
               <input
                 type={passwordShown ? "text" : "password"}
                 id="password"
-                className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black"
+                className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black login-input"
                 name="password"
                 placeholder="Enter Password"
                 value={password}
@@ -157,7 +157,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
                 <hr className="bg-black text-black w-[7rem] lg:w-[10rem] mt-3 ml-3" />
               </div>
 
-              <div>Not an Account? <span onClick={() => { navigate("/signup") }}>Signup</span></div>
+              <div  className="underlining" onClick={() => { navigate("/signup") }}>Not an Account? <span >Signup</span></div>
             </div>
             {/* sm:ml-[0rem] md:ml-[4rem] lg:ml-[10rem] */}
             <div className=" bg-[#CCC9DC] border-2 border-blue-950 text-black px-10  font-bold py-0.5 rounded-lg text-xl font-serif hover:ring-2 ring-[#CCC9DC] self-center">
