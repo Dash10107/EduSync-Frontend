@@ -1,7 +1,17 @@
 /* SingleChapter.css */
+.outside-div{
+  width: 24rem;
+    height: 24rem;
+    border-radius: 50%;
+    background-image: url('../../../Assets/gear.png'); /* Set the path to your image */
+    background-size: cover; 
+    
+
+  }
+  
 .circle-div {
-    width: 10rem;
-    height: 10rem;
+    width: 15rem;
+    height: 15rem;
     border-radius: 50%;
     background: #1B2A41;
     color: white !important;
@@ -11,15 +21,25 @@
     cursor: pointer;
     margin-right: 10px; /* Add margin-right to create gaps */
     margin-bottom: 10px; /* Add margin-bottom to separate rows */
+    font-size: 1rem;
+    position: relative;
+    top: 19.5%;
+    left: 19%;
+    z-index: -10;
+  
   }
 
+  
+
   .circle-border {
-    width: 10rem;
-    height: 10rem;
+    width: 100%;
+    height: 100%;
   border-radius: 50%; /* Make it a circle */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 40 !important;
+
 }
   .center {
     margin: 0 auto !important;  /* Center the first div by setting margin to auto */
@@ -47,11 +67,9 @@
 
   .ant-progress-text {
     color: white !important; /* Set the desired color for the format text */
+    font-size: 1.2rem !important;
+    z-index: 30 !important;
   }
 
-  .ant-progress-inner{
 
-        /* width: 10rem !important;
-        height: 10rem !important;
-        font-size: 16px !important; */
-  }
+  

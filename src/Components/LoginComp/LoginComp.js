@@ -7,8 +7,9 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Alert, Snackbar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Layouts/Navbar/Navbar";
-
-
+import loginIcon from "../../Assets/Login-removebg-preview.png";
+import MailRoundedIcon from '@mui/icons-material/MailRounded';
+import LockResetRoundedIcon from '@mui/icons-material/LockResetRounded';
 
 const LoginComp = (props) => {
 
@@ -117,8 +118,8 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
           2xl:h-[26rem] 2xl:space-y-10">
 
             <div className="input-group text-2xl font-bold">
-            {/* yape font awesome ka icon add krna hai */}
-              LOGIN
+            
+              <p className="loginText">LOGIN <span><img src={loginIcon} className="loginImg" alt=""/></span></p> 
             </div>
 
             <div className="input-group">
@@ -131,6 +132,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
                 onChange={(e) => { setUserName(e.target.value) }}
                 required={true}
               ></input>
+             <div className="mailIcon"> <MailRoundedIcon/> </div>
             </div>
 
             <div className="input-group" style={{ display: "flex", alignItems: "center" }}>
@@ -144,6 +146,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
                 onChange={(e) => { setPassword(e.target.value) }}
                 required={true}
               />
+              <div className="mailIcon"><LockResetRoundedIcon/></div>
               <i onClick={togglePasswordVisiblity} className="eyeImgsec" style={{ marginLeft: "10%", cursor: "pointer", color: "black" }}>
                 {eye}
               </i>

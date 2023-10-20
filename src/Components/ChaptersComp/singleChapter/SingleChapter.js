@@ -2,6 +2,7 @@ import React from "react";
 import "./SingleChapter.css";
 import { useNavigate } from "react-router-dom";
 import { Popover, Progress } from 'antd';
+import gear from "../../../Assets/gear.png";
 
 const SingleChapter = (props) => {
   const { item, position,progress } = props;
@@ -15,15 +16,19 @@ const SingleChapter = (props) => {
   );
   return (
     <Popover content={content} title="Title">
-    <div className={`circle-div ${position}`} onClick={() => {
+   <div className={`outside-div ${position}`}>
+    <div className={`circle-div `} onClick={() => {
       localStorage.setItem("chapterId", item.id);
       localStorage.setItem("ChapterName", item.title);
       navigate("/subjects");
     }}>
-    
-        <div className="circle-border">
+     {/* <div className="settings-icon"><img src={gear} alt="" /></div> */}
+            <div className="circle-border">
+            
         {progress? (    <Progress
               type="circle"
+              size={250}
+              strokeWidth={10}
               percent={progress.progressPercentage}
               format={() => item.title}
             />):(
@@ -35,7 +40,9 @@ const SingleChapter = (props) => {
             )}
          
         </div>
+       
   
+    </div>
     </div>
     </Popover>
   );

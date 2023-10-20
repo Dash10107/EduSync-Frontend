@@ -20,3 +20,9 @@ margin-bottom: 2vh;
 .remove-white-bg{
     mix-blend-mode:multiply;
 }
+
+.lastDiv{
+    display: flex;
+    align-items: center;
+    padding-right: 2vw;
+}

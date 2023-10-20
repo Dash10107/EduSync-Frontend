@@ -90,6 +90,14 @@
     color: black;
     
   }
+  .login-input::placeholder{
+    text-align: left;
+  
+    font-size: 1rem;  
+    color: black;
+    position: relative;
+    left: 2.5vw;
+  }
   /* .signup-input{
     width: 120%;
     border: 1px solid #ccc;
@@ -100,7 +108,8 @@
   } */
   /* Add padding to the placeholder text */
 .login-input::placeholder {
-    padding-left: 2vw;
+   position: relative;
+   left: 10vw;
 font-size: 1rem;  
 color: black;
 }
@@ -150,5 +159,16 @@ color: black;
       /* padding: 10px 0px; */
     
     }
+    .login-input::placeholder{
+      text-align: left;
+      position: relative;
+      left: 4vw;
+    }
+    .eyeImgsec {
+      position: absolute;
+      width: 2rem;
+      left: 75%;
+      
+  }
   }
   

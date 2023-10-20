@@ -1,0 +1,27 @@
+.loginText{
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+
+.mailIcon{
+ 
+        position: absolute;
+        width: 2rem;
+        left: 5%;
+        top: 20%;
+        color: black;
+}
+
+@media screen and (min-width: 768px) {
+    .mailIcon{
+ 
+        position: absolute;
+        width: 2rem;
+        left: 5%;
+        top: 18%;
+        color: black;
+}
+}

@@ -3,8 +3,11 @@ import  "./Chapter.css"
 import axios from "axios";
 import Navbar from "../../Layouts/Navbar/Navbar";
 import SingleChapter from "./singleChapter/SingleChapter";
+import { useNavigate } from "react-router-dom";
+import Zigzag from "./Zigzag";
 
 const ChapterComp = (props) => {
+  const navigate = useNavigate();
   const moduleId = localStorage.getItem("moduleId");
   const [chapters,setChapters] = useState([]);
   const [module,setModule] = useState({});
@@ -73,17 +76,20 @@ fetchChapters();
     ) : (
       <div>
         <div className="subject-header">
-          <h3 className="subject-heading-text">{module.name}</h3>
+          <h3 className="subject-heading-text"><span className="underlining" onClick={()=>{navigate("/home")}}>Home  </span>   {'>'} <span>{module.name}</span></h3>
         </div>
 
         <ul className="zigzag-list">
         {chapters?.map((item, index) => (
+          <>
   <SingleChapter
     item={item}
     key={item.id}
     position={index === 0 ? "center" : (index % 2 === 1 ? "left" : "right")}
     progress={progressPercentages[index] || null} // Pass progress or null
   />
+  {index < chapters.length - 1 && <Zigzag />}
+  </>
 ))}
 
 </ul>

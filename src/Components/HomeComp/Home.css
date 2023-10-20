@@ -30,7 +30,7 @@ margin-top: 2vh;
     margin-top: 4vh;
     margin-bottom: 4vh;
     display: flex;
-    gap: 10vw;
+    gap: 17vw;
 }
 
   .all-courses-content{
@@ -43,11 +43,11 @@ margin-top: 2vh;
   height:5vh;
   position:relative;
     width: 40%;
-    border: 2px solid #EDEDED;
+    border: 2px solid #888;
     border-radius: 49px;
     ::placeholder{font-size: 16px; padding-left: 0rem;}
 
-   
+   padding-left: 1vw;
     /* margin-top: 2vh; */
   }
 
@@ -57,6 +57,7 @@ margin-top: 2vh;
   .search-input-for-home{
     width: 80%;
     margin-left: 7%;
+    padding-left: 3vw;
   }
   .all-courses-title{
     text-align: center;
