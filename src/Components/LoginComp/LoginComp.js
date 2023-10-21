@@ -68,7 +68,7 @@ const LoginComp = (props) => {
           localStorage.setItem("token", result.token);
           setUserName("");
           setPassword("");
-          navigate("/home");
+          
         } else {
           console.log(result.token);
         }
@@ -76,6 +76,7 @@ const LoginComp = (props) => {
         console.log(result);
 
       }
+      navigate("/home");
 
     } catch (error) {
       console.error(error);
@@ -114,10 +115,10 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
 
 
 
-          <form onSubmit={onSubmit} className="login-card space-y-14 pt-6 mt-20 md:mt-0 sm:mr-5 md:h-80 md:space-y-5 
+          <form onSubmit={onSubmit} className="login-card space-y-6 pt-6 mt-20 md:mt-0 sm:mr-5 md:h-80 md:space-y-5 
           2xl:h-[26rem] 2xl:space-y-10">
 
-            <div className="input-group text-2xl font-bold">
+            <div className="input-group text-2xl font-bold" >
             
               <p className="loginText">LOGIN <span><img src={loginIcon} className="loginImg" alt=""/></span></p> 
             </div>
@@ -135,7 +136,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
              <div className="mailIcon"> <MailRoundedIcon/> </div>
             </div>
 
-            <div className="input-group" style={{ display: "flex", alignItems: "center" }}>
+            <div className="input-group" >
               <input
                 type={passwordShown ? "text" : "password"}
                 id="password"
@@ -160,10 +161,10 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
                 <hr className="bg-black text-black w-[7rem] lg:w-[10rem] mt-3 ml-3" />
               </div>
 
-              <div  className="underlining" onClick={() => { navigate("/signup") }}>Not an Account? <span >Signup</span></div>
+              <div  className="underlining text-lg" onClick={() => { navigate("/signup") }}>Not an Account? <span >Signup</span></div>
             </div>
             {/* sm:ml-[0rem] md:ml-[4rem] lg:ml-[10rem] */}
-            <div className=" bg-[#CCC9DC] border-2 border-blue-950 text-black px-10  font-bold py-0.5 rounded-lg text-xl font-serif hover:ring-2 ring-[#CCC9DC] self-center">
+            <div className=" bg-[#324A5F] text-white border-2 border-blue-950 px-10 font-semibold text-xl py-0.5 rounded-lg text-xl self-center">
               <button type="submit" className="login-submit-btn">
                 Login
               </button>

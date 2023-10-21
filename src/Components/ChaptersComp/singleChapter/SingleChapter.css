@@ -1,7 +1,7 @@
 /* SingleChapter.css */
 .outside-div{
   width: 24rem;
-    height: 24rem;
+    height: 23rem;
     border-radius: 50%;
     background-image: url('../../../Assets/gear.png'); /* Set the path to your image */
     background-size: cover; 

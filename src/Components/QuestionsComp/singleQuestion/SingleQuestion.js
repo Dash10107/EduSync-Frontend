@@ -73,12 +73,13 @@ const SingleQuestion = (props) => {
               <div
                 className={`grid-option ${selectedOption === option ? selectedClass : ""}`}
                 key={index}
+                onClick={() => handleOptionChange(option)}
+        
+                disabled={showResult} // Disable options when showing results
               >
                 <button
                   className={`option-button`}
-                  onClick={() => handleOptionChange(option)}
-        
-                  disabled={showResult} // Disable options when showing results
+                  
                 >
                   {option}
                 </button>
