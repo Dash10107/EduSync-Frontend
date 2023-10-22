@@ -91,15 +91,15 @@
     
   }
   
-  /* .signup-input{
-    width: 120%;
+  .signup-input{
+    width: 170%;
     border: 1px solid #ccc;
     border-radius: 5px;
-
+    align-self: center !important;
     height: 5vh;
     color: black;
-  } */
-  /* Add padding to the placeholder text */
+  } 
+  /* Add padding to the placeholder text
 .login-input::placeholder {
    position: relative;
    left: -10vw;
@@ -141,7 +141,7 @@ color: black;
     }
   .signup-input{
     width: 20vw;
-    height: 5vh;
+    height: 7vh;
   }
     .login-label {
       margin-right: 0; 

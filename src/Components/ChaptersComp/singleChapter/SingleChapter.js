@@ -16,12 +16,12 @@ const SingleChapter = (props) => {
   );
   return (
     <Popover content={content} title="Title">
-   <div className={`outside-div ${position}`}>
-    <div className={`circle-div `} onClick={() => {
+   <div className={`outside-div ${position}`} onClick={() => {
       localStorage.setItem("chapterId", item.id);
       localStorage.setItem("ChapterName", item.title);
       navigate("/subjects");
     }}>
+    <div className={`circle-div `} >
      {/* <div className="settings-icon"><img src={gear} alt="" /></div> */}
             <div className="circle-border">
             

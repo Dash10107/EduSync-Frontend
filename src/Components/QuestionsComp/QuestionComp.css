@@ -44,7 +44,7 @@ margin-top: 1vh;
   cursor: pointer;
   font-size: 16px;
   white-space: nowrap;
-  background-color: #007bff;
+  background-color: #010157;
   color: #fff;
   border: 2px solid transparent;
   border-radius: 5px; /* Reduce border radius to match the vertical-option button */
@@ -53,8 +53,8 @@ margin-top: 1vh;
 }
 
 .next-button:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #010157;
+  /* border-color: #0056b3; */
   transform: scale(1.1);
 }
 

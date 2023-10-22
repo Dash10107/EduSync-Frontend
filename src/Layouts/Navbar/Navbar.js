@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import  "./Navbar.css"
 import { Dropdown } from 'antd';
 import { useNavigate } from "react-router-dom";
-import logo from "../../Assets/logo.jpeg";
+import logo from "../../Assets/logo.png";
 import axios from "axios";
 
 const Navbar = (props) => {
@@ -86,21 +86,23 @@ const Navbar = (props) => {
   return (
     <div className="navbar-main  ">
       <div className="justify-start">
-    <span className="underlining" onClick={()=>{navigate("/home")}}>Home </span>
+   {isLogin?(<span></span>):(<span className="underlining" onClick={()=>{navigate("/home")}}>Home </span>)} 
     {/* <span className="underlining">{localStorage.getItem("SubjectName")}</span> */}
       </div>
 <div className=" justify-center">
-<img src={logo} className='h-[5vh] rounded remove-white-bg'   alt=" 1" />
+<img src={logo} className='h-[12vh] w-[23vw] rounded '   alt=" 1" />
 </div>
-{isLogin ? (<></>):
+{isLogin ? (<div className=" justify-end lastDiv"></div>):
 (<div>
 <Dropdown menu={{ items }} trigger={['click']}>
 
 <div className=" justify-end lastDiv">
 
-  <div className="profile rounded-full bg-white mr-3 font-bold py-1  px-2 ">
-    {userDetailName}
-  </div>
+
+  <span className='cirlceuser'> <span className='circletext'> 
+   {userDetailName}
+   </span> </span>
+
   <div>
   {fullName}
   </div>
