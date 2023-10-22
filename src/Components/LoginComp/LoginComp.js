@@ -68,19 +68,23 @@ const LoginComp = (props) => {
           localStorage.setItem("token", result.token);
           setUserName("");
           setPassword("");
+        navigate("/home");
           
         } else {
           console.log(result.token);
         }
       } else {
         console.log(result);
-
+        setErrors(result);
+     
+        setToastOpen(true);
       }
-      navigate("/home");
+     
 
     } catch (error) {
       console.error(error);
-      setErrors(error.response.data);
+      setErrors(error.response);
+     
       setToastOpen(true);
     }
 
@@ -88,9 +92,10 @@ const LoginComp = (props) => {
 
 
   return (
-    <div className="login-main-div overflow-hidden">
+ <>
+ <div className="login-main-div overflow-hidden">
 
-      <Navbar />
+      <Navbar isLogin={true} />
 
       {/* daksh ye div mene add kiya hai image and login ko ek container mein daalne k liye  */}
       <div className="flex md:space-x-14 lg:space-x-14  h-full justify-center">
@@ -173,7 +178,13 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
         </div>
 
 
-        <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+
+
+      </div>
+
+
+    </div>
+    <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
           <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
             <ul>
               {Object.entries(errors).map(([key, value]) => (
@@ -184,9 +195,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
             </ul>
           </Alert>
         </Snackbar>
-
-      </div>
-    </div>
+    </>
 
   )
 };

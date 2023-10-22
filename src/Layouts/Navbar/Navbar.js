@@ -7,6 +7,8 @@ import axios from "axios";
 
 const Navbar = (props) => {
 
+  const {isLogin} = props;
+
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
@@ -53,6 +55,7 @@ const Navbar = (props) => {
   const handleLogout = (e)=>{
     e.preventDefault();
     localStorage.setItem("token","")
+    localStorage.setItem("allowRedirect",false);
     navigate("/login");
     
   }
@@ -89,10 +92,12 @@ const Navbar = (props) => {
 <div className=" justify-center">
 <img src={logo} className='h-[5vh] rounded remove-white-bg'   alt=" 1" />
 </div>
-<div>
+{isLogin ? (<></>):
+(<div>
 <Dropdown menu={{ items }} trigger={['click']}>
 
 <div className=" justify-end lastDiv">
+
   <div className="profile rounded-full bg-white mr-3 font-bold py-1  px-2 ">
     {userDetailName}
   </div>
@@ -101,7 +106,8 @@ const Navbar = (props) => {
   </div>
 </div>
 </Dropdown>
-</div>
+</div>)}
+
     </div>
   )
 };

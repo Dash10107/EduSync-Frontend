@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LoginComp from '../Components/LoginComp/LoginComp'
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if( !localStorage.getItem("token") || localStorage.getItem("token") === ""){
+      return
+    }else{
+     navigate("/home")
+    }
+},[])
   return (
     <div>
 <LoginComp/>

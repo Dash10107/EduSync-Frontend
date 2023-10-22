@@ -1,4 +1,4 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
+import {  createBrowserRouter } from "react-router-dom";
 import Landing from "../Pages/Landing";
 import Login from "../Pages/Login";
 import HomePage from "../Pages/Home";
@@ -9,10 +9,12 @@ import Profile from "../Pages/Profile";
 import Signup from "../Pages/Signup";
 import ModulesProgress from "../Pages/ModulesProgress";
 
+;
+
 export const router = createBrowserRouter([
   {
-    path:"/signup",
-    element:<Signup/>
+    path: "/signup",
+    element: <Signup />,
   },
   {
     path: "/",
@@ -20,136 +22,32 @@ export const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    element:  <Login />,
   },
   {
     path: "/home",
-    element: localStorage.getItem("token") ? (
-      localStorage.getItem("firstLogin") === "true" ? (
-        // User has logged in for the first time, redirect to the home page and set firstLogin to false
-        <>
-          {localStorage.setItem("firstLogin", "false")}
-          <Navigate to="/home" replace />
-        </>
-      ) : (
-        // User has previously logged in, show the HomePage component
-        <HomePage />
-      )
-    ) : (
-      // User is not logged in, redirect to the login page
-      <Navigate to="/login" replace />
-    ),
+    element:<HomePage /> ,
   },
-  
   {
     path: "/chapters",
-    element: localStorage.getItem("token")  ? (
-      <Chapters />
-    ) : (
-      <Navigate to="/login" replace />
-    ),
+    element: <Chapters /> ,
   },
   {
     path: "/subjects",
-    element: localStorage.getItem("token")   ? (
-      <Subjects />
-    ) : (
-      <Navigate to="/login" replace />
-    ),
+    element: <Subjects /> ,
   },
   {
     path: "/questions",
-    element: localStorage.getItem("token")  ? (
-      <Question />
-    ) : (
-      <Navigate to="/login" replace />
-    ),
+    element: <Question /> ,
   },
   {
     path: "/profile",
-    element: localStorage.getItem("token")? (
-      <Profile />
-    ) : (
-      <Navigate to="/login" replace />
-    ),
+    element: <Profile /> ,
   },
   {
     path: "/profile/modules",
-    element: localStorage.getItem("token")? (
-      <ModulesProgress/>
-    ) : (
-      <Navigate to="/login" replace />
-    ),
+    element: <ModulesProgress /> ,
   },
 ]);
 
 export default router;
-
-//corrently working on it 
-// import { Navigate, createBrowserRouter } from "react-router-dom";
-// import Landing from "../Pages/Landing";
-// import Login from "../Pages/Login";
-// import HomePage from "../Pages/Home";
-// import Chapters from "../Pages/Chapters";
-// import Subjects from "../Pages/Subjects";
-// import Question from "../Pages/Question";
-// import Profile from "../Pages/Profile";
-
-// export const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Landing />,
-//   },
-//   {
-//     path: "/login",
-//     element: <Login />,
-//   },
-//   {
-//     path: "/home",
-//     element: localStorage.getItem("token") ? (
-//       <HomePage />
-//     ) : (
-//       <Navigate to="/login" replace />
-//     ),
-//   },
-//   {
-//     path: "/chapters",
-//     element: localStorage.getItem("token") && localStorage.getItem("moduleId") ? (
-//       <Chapters />
-//     ) : localStorage.getItem("token") ? (
-//       <Navigate to="/home" replace />
-//     ) : (
-//       <Navigate to="/login" replace />
-//     ),
-//   },
-//   {
-//     path: "/subjects",
-//     element: localStorage.getItem("token") && localStorage.getItem("chapterId") ? (
-//       <Subjects />
-//     ) : localStorage.getItem("token") ? (
-//       <Navigate to="/chapters" replace />
-//     ) : (
-//       <Navigate to="/login" replace />
-//     ),
-//   },
-//   {
-//     path: "/questions",
-//     element: localStorage.getItem("token") && localStorage.getItem("subChapterId") ? (
-//       <Question />
-//     ) : localStorage.getItem("token") ? (
-//       <Navigate to="/subjects" replace />
-//     ) : (
-//       <Navigate to="/login" replace />
-//     ),
-//   },
-//   {
-//     path: "/profile",
-//     element: localStorage.getItem("token") ? (
-//       <Profile />
-//     ) : (
-//       <Navigate to="/login" replace />
-//     ),
-//   },
-// ]);
-
-// export default router;

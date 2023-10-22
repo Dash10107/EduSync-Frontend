@@ -136,7 +136,7 @@ const SignupComp = (props) => {
   }
   return (
     <div className="login-main-div overflow-hidden">
-      <Navbar />
+      <Navbar isLogin={true} />
 
       {/* daksh ye div mene add kiya hai image and login ko ek container mein daalne k liye  */}
       <div className="flex md:space-x-14 lg:space-x-14 h-full justify-center">
