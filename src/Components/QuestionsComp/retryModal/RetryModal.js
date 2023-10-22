@@ -7,7 +7,7 @@ const RetryModal = (props) => {
   const { modalOpen, setModalOpen, handleRetry, handleGoBack } = props;
   return (
     <Modal
-      title="Please Retry Again"
+      title={<p className="modal-text">Please Retry Again</p>}
       className='modal-text'
       centered
       width={"auto"}

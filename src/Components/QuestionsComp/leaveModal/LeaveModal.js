@@ -27,8 +27,7 @@ const LeaveModal = (props) => {
 
   return (
     <Modal
-      title="Confirmation"
-      className="modal-text"
+      title={<p className="modal-text">Confirmation</p>}
       centered
       width={"auto"}
       open={modalOpen}

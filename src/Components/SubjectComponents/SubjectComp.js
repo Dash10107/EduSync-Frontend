@@ -5,10 +5,16 @@ import axios from "axios";
 import ListView from "./ListView/ListView";
 import GridView from "./GridView/GridView";
 import GridViewIcon from '@mui/icons-material/GridView';
+import QuizIcon from '@mui/icons-material/Quiz'
+import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import MenuIcon from '@mui/icons-material/Menu';
 import SingleVideo from "./Video/SingleVideo";
+import Loader from "../../Layouts/Loader/Loader";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { useNavigate } from "react-router-dom";
 
 const SubjectComp = (props) => {
+  const navigate = useNavigate();
   const moduleId = localStorage.getItem("moduleId");
   const chapterId = parseInt(localStorage.getItem("chapterId"));
   const ChapterName = localStorage.getItem("ChapterName");
@@ -18,6 +24,7 @@ const SubjectComp = (props) => {
       const [loading,setLoading] = useState(true);
       const [listView,setListView] = useState(false);
       const [videoUrls, setVideoUrls] = useState([]);
+      const [videosName,setVideosName] = useState([]);
       const fetchChapters=async()=>{
         try {
           await axios.get(`http://localhost:5000/module/chapters/${moduleId}`,{
@@ -83,7 +90,7 @@ const fetchVideos = async () => {
 
     const data = await response.json();
     console.log('Response',data);
-    
+    setVideosName(data.files);
     setVideoUrls(data.videoUrls);
   } catch (error) {
     console.error('Error fetching video URLs:', error);
@@ -98,27 +105,22 @@ useEffect(() => {
     <div>
     <Navbar/>
     <div className="subchapter-heading">
+    <div className="goBack">
+    <p className="back-icon" onClick={()=>{navigate("/chapters")}}><ArrowBackIosIcon fontSize="large"/> </p>
       <h3 className="subject-heading-text">{ChapterName}</h3> 
+      </div>
       <div >
     
-       <h3 className="subject-heading-text" onClick={()=>{setListView(!listView)}}> {listView ? (<MenuIcon fontSize="large"/>):(<GridViewIcon fontSize="large"/>)}</h3>
+       <h3 className="subject-heading-text" onClick={()=>{setListView(!listView)}}> {listView ? (< QuizIcon fontSize="large"/>):(<OndemandVideoIcon fontSize="large"/>)}</h3>
    
       </div>
 
 </div>
 <div>
-<div>
-      {videoUrls && videoUrls.length > 0 ? (
-        videoUrls.map((url, index) => (
-         <SingleVideo url={url} index={index}/>
-        ))
-      ) : (
-        <p>No videos found.</p>
-      )}
-      </div>
+
 </div>
         {
-          listView?(<ListView subchapters={subchapters}  />):(<GridView subchapters={subchapters}/>)
+          listView?(<ListView videoUrls={videoUrls} videosName={videosName}  />):(<GridView subchapters={subchapters}/>)
         }
         
  

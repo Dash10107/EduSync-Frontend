@@ -69,16 +69,19 @@ const Navbar = (props) => {
       key: '0',
     },
     {
-      label:<button onClick={handleLogout}>Logout</button>,
+      type: 'divider',
+    },
+    {
+      label:<button onClick={()=>{navigate("/home")}}>Home</button>,
       key: '1',
     },
     {
       type: 'divider',
+    },{
+      label:<button onClick={handleLogout}>Logout</button>,
+      key: '2',
     },
-    {
-      label: '3rd menu item',
-      key: '3',
-    },
+
   ];
 
 
@@ -90,7 +93,7 @@ const Navbar = (props) => {
     {/* <span className="underlining">{localStorage.getItem("SubjectName")}</span> */}
       </div>
 <div className=" justify-center">
-<img src={logo} className='h-[12vh] w-[23vw] rounded '   alt=" 1" />
+<img src={logo} className='logoImg rounded '   alt=" 1" />
 </div>
 {isLogin ? (<div className=" justify-end lastDiv"></div>):
 (<div>

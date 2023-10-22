@@ -15,7 +15,12 @@ const SingleGrid = (props) => {
         navigate("/questions");
       }}
     >
+    <div className="left-side-grid">
+        <p>{subtopic.id}</p>
+        </div>
+        <div className="right-side-grid">
       <p key={subtopic.id}>{subtopic.name}</p>
+      </div>
     </div>
   );
 };

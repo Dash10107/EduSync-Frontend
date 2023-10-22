@@ -3,7 +3,7 @@ import "./ModulesProgress.css";
 import Navbar from "../../Layouts/Navbar/Navbar";
 import axios from "axios";
 import SingleModule from "./singleModule/SingleModule";
-
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 const ModulesProg = (props) => {
   const [progressModules, setProgressModules] = useState([]);
   const [progressChapters, setProgressChapters] = useState([]);
@@ -109,8 +109,8 @@ const ModulesProg = (props) => {
       <Navbar />
       <div>
         {!selectedModule ? (
-          <div>
-            <h2>Modules Progress</h2>
+          <div className="ending-margin">
+            <h2 className="progress-subject-heading"> All Subjects Progress</h2>
             <ul>
               {progressModules.map((module, index) => (
                 <SingleModule
@@ -123,8 +123,13 @@ const ModulesProg = (props) => {
             </ul>
           </div>
         ) : !selectedChapter ? (
-          <div>
-            <h2>Chapters Progress</h2>
+          <div className="ending-margin">
+            <h2 className="progress-subject-heading">
+            <div className="goBack">
+    <p className="back-icon" onClick={()=>{setSelectedModule(null)}}><ArrowBackIosIcon fontSize="large"/> </p>
+            <p>{selectedModule.moduleName}</p>
+            </div>
+            </h2>
             <ul>
               {progressChapters.map((chapter, index) => (
                 <SingleModule
@@ -137,8 +142,13 @@ const ModulesProg = (props) => {
             </ul>
           </div>
         ) : (
-          <div>
-            <h2>SubChapters Progress</h2>
+          <div className="ending-margin">
+          <h2 className="progress-subject-heading">
+          <div className="goBack">
+    <p className="back-icon" onClick={()=>{setSelectedChapter(null)}}><ArrowBackIosIcon fontSize="large"/> </p>
+            <p>{selectedChapter.chapterName}</p>
+            </div>
+            </h2>
             <ul>
               {progressSubChapters.map((subchapter, index) => (
                 <SingleModule

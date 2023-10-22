@@ -6,13 +6,18 @@
 
 .question-text {
   font-size: 20px;
-  font-family: "Poppins";
+  font-family: "Poppins",sans-serif;
   margin-bottom: 5%;
-  margin-top: 5%; /* Adjust this value for 30% top space */
+ 
   padding: 10px; /* Add padding to the question-text */
   
   
   
+}
+
+input[type="radio"] {
+  transform: scale(1.5); /* Adjust the scale factor to increase or decrease the size */
+  margin-right: 10px; /* Add some spacing to separate the radio button from the label or text */
 }
 
 /* Common styles for both grid and vertical options */
@@ -25,20 +30,27 @@
   border: 2px solid transparent;
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: #f0f0f0;
+  font-family: "Poppins",sans-serif;
+
+  
 }
 
 /* Hover styles for both grid and vertical options */
 .grid-option:hover,
 .vertical-option:hover {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #90e0ef;
+  color: #010157;
 }
 
 /* Styles for the selected option */
 .selected {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #90e0ef;
+  color: #010157;
   font-weight: bold;
+}
+
+.code-text{
+  background-color: #f0f0f0 !important;
 }
 
 /* CSS for animations on selecting an option */
@@ -47,7 +59,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.03);
   }
   100% {
     transform: scale(1);
@@ -62,7 +74,7 @@
 .grid-options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px; /* Increase the gap as needed */
+  grid-gap: 30px; /* Increase the gap as needed */
   margin-top: 20px; /* Add margin to separate options from question-text */
 }
 
@@ -85,18 +97,18 @@
 
 
 .single-option {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   display: flex;
   justify-content:flex-start;
+  align-items: center;
   .option-text {
     text-align: left;
     margin-left: 10px;
+    font-family: "Poppins",sans-serif;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  
-    /* Add spacing between upper and lower text */
-    margin-top: 10px; /* Adjust the margin-top as needed */
+
   }
 }
 
@@ -109,8 +121,22 @@
   border-radius: 5px;
   text-align: center;
   font-size: 16px;
+  font-family: "Poppins",sans-serif;
 }
 
 .result-message.correct {
   background-color: #4caf50; /* Green background for correct answers */
+}
+
+@media screen and (min-width: 768px) {
+.question-text{
+  font-size: 3.5vh;
+  font-weight: 500;
+}
+.option-text{
+  font-size: 2.5vh;
+}
+.grid-option,.vertical-options{
+  font-size: 2.5vh;
+}
 }

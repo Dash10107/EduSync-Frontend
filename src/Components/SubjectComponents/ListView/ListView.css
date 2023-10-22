@@ -1,0 +1,22 @@
+/* .videosMainDiv {
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    gap: 5vw;
+    padding-left: 5%;
+    padding-right: 5%;
+    overflow-x: auto;
+  }
+
+  .videosMainDiv::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .videosMainDiv::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  
+  .videosMainDiv::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 5px;
+  } */

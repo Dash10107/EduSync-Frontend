@@ -253,32 +253,19 @@ useEffect(() => {
       <Navbar />
       <div className="questions-heading">
         <div>
-          <span   style={{
-    textDecoration: "none", // Remove underline by default
-    cursor: "pointer",
- 
-    
-  }}
+          <span   className="underlining"
   onClick={() =>{
     setRouteToNavigate("/home")
     setShowConfirmationModal(true);
 
   } }>{subjectName}</span>
-          <span   style={{
-    textDecoration: "none", // Remove underline by default
-    cursor: "pointer",
-  
-  }}
+          <span   className="underlining"
   onClick={() =>{
     setRouteToNavigate("/chapters")
     setShowConfirmationModal(true);
 
   } }> {">"} {chapterName} </span>
-          <span   style={{
-    textDecoration: "none", // Remove underline by default
-    cursor: "pointer",
-  
-  }}
+          <span   className="underlining"
   onClick={() =>{
     setRouteToNavigate("/subjects")
     setShowConfirmationModal(true);
@@ -300,6 +287,8 @@ useEffect(() => {
         <div className="progress-content">
           <Progress
             strokeLinecap="butt"
+            strokeColor={"#0c0157"}
+            strokeWidth={15}
             percent={progressPercentage}
             showInfo={false}
           />

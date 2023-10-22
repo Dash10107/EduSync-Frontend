@@ -1,11 +1,20 @@
 import React from 'react'
 import { Space,Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons';
+import "./Loader.css"
 export default function Loader() {
+    const antIcon = (
+        <LoadingOutlined
+          style={{
+            fontSize: 24,
+          }}
+          spin
+        />
+      );
   return (
     <div className='loader'>
-   <p> Loading..Please wait..</p>
     <Space size="middle">
-    <Spin size="large" />
+    <Spin  indicator={antIcon} size="large" />
     </Space>
     </div>
   )

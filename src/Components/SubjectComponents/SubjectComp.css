@@ -4,4 +4,11 @@
     padding-right: 5vw;
     margin-bottom: 5vh;
     cursor: pointer;
+    padding-left: 5vw;
 }
+
+ .goBack{
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+ }

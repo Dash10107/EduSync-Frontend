@@ -15,7 +15,8 @@ const SingleTopic = (props) => {
         navigate("/questions");
       }}
     >
-      <li key={subtopic.id}>{subtopic.name}</li>
+    <p>{subtopic.id}</p>
+      <p key={subtopic.id}>{subtopic.name}</p>
     </div>
   );
 };

@@ -1,0 +1,48 @@
+.video-container {
+    position: relative;
+    width: 24vw;
+    margin: 20px;
+    height: 27vh;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+  }
+  
+  .video-container:hover {
+    transform: scale(1.05);
+  }
+  
+  .video-container video {
+    width: 100%;
+    display: block;
+    height: 100%;
+  }
+  
+  .video-title {
+    position: absolute;
+    top: 0;
+    z-index: 10 !important;
+    color: white;
+    background-color: #324a5f;
+    width: 24vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  @media (max-width: 600px) {
+
+    .video-container {
+        width: 80%;
+        margin-left: 10%;
+        
+      }
+      .video-title{
+        width: 100%;
+      }
+  }

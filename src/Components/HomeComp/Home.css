@@ -51,7 +51,13 @@ margin-top: 2vh;
     /* margin-top: 2vh; */
   }
 
-
+  .underlining{
+    cursor: pointer;
+  }
+.underlining:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
   /* Media query for phone screen sizes (less than or equal to 600px) */
 @media (max-width: 600px) {
   .search-input-for-home{

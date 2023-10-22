@@ -42,7 +42,37 @@ const SingleQuestion = (props) => {
 
   return (
     <div key={question.id} className="single-question">
-      <p className="question-text">{question.question}</p>
+  
+  <p className="question-text">
+  {/(code snippet|snippet code|code|snippet)/.test(question.question)
+    ? question.question
+      .split(/(code|snippet)/)
+      .map((text, index, array) => (
+        <React.Fragment key={index}>
+          {index % 2 !== 0 ? (
+            <>
+              <span>{text}</span>
+              {/(code|snippet)/.test(array[index - 1]) && /((code|snippet)(?=\s))/i.test(text) && /((code|snippet)(?=\s))/i.test(array[index - 1]) ? null : <br />}
+            </>
+          ) : (
+            <span>
+              {/(code|snippet)/.test(text) ? (
+                <span className="code-text">{text}</span>
+              ) : (
+                text
+              )}
+            </span>
+          )}
+          {/(code snippet|snippet code)/.test(text) && index < array.length - 1 ? <br /> : null}
+        </React.Fragment>
+      ))
+    : question.question}
+</p>
+
+
+
+
+
       <div className="options">
         {currentQuestionIndex % 3 === 0 && (
           // Render options as radio buttons for the first question

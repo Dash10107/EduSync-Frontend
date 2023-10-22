@@ -139,18 +139,18 @@ const SignupComp = (props) => {
       <Navbar isLogin={true} />
 
       {/* daksh ye div mene add kiya hai image and login ko ek container mein daalne k liye  */}
-      <div className="flex md:space-x-14 lg:space-x-14 h-full justify-center">
+      <div className="flex md:space-x-10 lg:space-x-10 h-full justify-center">
 
         {/* ye img hai login card k baju wala */}
         <div>
           <img src="https://www.alphalearn.com/wp-content/uploads/2021/11/e-learning-2.jpg" alt="help" className="h-[31rem] hidden rounded md:block
           // responsive design css
-          md:w-[30rem] lg:w-[48rem] ml-8 mt-10 2xl:w-[55rem] 2xl:h-[37rem]" />
+          md:w-[25rem] lg:w-[43rem] mt-10 2xl:w-[50rem] 2xl:h-[37rem]" />
         </div>
 
 
         {/* This is login card */}
-        <div className="md:mt-[5.5rem] mb-[200px] rounded-[20px] 
+        <div className="md:mt-[2.5rem] mb-[200px] rounded-[20px] 
         // responsive css design 
       md:w-[28rem] md:ml-0 md:mr-24 md:h-96
       lg:w-[33rem] lg:ml-0">
@@ -221,15 +221,15 @@ const SignupComp = (props) => {
 
             <div className=" space-y-1 self-center ">
               <div className="flex">
-                <hr className="bg-black text-black w-[7rem] lg:w-[10rem] mt-3 mr-3" />
+                <hr className="bg-black text-black h-0.5 w-[7rem] lg:w-[10rem] mt-2.5 mr-3" />
                 OR
-                <hr className="bg-black text-black w-[7rem] lg:w-[10rem] mt-3 ml-3" />
+                <hr className="bg-black text-black w-[7rem] h-0.5 lg:w-[10rem] mt-2.5 ml-3" />
               </div>
 
-              <div className="underlining" onClick={() => { navigate("/login") }}> Already An User ? <span >Login</span></div>
+              <div className="underlining text-lg" onClick={() => { navigate("/login") }}> Already An User ? <span >Login</span></div>
             </div>
             {/* sm:ml-[0rem] md:ml-[4rem] lg:ml-[10rem] */}
-            <div className=" bg-[#CCC9DC] border-2 border-blue-950 text-black px-10  font-bold py-0.5 rounded-lg text-xl font-serif hover:ring-2 ring-[#CCC9DC] self-center">
+            <div className="bg-[#324A5F] text-white border-2 border-blue-950 px-10 font-semibold py-0.5 rounded-lg text-xl self-center w-[25vw]">
               <button type="submit" className="login-submit-btn">
                 Signup
               </button>

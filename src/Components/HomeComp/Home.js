@@ -132,6 +132,7 @@ fetchProgress();
                       borderLeft: `10px solid ${borderLeftColor}`,
                       boxShadow: `0 5px 10px ${lighterShadowColor}`,
                     }}
+                    tiltedColor={{backgroundColor:`${borderLeftColor}`}}
                     key={module.id}
                   />
                   </Grid>
@@ -196,6 +197,7 @@ fetchProgress();
                   borderLeft: `10px solid ${borderLeftColor}`,
                   boxShadow: `0 5px 10px ${lighterShadowColor}`,
                 }}
+                tiltedColor={{backgroundColor:`${borderLeftColor}`}}
               />
             </Grid>
           );
@@ -222,6 +224,7 @@ fetchProgress();
                   borderLeft: `10px solid ${borderLeftColor}`,
                   boxShadow: `0 5px 10px ${lighterShadowColor}`,
                 }}
+                tiltedColor={{backgroundColor:`${borderLeftColor}`}}
               />
             </Grid>
           );

@@ -115,12 +115,12 @@ setModulesStarted(modulesStarted);
       }, []);
 
   return (
-    <div>
+    <div >
     <Navbar/>
       {loading ? (
         <p>Loading...</p>
       ) : userData ? (
-        <div>
+        <div className="main-profile-container">
         <div className="profile-details-container">
       <div className="profile-image">
         <img src={profile} alt="Profile" />
@@ -150,7 +150,8 @@ setModulesStarted(modulesStarted);
       percent={progressPercentage}
       strokeColor="#e92061" // Set the color to your desired col
       format={() => `${progressPercentage}%`}
-      size={100}
+      size={150}
+      strokeWidth={8}
       trailColor="#5f3d9b" // Set the color of the empty progress bar
     />
   </div>
@@ -166,7 +167,8 @@ setModulesStarted(modulesStarted);
       percent={chaptersStarted}
       strokeColor="#e92061" // Set the color to your desired col
       format={() => `${chaptersStarted}%`}
-      size={100}
+      size={150}
+      strokeWidth={8}
       trailColor="#5f3d9b" // Set the color of the empty progress bar
     />
   </div>
@@ -181,7 +183,8 @@ setModulesStarted(modulesStarted);
       percent={subchaptersStarted}
       strokeColor="#e92061" // Set the color to your desired col
       format={() => `${subchaptersStarted}%`}
-      size={100}
+      size={150}
+      strokeWidth={8}
       trailColor="#5f3d9b" // Set the color of the empty progress bar
     />
   </div>
