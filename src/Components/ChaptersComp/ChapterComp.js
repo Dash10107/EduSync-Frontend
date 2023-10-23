@@ -80,18 +80,20 @@ fetchChapters();
         </div>
 
         <ul className="zigzag-list">
+        <Zigzag position="left"/>
         {chapters?.map((item, index) => (
-          <>
+          <div className="single-chapter">
   <SingleChapter
     item={item}
     key={item.id}
     position={index === 0 ? "center" : (index % 2 === 1 ? "left" : "right")}
     progress={progressPercentages[index] || null} // Pass progress or null
   />
-  {index < chapters.length - 1 && <Zigzag />}
-  </>
+ <Zigzag   position={index === 0 ? "center" : (index % 2 === 1 ? "left" : "right")}/>
+  </div>
 ))}
-
+<Zigzag position="right"/>
+<Zigzag position="right"/>
 </ul>
 
       </div>

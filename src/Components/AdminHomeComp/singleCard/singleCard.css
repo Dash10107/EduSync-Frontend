@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
 
-.single-card,.single-card-plus {
+.single-card {
     /* background: #1B2A41; */ 
     background: #0e155d;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #0a0e27, #0e155d, #0a0e27);  /* Chrome 10-25, Safari 5.1-6 */
@@ -21,14 +21,6 @@
     display: flex;
     align-items: center;
     
-}
-
-.single-card-plus{
-    justify-content: center;
-    padding: 0;
-    align-items: center;
-    
-
 }
 .single-card:hover {
     transform: scale(1.05); /* Zoom out on hover */
@@ -83,12 +75,4 @@
         transform: skewX(-20deg); /* Skew the div to the right */
         
       }
-      .single-card-plus{
-        justify-content: center;
-        padding: 0;
-        width: 80vw; /* Adjust the width as needed */
-        height: 18vh; /* Adjust the height as needed */
-        margin-left: 7vw;
-        margin-bottom: 2vh;
-    }
 }

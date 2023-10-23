@@ -1,33 +1,117 @@
 /* SingleChapter.css */
 .outside-div{
-  width: 24rem;
+  width: 25rem;
     height: 23rem;
     border-radius: 50%;
-    background-image: url('../../../Assets/gear.png'); /* Set the path to your image */
+    /* background-image: url('../../../Assets/gear.png');  */
     background-size: cover; 
-    
+    margin-right: 10px; /* Add margin-right to create gaps */
+    margin-bottom: 10px; /* Add margin-bottom to separate rows */
+    position: relative;
+  /* z-index: 99; */
+  animation-name: rotateOuterDiv;
+  animation-duration: 12s; /* Adjust the duration for 360 degrees over 12 seconds */
+  animation-timing-function: linear; /* Gradual rotation at a constant speed */
+  animation-iteration-count: infinite; /* Repeats the animation infinitely */
+  animation-play-state: paused; /* Start with animation paused */
 
   }
+
+  /* Define a CSS animation for the outer div */
+@keyframes rotateOuterDiv {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Play the animation when hovering */
+.outside-div:hover {
+  animation-play-state: running; /* Start the animation on hover */
+
+}
+
+.outside-div:hover .circle-div {
+  transform: scale(1.2); 
+
+}
+
   
 .circle-div {
-    width: 15rem;
-    height: 15rem;
+    width: 12rem;
+    height: 12rem;
     border-radius: 50%;
     background: #1B2A41;
-    color: white !important;
+  
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin-right: 10px; /* Add margin-right to create gaps */
-    margin-bottom: 10px; /* Add margin-bottom to separate rows */
-    font-size: 1rem;
+
+
     position: relative;
-    top: 19.5%;
-    left: 19%;
-    z-index: -10;
+    top: 28%;
+    left: 26.5%;
+ 
+    transition: transform 0.3s; /* Add a transition for smooth scaling */
   
   }
+.background-wheel{
+  position: absolute;
+  transition: transform 0.3s; 
+  z-index: 10;
+}
+.background-wheel:hover{
+  transform: scale(1.2);
+}  
+
+/* CSS for the text outside the outside-div */
+.left-text-container {
+  position: absolute;
+  top: 50%;
+  left: -20px; /* Adjust this value to control the distance from the left edge */
+  transform: translate(0, -50%);
+  text-align: left;
+}
+
+.right-text-container {
+  position: absolute;
+  top: 50%;
+  right: -20px; /* Adjust this value to control the distance from the right edge */
+  transform: translate(0, -50%);
+  text-align: right;
+}
+
+.center-text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.main-chapter-div{
+  display: flex;
+}
+
+.item-title {
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  color: white;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+/* Update the .item-text style to be centered */
+.item-text {
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  color: white !important;
+  font-family: "Poppins", sans-serif;
+  text-align: center; /* Center-align the text */
+  width: 80%; /* Limit the width to 80% of the circular div */
+  margin: 0 auto; /* Center the text horizontally */
+}
 
   
 
@@ -38,9 +122,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 40 !important;
-
-}
+  }
   .center {
     margin: 0 auto !important;  /* Center the first div by setting margin to auto */
     margin-bottom: 30px !important;
@@ -57,19 +139,33 @@
   }
   
 
+
 /* Media query for desktop screens */
 @media (min-width: 768px) {
     .zigzag-list {
-      max-width: 720px; /* Adjust the maximum width based on your design preferences */
+      max-width: 1220px; /* Adjust the maximum width based on your design preferences */
       margin: 0 auto; /* Center-align the list within the container */
     }
   }
 
   .ant-progress-text {
     color: white !important; /* Set the desired color for the format text */
-    font-size: 1.2rem !important;
+    font-size: 1rem !important;
     z-index: 30 !important;
   }
 
 
-  
+  @media (max-width: 768px) {
+.zigzag-list{
+  margin: 0 auto;
+  max-width: 600px;
+}
+.outside-div{
+  width: 12.5rem;
+  height: 11.5rem;
+}
+.circle-div{
+  width: 6rem;
+  height: 6rem;
+}
+  }

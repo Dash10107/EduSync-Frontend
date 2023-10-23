@@ -4,7 +4,9 @@ import Navbar from "../../Layouts/Navbar/Navbar";
 import axios from "axios";
 import SingleModule from "./singleModule/SingleModule";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { useNavigate } from "react-router-dom";
 const ModulesProg = (props) => {
+  const navigate = useNavigate();
   const [progressModules, setProgressModules] = useState([]);
   const [progressChapters, setProgressChapters] = useState([]);
   const [progressSubChapters, setProgressSubChapters] = useState([]);
@@ -110,7 +112,11 @@ const ModulesProg = (props) => {
       <div>
         {!selectedModule ? (
           <div className="ending-margin">
-            <h2 className="progress-subject-heading"> All Subjects Progress</h2>
+            <h2 className="progress-subject-heading">
+            <div className="goBack">
+    <p className="back-icon" onClick={()=>{navigate("/profile")}}><ArrowBackIosIcon fontSize="large"/> </p>
+    <p> All Subjects Progress </p>
+    </div></h2>
             <ul>
               {progressModules.map((module, index) => (
                 <SingleModule
@@ -152,12 +158,13 @@ const ModulesProg = (props) => {
             <ul>
               {progressSubChapters.map((subchapter, index) => (
                 <SingleModule
-                  key={subchapter.chapterId}
+                  key={subchapter.subchapterId}
                   index={index}
                   module={subchapter}
-                  Subchapter={subchapters[index]}
+                  Subchapter={subchapters.find((sub)=>sub.id===subchapter.subchapterId)}
                   onClick={() => {
-                    // Handle subchapter click action if needed
+                    console.log(subchapter)
+                    console.log(subchapters[index])
                   }}
                 />
               ))}

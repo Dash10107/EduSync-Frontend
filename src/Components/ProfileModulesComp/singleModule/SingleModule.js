@@ -4,7 +4,7 @@ import { Progress } from "antd";
 
 const SingleModule = (props) => {
     const {index,module,onClick}=props;
-        const progressPercentage = module.moduleProgressPercentage || module.progressPercentage || module.correctPercentage; 
+        const progressPercentage = module.moduleProgressPercentage || module.progressPercentage || module.correctPercentage || 0.00; 
     const title = module.moduleName || module.chapterName || props?.Subchapter?.name;
     
   return (
@@ -14,9 +14,9 @@ const SingleModule = (props) => {
     <Progress
       type="circle"
       percent={Number(progressPercentage).toFixed(2)}
-      strokeColor="linear-gradient(to right, #92FE9D, #00C9FF);" // Set the color to your desired col
+      strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
       format={() => `${Number(progressPercentage).toFixed(2)}%`}
-      size={180}
+      size={window.innerWidth <= 600 ? 100 : 180} 
       trailColor="#fff" // Set the color of the empty progress bar
     />
   </div>

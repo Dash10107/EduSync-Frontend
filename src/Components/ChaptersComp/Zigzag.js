@@ -1,11 +1,17 @@
 import React from "react"
-
-
+import left from "../../Assets/left.jpg"
+import right from "../../Assets/right.jpg";
+import "./Zigzag.css"
 const Zigzag = (props) => {
+  const {position} = props;
     return (
-        <svg width="10" height="100" xmlns="http://www.w3.org/2000/svg">
-          <line x1="5" y1="0" x2="5" y2="100" stroke="#000" stroke-dasharray="5" />
-        </svg>
+<div className="border-img">
+{
+  position==="left"?<img className="leftImg" src={left} alt=""/>:
+  position==="right"?<img className="rightImg" src={right} alt=""/>:
+ <></> 
+}
+</div>
       );
 };
 

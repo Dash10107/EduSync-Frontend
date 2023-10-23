@@ -1,0 +1,10 @@
+.addImg{
+    opacity: 0.3;
+    height: 50% !important;
+    width: 40% !important;
+align-self: center;
+align-items: center;
+mix-blend-mode: multiply;
+margin-left: 30%;
+
+}

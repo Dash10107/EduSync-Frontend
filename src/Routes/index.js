@@ -8,6 +8,7 @@ import Question from "../Pages/Question";
 import Profile from "../Pages/Profile";
 import Signup from "../Pages/Signup";
 import ModulesProgress from "../Pages/ModulesProgress";
+import AdminHome from "../Pages/AdminHome";
 
 ;
 
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
     path: "/profile/modules",
     element: <ModulesProgress /> ,
   },
+  {
+    path:"/admin/home",
+    element:<AdminHome/>
+  }
 ]);
 
 export default router;

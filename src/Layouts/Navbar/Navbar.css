@@ -47,6 +47,16 @@ text-align: center;
     
   }
 
+  .hamburger{
+    padding-left: 2%;
+    font-size: 4rem;
+display: flex;
+justify-content: center;
+flex-direction: column;
+position: relative;
+top: -6%;
+
+  }
   .logoImg{
   
     height: 12vh;

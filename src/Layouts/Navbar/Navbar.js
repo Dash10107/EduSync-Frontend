@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
 import  "./Navbar.css"
-import { Dropdown } from 'antd';
+import { Drawer, Dropdown } from 'antd';
 import { useNavigate } from "react-router-dom";
 import logo from "../../Assets/logo.png";
 import axios from "axios";
-
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 const Navbar = (props) => {
 
   const {isLogin} = props;
@@ -14,6 +14,15 @@ const Navbar = (props) => {
   const [loading, setLoading] = useState(true);
   const [userDetailName,setUserName] = useState("");
   const [fullName,setFullName] = useState("");
+
+  const [open, setOpen] = useState(false);
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
+  
   const fetchUser= async()=>{
     // Make a GET request to the protected route
  await   axios
@@ -88,12 +97,12 @@ const Navbar = (props) => {
 
   return (
     <div className="navbar-main  ">
-      <div className="justify-start">
-   {isLogin?(<span></span>):(<span className="underlining" onClick={()=>{navigate("/home")}}>Home </span>)} 
+      <div className=" hamburger justify-start">
+   {isLogin?(<span></span>):(<span className="" ><MenuRoundedIcon onClick={showDrawer} fontSize={window.innerWidth <= 600 ? "large" :"larger"}/></span>)} 
     {/* <span className="underlining">{localStorage.getItem("SubjectName")}</span> */}
       </div>
 <div className=" justify-center">
-<img src={logo} className='logoImg rounded '   alt=" 1" />
+<img src={logo} className='logoImg rounded ' onClick={()=>{navigate("/home")}}   alt=" 1" />
 </div>
 {isLogin ? (<div className=" justify-end lastDiv"></div>):
 (<div>
@@ -112,7 +121,17 @@ const Navbar = (props) => {
 </div>
 </Dropdown>
 </div>)}
-
+ <Drawer
+        title="Basic Drawer"
+        placement={"left"}
+        
+        onClose={onClose}
+        open={open}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
     </div>
   )
 };

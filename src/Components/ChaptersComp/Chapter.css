@@ -27,16 +27,6 @@ vertical-align: middle;
     }
 }
 
-.zigzag-line {
-    width: 1px; /* Width of the line */
-    border-left: 3px dotted #000; /* Dotted border style */
-    height: 30%; /* Adjust as needed */
-    position: absolute; /* Position for absolute positioning */
-    top: 45% !important;
-    left: 38%;
-  }
-  
-  .zigzag-line:nth-child(even) {
-    transform: rotate(45deg); /* Rotate even lines by 45 degrees */
-  }
-  
+.single-chapter{
+    position: relative;
+}

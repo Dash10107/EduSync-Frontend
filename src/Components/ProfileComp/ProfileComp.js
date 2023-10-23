@@ -17,7 +17,7 @@ const ProfileComp = () => {
   const [modulesStarted,setModulesStarted] = useState(0);
   const [subchaptersStarted,setSubChapterStarted] = useState(0);
 
-
+ 
 
   const fetchUser= async()=>{
         // Make a GET request to the protected route
@@ -144,15 +144,15 @@ setModulesStarted(modulesStarted);
 
         
     <div className="progress-card" onClick={()=>{navigate("/profile/modules")}}>
-  <div className="progress-container">
+  <div className="progress-container" style={{paddingLeft:"3vw"}}>
     <Progress
       type="circle"
       percent={progressPercentage}
-      strokeColor="#e92061" // Set the color to your desired col
+      strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }} // Set the color to your desired col
       format={() => `${progressPercentage}%`}
-      size={150}
+      size={window.innerWidth <= 600 ? 100 : 180} 
       strokeWidth={8}
-      trailColor="#5f3d9b" // Set the color of the empty progress bar
+      trailColor="#fff" // Set the color of the empty progress bar
     />
   </div>
   <div className="text-container">
@@ -165,11 +165,11 @@ setModulesStarted(modulesStarted);
     <Progress
       type="circle"
       percent={chaptersStarted}
-      strokeColor="#e92061" // Set the color to your desired col
+      strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}// Set the color to your desired col
       format={() => `${chaptersStarted}%`}
-      size={150}
+      size={window.innerWidth <= 600 ? 100 : 180} 
       strokeWidth={8}
-      trailColor="#5f3d9b" // Set the color of the empty progress bar
+      trailColor="#fff" // Set the color of the empty progress bar
     />
   </div>
   <div className="text-container">
@@ -181,11 +181,13 @@ setModulesStarted(modulesStarted);
     <Progress
       type="circle"
       percent={subchaptersStarted}
-      strokeColor="#e92061" // Set the color to your desired col
+      strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
       format={() => `${subchaptersStarted}%`}
-      size={150}
+      size={window.innerWidth <= 600 ? 100 : 180} 
       strokeWidth={8}
-      trailColor="#5f3d9b" // Set the color of the empty progress bar
+      trailColor={"#fff"} // Set the color of the empty progress bar
+     
+        
     />
   </div>
   <div className="text-container">
