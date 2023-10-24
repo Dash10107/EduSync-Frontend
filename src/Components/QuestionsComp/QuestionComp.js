@@ -10,6 +10,7 @@ import RetryModal from "./retryModal/RetryModal";
 
 import { Alert, Snackbar } from "@mui/material";
 import LeaveModal from "./leaveModal/LeaveModal";
+import Celebration from "./Celebration";
 const QuestionComp = (props) => {
   const moduleId = localStorage.getItem("moduleId");
   const chapterId = parseInt(localStorage.getItem("chapterId"));
@@ -124,6 +125,8 @@ const   handleGoBack = ()=>{
       );
 
       if (response.status === 200) {
+        console.log('Response',response);
+        
         setQuestions(response.data.questions);
       } else {
         console.log("Status Code", response.status);
@@ -378,6 +381,10 @@ useEffect(() => {
   Please select an option before proceeding
   </Alert>
 </Snackbar>
+
+{correctAnswersCount > 7 && testOver && (
+        <Celebration /> // Render the celebration component
+      )}
     </>
   );
 };

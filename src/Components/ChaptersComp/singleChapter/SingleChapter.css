@@ -7,7 +7,7 @@
     margin-right: 10px; /* Add margin-right to create gaps */
     margin-bottom: 10px; /* Add margin-bottom to separate rows */
     position: relative;
-  /* z-index: 99; */
+  z-index: 99;
 
 
   }
@@ -91,6 +91,7 @@
     padding: 10px;
     border-radius: 50%;
     transition: transform 0.3s ease-in-out; /* Add a smooth transition */
+    z-index: -10;
   }
   
   .slide-text-right {
@@ -102,6 +103,7 @@ color: black;
     padding: 10px;
     border-radius: 50%;
     transition: transform 0.3s ease-in-out; /* Add a smooth transition */
+    z-index: -10;
   }
 
   .popover-content {

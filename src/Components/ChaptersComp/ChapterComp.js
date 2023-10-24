@@ -5,7 +5,7 @@ import Navbar from "../../Layouts/Navbar/Navbar";
 import SingleChapter from "./singleChapter/SingleChapter";
 import { useNavigate } from "react-router-dom";
 import Zigzag from "./Zigzag";
-
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 const ChapterComp = (props) => {
   const navigate = useNavigate();
   const moduleId = localStorage.getItem("moduleId");
@@ -76,7 +76,12 @@ fetchChapters();
     ) : (
       <div>
         <div className="subject-header">
-          <h3 className="subject-heading-text"><span className="underlining" onClick={()=>{navigate("/home")}}>Home  </span>   {'>'} <span>{module.name}</span></h3>
+          <h3 className="subject-heading-text"> 
+          
+          <div className="goBack">
+    <p className="back-icon" onClick={()=>{navigate("/home")}}><ArrowBackIosIcon fontSize="large"/> </p>
+     <p>{module.name}</p>
+     </div></h3>
         </div>
 
         <ul className="zigzag-list">

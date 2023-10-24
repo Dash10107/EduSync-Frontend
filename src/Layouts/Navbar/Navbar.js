@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../Assets/logo.png";
 import axios from "axios";
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+
+import Sidebar from "../SideBar/Sidebar";
 const Navbar = (props) => {
 
   const {isLogin} = props;
@@ -122,15 +124,13 @@ const Navbar = (props) => {
 </Dropdown>
 </div>)}
  <Drawer
-        title="Basic Drawer"
+        title={<p></p>}
         placement={"left"}
         
         onClose={onClose}
         open={open}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+<Sidebar onClose={onClose} open={open}/>
       </Drawer>
     </div>
   )

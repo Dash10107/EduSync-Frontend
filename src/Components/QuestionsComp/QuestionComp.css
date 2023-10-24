@@ -95,6 +95,15 @@ margin-top: 1vh;
   color: #ff5722; /* Red for try again message */
 }
 
+/* Example CSS for celebration animation */
+.celebration-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -9999; /* Ensure it's above other content */
+}
 
 
 /* Media query for larger screens (e.g., tablets and desktops) */
