@@ -3,41 +3,17 @@
   width: 25rem;
     height: 23rem;
     border-radius: 50%;
-    /* background-image: url('../../../Assets/gear.png');  */
-    background-size: cover; 
+ 
     margin-right: 10px; /* Add margin-right to create gaps */
     margin-bottom: 10px; /* Add margin-bottom to separate rows */
     position: relative;
   /* z-index: 99; */
-  animation-name: rotateOuterDiv;
-  animation-duration: 12s; /* Adjust the duration for 360 degrees over 12 seconds */
-  animation-timing-function: linear; /* Gradual rotation at a constant speed */
-  animation-iteration-count: infinite; /* Repeats the animation infinitely */
-  animation-play-state: paused; /* Start with animation paused */
+
 
   }
 
-  /* Define a CSS animation for the outer div */
-@keyframes rotateOuterDiv {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-/* Play the animation when hovering */
-.outside-div:hover {
-  animation-play-state: running; /* Start the animation on hover */
 
-}
-
-.outside-div:hover .circle-div {
-  transform: scale(1.2); 
-
-}
-
-  
+ 
 .circle-div {
     width: 12rem;
     height: 12rem;
@@ -51,53 +27,23 @@
 
 
     position: relative;
-    top: 28%;
+    top: 30%;
     left: 26.5%;
  
-    transition: transform 0.3s; /* Add a transition for smooth scaling */
+   
   
   }
-.background-wheel{
-  position: absolute;
-  transition: transform 0.3s; 
-  z-index: 10;
-}
-.background-wheel:hover{
-  transform: scale(1.2);
-}  
 
-/* CSS for the text outside the outside-div */
-.left-text-container {
-  position: absolute;
-  top: 50%;
-  left: -20px; /* Adjust this value to control the distance from the left edge */
-  transform: translate(0, -50%);
-  text-align: left;
-}
 
-.right-text-container {
-  position: absolute;
-  top: 50%;
-  right: -20px; /* Adjust this value to control the distance from the right edge */
-  transform: translate(0, -50%);
-  text-align: right;
-}
-
-.center-text-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
 
 .main-chapter-div{
-  display: flex;
+  /* display: flex; */
+  position: relative;
 }
 
 .item-title {
   font-size: 1.5rem; /* Adjust the font size as needed */
-  color: white;
+  color: black;
   font-family: "Poppins", sans-serif;
   margin: 0;
 }
@@ -113,16 +59,10 @@
   margin: 0 auto; /* Center the text horizontally */
 }
 
+
   
 
-  .circle-border {
-    width: 100%;
-    height: 100%;
-  border-radius: 50%; /* Make it a circle */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  }
+ 
   .center {
     margin: 0 auto !important;  /* Center the first div by setting margin to auto */
     margin-bottom: 30px !important;
@@ -131,20 +71,63 @@
   /* Apply margin-left to the divs on the left */
   .left {
     margin-left: 0;
+;
   }
   
   /* Apply margin-right to the divs on the right */
   .right {
     margin-left: auto;
+  
   }
   
 
+  .slide-text-left {
+    position: absolute;
+    right: 0; /* Adjust the positioning as needed */
+    top: 50%; /* Adjust the vertical positioning as needed */
+    transform: translateY(-50%); /* Center vertically */
+   
+    color: black;
+    padding: 10px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition */
+  }
+  
+  .slide-text-right {
+    position: absolute;
+    left: 0; /* Adjust the positioning as needed */
+    top: 50%; /* Adjust the vertical positioning as needed */
+    transform: translateY(-50%); /* Center vertically */
+color: black;
+    padding: 10px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition */
+  }
 
+  .popover-content {
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #1B2A41;
+    color: white;
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* Style for Popover title */
+  .popover-title {
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #1B2A41;
+    color: white;
+    font-size: 1.5rem;
+    font-family: "Poppins", sans-serif;
+  }
 /* Media query for desktop screens */
 @media (min-width: 768px) {
     .zigzag-list {
-      max-width: 1220px; /* Adjust the maximum width based on your design preferences */
+      max-width: 1120px; /* Adjust the maximum width based on your design preferences */
       margin: 0 auto; /* Center-align the list within the container */
+    }
+    .ant-popover-inner{
+      background-color: #1B2A41 !important;
     }
   }
 
@@ -168,4 +151,6 @@
   width: 6rem;
   height: 6rem;
 }
+
   }
+

@@ -1,15 +1,18 @@
 import React from "react"
-import left from "../../Assets/left.jpg"
-import right from "../../Assets/right.jpg";
+
+import newleft from "../../Assets/newlef.png"
+import newright from "../../Assets/newright.png";
+import finalleft from "../../Assets/finalleft.png"
+import finalright from "../../Assets/finalright.png";
 import "./Zigzag.css"
 const Zigzag = (props) => {
-  const {position} = props;
+  const {position,style} = props;
     return (
-<div className="border-img">
+<div className="border-img" style={style}>
 {
-  position==="left"?<img className="leftImg" src={left} alt=""/>:
-  position==="right"?<img className="rightImg" src={right} alt=""/>:
- <></> 
+  position==="left"?<img className="leftImg" src={finalleft} alt=""/>:
+  position==="right"?<img className="rightImg" src={finalright} alt=""/>:
+  <img className="centerImg" src={finalright} alt=""/>
 }
 </div>
       );

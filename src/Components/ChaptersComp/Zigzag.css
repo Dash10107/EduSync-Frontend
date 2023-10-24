@@ -1,14 +1,29 @@
 .border-img{
     position: absolute;
-    top: -100%;
     mix-blend-mode: multiply;
-    left: 25%;
     z-index: -10;
 }
 
 .leftImg{
     transform: scale(2);
+    position: relative;
+    left: 74%;
+    margin-top: 17.5%;
 }
 .rightImg{
     transform: scale(2);
+    position: relative;
+    left: 165%;
+    margin-top: 22.5%;
+}
+
+.single-chapter{
+    position: relative;
+}
+
+.centerImg{
+    transform: scale(2);
+    position: relative;
+    left: 165%;
+    margin-top: 25%;
 }
