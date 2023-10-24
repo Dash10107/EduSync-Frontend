@@ -16,7 +16,7 @@ const Navbar = (props) => {
   const [loading, setLoading] = useState(true);
   const [userDetailName,setUserName] = useState("");
   const [fullName,setFullName] = useState("");
-
+const isAdmin = localStorage.getItem("Admin");
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
@@ -100,7 +100,9 @@ const Navbar = (props) => {
   return (
     <div className="navbar-main  ">
       <div className=" hamburger justify-start">
-   {isLogin?(<span></span>):(<span className="" ><MenuRoundedIcon onClick={showDrawer} fontSize={window.innerWidth <= 600 ? "large" :"larger"}/></span>)} 
+   {isLogin || isAdmin ?(<span></span>):(<span className="" > 
+   
+   <MenuRoundedIcon onClick={showDrawer} fontSize={window.innerWidth <= 600 ? "large" :"larger"}/></span>)} 
     {/* <span className="underlining">{localStorage.getItem("SubjectName")}</span> */}
       </div>
 <div className=" justify-center">

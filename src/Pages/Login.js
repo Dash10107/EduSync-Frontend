@@ -9,7 +9,7 @@ const Login = () => {
     if( !localStorage.getItem("token") || localStorage.getItem("token") === ""){
       return
     }else{
-     navigate("/home")
+     navigate("/admin/home")
     }
 },[])
   return (

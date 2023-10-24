@@ -4,12 +4,10 @@ import Navbar from "../../Layouts/Navbar/Navbar";
 import axios from "axios";
 import ListView from "./ListView/ListView";
 import GridView from "./GridView/GridView";
-import GridViewIcon from '@mui/icons-material/GridView';
+
 import QuizIcon from '@mui/icons-material/Quiz'
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
-import MenuIcon from '@mui/icons-material/Menu';
-import SingleVideo from "./Video/SingleVideo";
-import Loader from "../../Layouts/Loader/Loader";
+
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
 

@@ -15,6 +15,9 @@ const SingleCard = (props) => {
         // localStorage.setItem("moduleId",module?.id);
         // localStorage.setItem("SubjectName",module?.name);
         // navigate("/chapters")
+        localStorage.setItem("adminModuleId",module.id)
+        localStorage.setItem("adminModuleName",module.id);
+        navigate("/admin/chapter")
         }}>
         <div className="tilted-div" style={tiltedColor} ></div>
           <h3 className="single-card-title">{module?.name}</h3>

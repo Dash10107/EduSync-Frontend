@@ -2,93 +2,122 @@
 
 /* Sidebar styling */
 .sidebar {
-    width: 100%; /* Set the sidebar width as needed */
-    /* background-color: #1B2A41; Sidebar background color */
-    color: white; /* Text color */
-    padding: 20px; /* Padding for the whole sidebar */
-    /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); Optional box shadow */
-    overflow-y: auto; 
-    max-height: 100%;
-    scrollbar-width: thin; /* Set a very thin scrollbar width for Firefox */
-    scrollbar-color: transparent transparent; /* Make the scrollbar and thumb transparent */
-  }
+  width: 100%;
+  /* Set the sidebar width as needed */
+  /* background-color: #1B2A41; Sidebar background color */
+  color: white;
+  /* Text color */
+  /* padding: 20px;  */
+
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); Optional box shadow */
+  overflow-y: auto;
+  max-height: 100%;
+  scrollbar-width: thin;
+  /* Set a very thin scrollbar width for Firefox */
+  scrollbar-color: transparent transparent;
+  /* Make the scrollbar and thumb transparent */
+}
+
 /* Hide the scrollbar */
 .sidebar::-webkit-scrollbar {
-    width: 0.2em; /* Set a very thin scrollbar width */
-  }
-  
-  /* Hide scrollbar track */
-  .sidebar::-webkit-scrollbar-track {
-    background: transparent; /* Make the track transparent */
-  }
-  
-  /* Hide scrollbar thumb */
-  .sidebar::-webkit-scrollbar-thumb {
-    background: transparent; /* Make the thumb transparent */
-  }
-  
+  width: 0.2em;
+  /* Set a very thin scrollbar width */
+}
+
+/* Hide scrollbar track */
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+  /* Make the track transparent */
+}
+
+/* Hide scrollbar thumb */
+.sidebar::-webkit-scrollbar-thumb {
+  background: transparent;
+  /* Make the thumb transparent */
+}
 
 
-  
+
+
 /* Add this CSS to your stylesheets */
 
 /* Home button styling */
 .home-button {
-  width: 100%; /* Take the whole width */
-  background: linear-gradient(to bottom, #3A577A, #1B2A41); /* Gradient background */
-  color: white;
-  height: 60px; /* Increased height */
+  width: 100%;
+  /* Take the whole width */
+  /* background: linear-gradient(to bottom, #3A577A, #1B2A41);  */
+  color: black;
+  height: 60px;
+  /* Increased height */
   border: none;
   border-radius: 5px;
   display: flex;
-  justify-content: center;
-gap: 1vw;
-margin-bottom: 25px;
+  /* justify-content: center; */
+  gap: 1vw;
+  margin-bottom: 8px;
   align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out; /* Animation on hover */
+  transition: background-color 0.3s ease-in-out;
+  /* Animation on hover */
   font-family: "Poppins", sans-serif;
+  padding-left: 10px;
+  font-size: large;
+  font-weight: 400;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+
 }
 
 .home-button:hover {
-  background: linear-gradient(to bottom, #1B2A41, #3A577A); /* Gradient background on hover */
+  --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-  
-  /* Module tabs */
+
+/* Module tabs */
+.single-tab {
+  /* background-color: #d2e1f3; */
+  color: black;
+  padding-top: 15px;
+  /* Increase the vertical padding for more height */
+  padding-bottom: 15px;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  /* Increase the margin to add more spacing between tabs */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+  font-family: "Poppins", sans-serif;
+  font-size: large;
+  font-weight: 400;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+}
+
+.single-tab:hover {
+  /* background-color: gray;  */
+  --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+/* You can customize these colors, padding, and other properties to match your design. */
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    /* Full width for mobile devices */
+  }
+
+  /* Adjust padding and font size for smaller screens */
+  .sidebar button {
+    padding: 2px 12px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
   .single-tab {
-    background-color: #3A577A;
-    color: white;
-    padding: 15px 12px; /* Increase the vertical padding for more height */
-    margin-bottom: 18px; /* Increase the margin to add more spacing between tabs */
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
-    font-family: "Poppins", sans-serif;
+    /* padding: 8px 12px; */
+    margin-bottom: 8px;
   }
-  
-  .single-tab:hover {
-    background-color: #1B2A41; /* Module tab background color on hover */
-  }
-  
-  /* You can customize these colors, padding, and other properties to match your design. */
-  
-  /* Media query for responsive design */
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 100%; /* Full width for mobile devices */
-    }
-  
-    /* Adjust padding and font size for smaller screens */
-    .sidebar button {
-      padding: 8px 12px;
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-  
-    .single-tab {
-      padding: 8px 12px;
-      margin-bottom: 8px;
-    }
-  }
-  
+}

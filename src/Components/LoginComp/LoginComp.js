@@ -68,7 +68,7 @@ const LoginComp = (props) => {
           localStorage.setItem("token", result.token);
           setUserName("");
           setPassword("");
-        navigate("/home");
+        navigate("/admin/home");
           
         } else {
           console.log(result.token);

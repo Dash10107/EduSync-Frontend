@@ -36,7 +36,8 @@ const Sidebar = (props) => {
 
   return (
     <div className="sidebar">
-    <button className="home-button" onClick={()=>{navigate("/home")}}>  <p>Home</p> <HomeRoundedIcon/></button>
+    <button className="home-button" onClick={()=>{navigate("/home")}}> <HomeRoundedIcon/> <p>Home</p> </button>
+    <hr className="bg-black text-black h-0.5 mb-2 mr-3"></hr>
       <ul className="sidelist">
         {modules.map(module => (
           <SingleTab key={module.id} module={module} />

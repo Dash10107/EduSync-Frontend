@@ -9,6 +9,9 @@ import Profile from "../Pages/Profile";
 import Signup from "../Pages/Signup";
 import ModulesProgress from "../Pages/ModulesProgress";
 import AdminHome from "../Pages/AdminHome";
+import AdminChapter from "../Pages/AdminChapter";
+import AdminSubChapter from "../Pages/AdminSubChapter";
+import AdminQuestion from "../Pages/AdminQuestion";
 
 ;
 
@@ -52,6 +55,18 @@ export const router = createBrowserRouter([
   {
     path:"/admin/home",
     element:<AdminHome/>
+  },
+  {
+    path:"admin/chapter",
+    element:<AdminChapter/>
+  },
+  {
+    path:"admin/subchapter",
+    element:<AdminSubChapter/>
+  },
+  {
+    path:"admin/questions",
+    element:<AdminQuestion/>
   }
 ]);
 

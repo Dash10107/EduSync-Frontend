@@ -1,0 +1,158 @@
+/* SingleChapter.css */
+.outside-div{
+  width: 25rem;
+    height: 23rem;
+    border-radius: 50%;
+ 
+    margin-right: 10px; /* Add margin-right to create gaps */
+    margin-bottom: 10px; /* Add margin-bottom to separate rows */
+    position: relative;
+  z-index: 99;
+
+
+  }
+
+
+ 
+.circle-div-add {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    background: #1B2A41;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+
+    position: relative;
+    top: 30%;
+    left: 26.5%;
+ 
+   
+  
+  }
+
+
+
+.main-chapter-div{
+  /* display: flex; */
+  position: relative;
+}
+
+.item-title {
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  color: black;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+/* Update the .item-text style to be centered */
+.item-text {
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  color: white !important;
+  font-family: "Poppins", sans-serif;
+  text-align: center; /* Center-align the text */
+  width: 80%; /* Limit the width to 80% of the circular div */
+  margin: 0 auto; /* Center the text horizontally */
+}
+
+
+  
+
+ 
+  .center {
+    margin: 0 auto !important;  /* Center the first div by setting margin to auto */
+    margin-bottom: 30px !important;
+  }
+  
+  /* Apply margin-left to the divs on the left */
+  .left {
+    margin-left: 0;
+;
+  }
+  
+  /* Apply margin-right to the divs on the right */
+  .right {
+    margin-left: auto;
+  
+  }
+  
+
+  .slide-text-left {
+    position: absolute;
+    right: 0; /* Adjust the positioning as needed */
+    top: 50%; /* Adjust the vertical positioning as needed */
+    transform: translateY(-50%); /* Center vertically */
+   
+    color: black;
+    padding: 10px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition */
+    z-index: -10;
+  }
+  
+  .slide-text-right {
+    position: absolute;
+    left: 0; /* Adjust the positioning as needed */
+    top: 50%; /* Adjust the vertical positioning as needed */
+    transform: translateY(-50%); /* Center vertically */
+color: black;
+    padding: 10px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out; /* Add a smooth transition */
+    z-index: -10;
+  }
+
+  .popover-content {
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #1B2A41;
+    color: white;
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* Style for Popover title */
+  .popover-title {
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #1B2A41;
+    color: white;
+    font-size: 1.5rem;
+    font-family: "Poppins", sans-serif;
+  }
+/* Media query for desktop screens */
+@media (min-width: 768px) {
+    .zigzag-list {
+      max-width: 1120px; /* Adjust the maximum width based on your design preferences */
+      margin: 0 auto; /* Center-align the list within the container */
+    }
+    .ant-popover-inner{
+      background-color: #1B2A41 !important;
+    }
+  }
+
+  .ant-progress-text {
+    color: white !important; /* Set the desired color for the format text */
+    font-size: 1rem !important;
+    z-index: 30 !important;
+  }
+
+
+  @media (max-width: 768px) {
+.zigzag-list{
+  margin: 0 auto;
+  max-width: 600px;
+}
+.outside-div{
+  width: 12.5rem;
+  height: 11.5rem;
+}
+.circle-div{
+  width: 6rem;
+  height: 6rem;
+}
+
+  }
+
