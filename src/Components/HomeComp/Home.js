@@ -15,7 +15,7 @@ const Home = (props) => {
     const [searchModules,setSearchModules] = useState([]);
     const fetchModules = async()=>{
 try {
-      await axios.get('http://localhost:5000/module/',{
+      await axios.get('https://edusync-backend.onrender.com/module/',{
         headers: {
           Authorization: localStorage.getItem("token"),
         }
@@ -43,7 +43,7 @@ try {
 
     const fetchProgress = async()=>{
       try {
-        await axios.get('http://localhost:5000/progress/',{
+        await axios.get('https://edusync-backend.onrender.com/progress/',{
           headers: {
             Authorization: localStorage.getItem("token"),
           }

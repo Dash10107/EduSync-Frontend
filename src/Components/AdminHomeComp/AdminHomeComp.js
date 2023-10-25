@@ -30,7 +30,7 @@ const AdminHomeComp = (props) => {
 
     const fetchModules = async()=>{
 try {
-      await axios.get('http://localhost:5000/module/',{
+      await axios.get('https://edusync-backend.onrender.com/module/',{
         headers: {
           Authorization: localStorage.getItem("token"),
         }
@@ -60,7 +60,7 @@ try {
         e.preventDefault();
     
         try {
-          const response = await axios.post('http://localhost:5000/admin/addModule', {
+          const response = await axios.post('https://edusync-backend.onrender.com/admin/addModule', {
             name:moduleName,
             description:moduleName,
           },
@@ -109,7 +109,7 @@ fetchModules();
 
     return (
       <div>
-        <Navbar />
+        <Navbar isLogin={true} />
         
         <div className="all-courses-main">
         <div className="all-courses-title">

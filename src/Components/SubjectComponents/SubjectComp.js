@@ -25,7 +25,7 @@ const SubjectComp = (props) => {
       const [videosName,setVideosName] = useState([]);
       const fetchChapters=async()=>{
         try {
-          await axios.get(`http://localhost:5000/module/chapters/${moduleId}`,{
+          await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
             headers: {
               Authorization: localStorage.getItem("token"),
             }
@@ -65,7 +65,7 @@ const SubjectComp = (props) => {
 const fetchVideos = async () => {
   try {
     // Make a request to your backend route to get video URLs.
-    const response = await fetch(`http://localhost:5000/videos/${SubjectName}/${ChapterName}`, {
+    const response = await fetch(`https://edusync-backend.onrender.com/videos/${SubjectName}/${ChapterName}`, {
       method: 'POST', // You may need to adjust the request method
       body: JSON.stringify({
           "token":{

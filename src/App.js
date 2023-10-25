@@ -25,6 +25,18 @@ function App() {
   //   };
   // }, []);
 
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  function handleBeforeUnload(event) {
+    localStorage.clear();
+    event.preventDefault();
+  }
+
   return (
     <RouterProvider router={router} />
   );

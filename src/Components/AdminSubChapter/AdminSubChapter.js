@@ -23,7 +23,7 @@ const AdminSubComp = (props) => {
 
       const fetchChapters=async()=>{
         try {
-          await axios.get(`http://localhost:5000/module/chapters/${moduleId}`,{
+          await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
             headers: {
               Authorization: localStorage.getItem("token"),
             }
@@ -70,7 +70,7 @@ const AdminSubComp = (props) => {
       e.preventDefault();
   
       try {
-        const response = await axios.post(`http://localhost:5000/admin/addSubtopic/${moduleId}/${chapterId}`, {
+        const response = await axios.post(`https://edusync-backend.onrender.com/admin/addSubtopic/${moduleId}/${chapterId}`, {
           name:subtopicName, 
         },
         {
@@ -98,7 +98,7 @@ const AdminSubComp = (props) => {
     
   return (
     <div>
-    <Navbar/>
+    <Navbar isLogin={true}/>
     <div className="subchapter-heading">
     <div className="goBack">
     <p className="back-icon" onClick={()=>{navigate("/admin/chapter")}}><ArrowBackIosIcon fontSize="large"/> </p>

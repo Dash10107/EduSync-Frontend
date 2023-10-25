@@ -10,7 +10,7 @@ const Sidebar = (props) => {
   
   const fetchModules = async () => {
     try {
-      await axios.get('http://localhost:5000/module/', {
+      await axios.get('https://edusync-backend.onrender.com/module/', {
         headers: {
           Authorization: localStorage.getItem("token"),
         }

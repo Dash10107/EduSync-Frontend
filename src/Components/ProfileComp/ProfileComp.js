@@ -22,7 +22,7 @@ const ProfileComp = () => {
   const fetchUser= async()=>{
         // Make a GET request to the protected route
      await   axios
-        .get("http://localhost:5000/users/protected", {
+        .get("https://edusync-backend.onrender.com/users/protected", {
           headers: {
             Authorization: localStorage.getItem("token"), // Include the token in the headers
           },
@@ -55,7 +55,7 @@ const ProfileComp = () => {
 
   const fetchMainProgress = async()=>{
     try {
-      await axios.get('http://localhost:5000/progress/',{
+      await axios.get('https://edusync-backend.onrender.com/progress/',{
         headers: {
           Authorization: localStorage.getItem("token"),
         }

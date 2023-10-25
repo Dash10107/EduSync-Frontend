@@ -26,7 +26,7 @@ const AdminQuestionComp = (props) => {
   const fetchQuestions = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/module/allQuestions/${moduleId}/${chapterId}/${subChapterId}`,
+        `https://edusync-backend.onrender.com/module/allQuestions/${moduleId}/${chapterId}/${subChapterId}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -55,7 +55,7 @@ const AdminQuestionComp = (props) => {
     console.log(questions)
     try {
       const response = await axios.post(
-        `http://localhost:5000/admin/addQuestions/${moduleId}/${chapterId}/${subChapterId}`,
+        `https://edusync-backend.onrender.com/admin/addQuestions/${moduleId}/${chapterId}/${subChapterId}`,
         {
           questions: questions,
         },
@@ -82,7 +82,7 @@ const AdminQuestionComp = (props) => {
   return (
     <>
     <div className="adminQuestionComp">
-    <Navbar />
+    <Navbar  isLogin={true} />
     <div className="subchapter-heading">
           <h3 className="subject-heading-text"> 
           

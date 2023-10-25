@@ -90,7 +90,7 @@ const   handleGoBack = ()=>{
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/progress/",
+        "https://edusync-backend.onrender.com/progress/",
         formData,
         {
           headers: {
@@ -116,7 +116,7 @@ const   handleGoBack = ()=>{
   const fetchQuestions = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/module/questions/${moduleId}/${chapterId}/${subChapterId}`,
+        `https://edusync-backend.onrender.com/module/questions/${moduleId}/${chapterId}/${subChapterId}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -125,7 +125,7 @@ const   handleGoBack = ()=>{
       );
 
       if (response.status === 200) {
-        console.log('Response',response);
+        console.log('Response Questions',response);
         
         setQuestions(response.data.questions);
       } else {

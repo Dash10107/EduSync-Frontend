@@ -10,7 +10,7 @@ const SingleQuestion = (props) => {
     showResult,
     currentQuestionIndex,
   } = props;
-  const isAnswerCorrect = question.correctAnswer === selectedOption;
+  const isAnswerCorrect = question?.correctAnswer === selectedOption;
   const [selectedClass, setSelectedClass] = useState("");
   const [negativeMessage, setNegativeMessage] = useState("");
   const [positiveMessage, setPositiveMessage] = useState("");

@@ -28,7 +28,7 @@ const isAdmin = localStorage.getItem("Admin");
   const fetchUser= async()=>{
     // Make a GET request to the protected route
  await   axios
-    .get("http://localhost:5000/users/protected", {
+    .get("https://edusync-backend.onrender.com/users/protected", {
       headers: {
         Authorization: localStorage.getItem("token"), // Include the token in the headers
       },
@@ -100,7 +100,7 @@ const isAdmin = localStorage.getItem("Admin");
   return (
     <div className="navbar-main  ">
       <div className=" hamburger justify-start">
-   {isLogin || isAdmin ?(<span></span>):(<span className="" > 
+   {isLogin? (<span></span>):(<span className="" > 
    
    <MenuRoundedIcon onClick={showDrawer} fontSize={window.innerWidth <= 600 ? "large" :"larger"}/></span>)} 
     {/* <span className="underlining">{localStorage.getItem("SubjectName")}</span> */}

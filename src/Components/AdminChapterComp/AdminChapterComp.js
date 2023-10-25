@@ -27,7 +27,7 @@ const AdminChapterComp = (props) => {
   }
   const fetchChapters=async()=>{
     try {
-      await axios.get(`http://localhost:5000/module/chapters/${moduleId}`,{
+      await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
         headers: {
           Authorization: localStorage.getItem("token"),
         }
@@ -61,7 +61,7 @@ fetchChapters();
         e.preventDefault();
     
         try {
-          const response = await axios.post(`http://localhost:5000/admin/addChapter/${moduleId}`, {
+          const response = await axios.post(`https://edusync-backend.onrender.com/admin/addChapter/${moduleId}`, {
             title:chapterName,
             content:chapterName,
             subtopics:[]
@@ -92,7 +92,7 @@ fetchChapters();
 
     return (
     <div className="chapters-main">
-    <Navbar />
+    <Navbar isLogin={true} />
     {loading ? (
       <p>Loading</p>
     ) : (

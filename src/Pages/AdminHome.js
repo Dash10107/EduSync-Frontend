@@ -7,7 +7,7 @@ const AdminHome = () => {
 
   useEffect(() => {
     // Perform the GET request to check if the user is an admin
-    fetch('http://localhost:5000/admin/checkAdmin', {
+    fetch('https://edusync-backend.onrender.com/admin/checkAdmin', {
       method: 'GET',
       headers: {
         'Authorization': localStorage.getItem('token'),

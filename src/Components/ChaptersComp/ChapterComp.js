@@ -16,7 +16,7 @@ const ChapterComp = (props) => {
 
   const fetchProgressPercentages = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/progress/${moduleId}`, {
+      const response = await axios.get(`https://edusync-backend.onrender.com/progress/${moduleId}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -39,7 +39,7 @@ const ChapterComp = (props) => {
 
   const fetchChapters=async()=>{
     try {
-      await axios.get(`http://localhost:5000/module/chapters/${moduleId}`,{
+      await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
         headers: {
           Authorization: localStorage.getItem("token"),
         }
