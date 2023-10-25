@@ -70,6 +70,7 @@ const AdminQuestionComp = (props) => {
         console.log("Questions added successfully");
         // Clear the questions array after submission if needed
         setQuestions([]);
+        fetchQuestions();
       } else {
         console.log("Status Code", response.status);
       }
@@ -82,7 +83,7 @@ const AdminQuestionComp = (props) => {
   return (
     <>
     <div className="adminQuestionComp">
-    <Navbar  isLogin={true} />
+    <Navbar  isAdmin={true} />
     <div className="subchapter-heading">
           <h3 className="subject-heading-text"> 
           

@@ -77,7 +77,7 @@ fetchChapters();
             
              alert('Chapter added successfully');
             setChapterOpen(false);
-            window.location.reload();
+            fetchChapters();
           } else {
             setErrors({error:'Failed to add module'});
             setToastOpen(true);
@@ -92,7 +92,7 @@ fetchChapters();
 
     return (
     <div className="chapters-main">
-    <Navbar isLogin={true} />
+    <Navbar isAdmin={true} />
     {loading ? (
       <p>Loading</p>
     ) : (

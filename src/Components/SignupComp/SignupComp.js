@@ -47,7 +47,7 @@ const SignupComp = (props) => {
     try {
       // Send a POST request to the server
       const response = await axios.post(
-        "http://localhost:5000/users/register",
+        "https://edusync-backend.onrender.com/users/register",
         formData
       );
       console.log("Response", response)

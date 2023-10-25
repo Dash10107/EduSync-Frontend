@@ -10,7 +10,6 @@ const SingleTab = (props) => {
         onClick={()=>{
         localStorage.setItem("moduleId",module.id);
         localStorage.setItem("SubjectName",module.name);
-        window.location.reload();
         navigate("/chapters")
 
         }}>

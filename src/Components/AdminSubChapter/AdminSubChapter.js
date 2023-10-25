@@ -84,7 +84,7 @@ const AdminSubComp = (props) => {
           
           //  alert('Subchapter added successfully');
           setSubChapterOpen(false);
-          window.location.reload();
+          fetchChapters();
         } else {
           setErrors({error:'Failed to add subchapter'});
           setToastOpen(true);
@@ -98,7 +98,7 @@ const AdminSubComp = (props) => {
     
   return (
     <div>
-    <Navbar isLogin={true}/>
+    <Navbar isAdmin={true}/>
     <div className="subchapter-heading">
     <div className="goBack">
     <p className="back-icon" onClick={()=>{navigate("/admin/chapter")}}><ArrowBackIosIcon fontSize="large"/> </p>

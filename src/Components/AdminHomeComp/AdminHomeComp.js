@@ -75,7 +75,7 @@ try {
             
             // alert('Module added successfully');
             setModuleOpen(false);
-            window.location.reload();
+            fetchModules()
           } else {
             setErrors({error:'Failed to add module'});
             setToastOpen(true);
@@ -109,7 +109,7 @@ fetchModules();
 
     return (
       <div>
-        <Navbar isLogin={true} />
+        <Navbar isAdmin={true} />
         
         <div className="all-courses-main">
         <div className="all-courses-title">
