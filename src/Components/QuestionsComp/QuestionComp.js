@@ -11,6 +11,7 @@ import RetryModal from "./retryModal/RetryModal";
 import { Alert, Snackbar } from "@mui/material";
 import LeaveModal from "./leaveModal/LeaveModal";
 import Celebration from "./Celebration";
+import Loader from "../../Layouts/Loader/Loader";
 const QuestionComp = (props) => {
   const moduleId = localStorage.getItem("moduleId");
   const chapterId = parseInt(localStorage.getItem("chapterId"));
@@ -73,7 +74,7 @@ const   handleGoBack = ()=>{
   };
   const handleEndTest = async (e) => {
     e.preventDefault();
-    if(correctAnswersCount < 7){
+    if(correctAnswersCount / questions.length <= 0.7){
       console.log("Please Try Again");
       setShowRetryModal(true);
    
@@ -114,6 +115,7 @@ const   handleGoBack = ()=>{
   };
 
   const fetchQuestions = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         `https://edusync-backend.onrender.com/module/questions/${moduleId}/${chapterId}/${subChapterId}`,
@@ -298,7 +300,7 @@ useEffect(() => {
         </div>
       </div>
       {loading ? (
-        <p>Loading...</p>
+        <Loader/>
       ) : (
         <div className="single-question-main">
   {!testOver ? (
@@ -382,9 +384,9 @@ useEffect(() => {
   </Alert>
 </Snackbar>
 
-{correctAnswersCount > 7 && testOver && (
-        <Celebration /> // Render the celebration component
-      )}
+{correctAnswersCount / questions.length >= 0.7 && testOver && (
+  <Celebration /> // Render the celebration component when 70% or more questions are correct
+)}
     </>
   );
 };

@@ -2,6 +2,7 @@ import React from 'react'
 import { Space,Spin } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons';
 import "./Loader.css"
+
 export default function Loader() {
     const antIcon = (
         <LoadingOutlined

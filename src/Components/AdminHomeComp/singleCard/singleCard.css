@@ -20,7 +20,17 @@
     
     display: flex;
     align-items: center;
+    position: relative;
     
+}
+.setttings{
+    position: absolute;
+    right: 1vw;
+    top: 2vh;
+    color: white;
+}
+.save-button{
+    color: white;
 }
 .single-card:hover {
     transform: scale(1.05); /* Zoom out on hover */
@@ -40,6 +50,10 @@
     text-align: right;
     
     
+}
+.edit-input{
+    background-color: inherit;
+    color: white !important;
 }
 .tilted-div {
     position: absolute;

@@ -6,6 +6,7 @@ import SingleChapter from "./singleChapter/SingleChapter";
 import { useNavigate } from "react-router-dom";
 import Zigzag from "./Zigzag";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Loader from "../../Layouts/Loader/Loader";
 const ChapterComp = (props) => {
   const navigate = useNavigate();
   const moduleId = localStorage.getItem("moduleId");
@@ -15,6 +16,7 @@ const ChapterComp = (props) => {
   const [progressPercentages, setProgressPercentages] = useState([]);
 
   const fetchProgressPercentages = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(`https://edusync-backend.onrender.com/progress/${moduleId}`, {
         headers: {
@@ -29,6 +31,8 @@ const ChapterComp = (props) => {
       }
     } catch (error) {
       console.log("error", error);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -38,6 +42,7 @@ const ChapterComp = (props) => {
 
 
   const fetchChapters=async()=>{
+    setLoading(true);
     try {
       await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
         headers: {
@@ -72,7 +77,7 @@ fetchChapters();
     <div className="chapters-main">
     <Navbar />
     {loading ? (
-      <p>Loading</p>
+      <Loader/>
     ) : (
       <div>
         <div className="subject-header">

@@ -10,6 +10,7 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
+import Loader from "../../Layouts/Loader/Loader";
 
 const SubjectComp = (props) => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const SubjectComp = (props) => {
       const [videoUrls, setVideoUrls] = useState([]);
       const [videosName,setVideosName] = useState([]);
       const fetchChapters=async()=>{
+        setLoading(true);
         try {
           await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
             headers: {
@@ -63,6 +65,7 @@ const SubjectComp = (props) => {
 
   
 const fetchVideos = async () => {
+  setLoading(true);
   try {
     // Make a request to your backend route to get video URLs.
     const response = await fetch(`https://edusync-backend.onrender.com/videos/${SubjectName}/${ChapterName}`, {
@@ -92,6 +95,8 @@ const fetchVideos = async () => {
     setVideoUrls(data.videoUrls);
   } catch (error) {
     console.error('Error fetching video URLs:', error);
+  }finally{
+    setLoading(false);
   }
 };
 
@@ -118,6 +123,7 @@ useEffect(() => {
 
 </div>
         {
+          loading ? (<Loader/>): 
           listView?(<ListView videoUrls={videoUrls} videosName={videosName}  />):(<GridView subchapters={subchapters}/>)
         }
         

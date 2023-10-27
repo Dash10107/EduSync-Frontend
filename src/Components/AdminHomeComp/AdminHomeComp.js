@@ -10,6 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ModalComp from "./AddModuleModel/Modal";
 import { useNavigate } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
+import Loader from "../../Layouts/Loader/Loader";
 const AdminHomeComp = (props) => {
     const navigate=useNavigate();
     const [modules,setModules] = useState([]);
@@ -29,6 +30,7 @@ const AdminHomeComp = (props) => {
     }
 
     const fetchModules = async()=>{
+      setAllLoading(true);
 try {
       await axios.get('https://edusync-backend.onrender.com/module/',{
         headers: {
@@ -132,7 +134,7 @@ fetchModules();
         </div>
 {
   allLoading ? (
-    <p>Loading...</p> // Display a loading indicator while data is being fetched
+    <Loader/>// Display a loading indicator while data is being fetched
   ):(
     <div className="all-courses-content">
   <Box sx={{ flexGrow: 1 }}>
@@ -166,6 +168,7 @@ fetchModules();
                   boxShadow: `0 5px 10px ${lighterShadowColor}`,
                 }}
                 tiltedColor={{backgroundColor:`${borderLeftColor}`}}
+                fetchModules={fetchModules}
               />
             </Grid>
           );
@@ -193,6 +196,7 @@ fetchModules();
                   boxShadow: `0 5px 10px ${lighterShadowColor}`,
                 }}
                 tiltedColor={{backgroundColor:`${borderLeftColor}`}}
+                fetchModules={fetchModules}
               />
             </Grid>
           );

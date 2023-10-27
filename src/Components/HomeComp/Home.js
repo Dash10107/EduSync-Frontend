@@ -6,14 +6,16 @@ import Navbar from "../../Layouts/Navbar/Navbar";
 import EastIcon from '@mui/icons-material/East';
 import { Box, Grid, Input, InputAdornment } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import Loader from "../../Layouts/Loader/Loader";
 const Home = (props) => {
     const [modules,setModules] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);  
+    const [continueLoading, setContinueLoading] = useState(true);  
     const [allLoading,setAllLoading] = useState(true);
     const [progressIds,setProgressIds] = useState([]);
     const [searchInput, setSearchInput] = useState(""); 
     const [searchModules,setSearchModules] = useState([]);
     const fetchModules = async()=>{
+      setAllLoading(true);
 try {
       await axios.get('https://edusync-backend.onrender.com/module/',{
         headers: {
@@ -42,6 +44,7 @@ try {
     }
 
     const fetchProgress = async()=>{
+      setContinueLoading(true);
       try {
         await axios.get('https://edusync-backend.onrender.com/progress/',{
           headers: {
@@ -66,7 +69,7 @@ try {
         console.log("error", error)
       }finally {
         // Set loading to false when data fetching is complete
-        setIsLoading(false);
+        setContinueLoading(false);
       }
     }
     useEffect(()=>{
@@ -95,8 +98,8 @@ fetchProgress();
         
         <div className="continue-courses-main">
           <p className="continue-courses-header">Continue With Courses  <EastIcon /></p>
-          { isLoading===true ? (
-            <h1>Loading...</h1> // Display a loading indicator while data is being fetched
+          { continueLoading===true ? (
+           <Loader/>
           ) : (
             <div className="continue-courses-content">
               <Box sx={{ flexGrow: 1 }}>
@@ -164,7 +167,7 @@ fetchProgress();
         </div>
 {
   allLoading ? (
-    <p>Loading...</p> // Display a loading indicator while data is being fetched
+    <Loader/>// Display a loading indicator while data is being fetched
   ):(
     <div className="all-courses-content">
   <Box sx={{ flexGrow: 1 }}>

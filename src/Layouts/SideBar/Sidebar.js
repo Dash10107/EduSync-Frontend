@@ -4,12 +4,15 @@ import axios from "axios";
 import SingleTab from "./SingleTab";
 import { useNavigate } from "react-router-dom";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import Loader from "../Loader/Loader";
 const Sidebar = (props) => {
     const navigate=useNavigate();
   const [modules, setModules] = useState([]);
-  
+  const [loading,setLoading] = useState(false);
   const fetchModules = async () => {
+    setLoading(true);
     try {
+
       await axios.get('https://edusync-backend.onrender.com/module/', {
         headers: {
           Authorization: localStorage.getItem("token"),
@@ -27,6 +30,8 @@ const Sidebar = (props) => {
       });
     } catch (error) {
       console.log("error", error);
+    }finally{
+      setLoading(false);
     }
   }
 
@@ -39,7 +44,9 @@ const Sidebar = (props) => {
     <button className="home-button" onClick={()=>{navigate("/home")}}> <HomeRoundedIcon/> <p>Home</p> </button>
     <hr className="bg-black text-black h-0.5 mb-2 mr-3"></hr>
       <ul className="sidelist">
-        {modules.map(module => (
+        {
+          loading ? (<Loader/>):
+          modules.map(module => (
           <SingleTab key={module.id} module={module} />
         ))}
       </ul>

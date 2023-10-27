@@ -18,7 +18,7 @@ const GridView = (props) => {
   {subchapters?.map((subtopic, index) => (
     <Grid xs={6} sm={4} md={6} key={index}> 
     
-    <SingleGrid subtopic={subtopic} />
+    <SingleGrid subtopic={subtopic} subchapters={subchapters} />
     </Grid>
   ))}
   <Grid 

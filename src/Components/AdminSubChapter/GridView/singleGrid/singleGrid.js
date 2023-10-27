@@ -1,10 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import "./singleGrid.css";
 import { useNavigate } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import MoreVertSharpIcon from "@mui/icons-material/MoreVertSharp";
+import TrendingFlatSharpIcon from '@mui/icons-material/TrendingFlatSharp';
+import axios from "axios";
+import { Dropdown } from "antd";
 
 const SingleGrid = (props) => {
-  const { subtopic } = props;
+  const { subtopic,subchapters } = props;
   const navigate = useNavigate();
+  const chapterId = parseInt(localStorage.getItem("adminChapterId"));
+  const moduleId = localStorage.getItem("adminModuleId");
+    // State to track whether the card is in edit mode
+    const [isEditing, setIsEditing] = useState(false);
+    const [newModuleName, setNewModuleName] = useState(subtopic?.name);
+  
+    const handleEditClick = () => {
+      setIsEditing(true);
+    };
+  
+    const handleSaveClick = (e) => {
+      e.stopPropagation();
+      setIsEditing(false);
+    
+  // Find the subtopic to update by ID
+  const updatedSubtopics = subchapters.map((sub) => {
+    if (sub.id === subtopic.id) {
+      return { ...sub, name: newModuleName };
+    }
+    return sub;
+  });
+      // Make a PUT request to update the chapter's subtopics with the new data
+      axios.put(
+        `https://edusync-backend.onrender.com/admin/updateChapter/${moduleId}/${chapterId}`,
+        {
+          subtopics:updatedSubtopics
+          
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+        .then((response) => {
+          console.log("Response", response);
+          // Handle the success response here, update the UI, etc.
+        })
+        .catch((error) => {
+          console.error(error);
+          // Handle the error here
+        });
+    };
+    
+    const handleDelete = () => {};
+  
+    const items = [
+      {
+        label: (
+          <button
+            className="dropdown-item advance dropLinkA "
+            onClick={handleEditClick}
+          >
+            <EditIcon />
+            &nbsp; Rename
+          </button>
+        ),
+        key: "0",
+      },
+      {
+        label: (
+          <button className="dropdown-item advance dropLinkA " onClick={handleDelete}>
+            <DeleteIcon />
+            &nbsp; Delete
+          </button>
+        ),
+        key: "5",
+      },
+    ];
+  
 
   return (
     <div
@@ -15,11 +91,32 @@ const SingleGrid = (props) => {
         navigate("/admin/questions");
       }}
     >
+            <div className="setttings" onClick={(e) => e.stopPropagation()}>
+          <Dropdown menu={{ items }} trigger={["click"]} open={null}>
+            <MoreVertSharpIcon />
+          </Dropdown>
+        </div>
     <div className="left-side-grid">
         <p>{subtopic.id}</p>
         </div>
         <div className="right-side-grid">
+        {isEditing ? (
+          <input
+            type="text"
+            className="edit-input"
+            value={newModuleName}
+            onChange={(e) => { setNewModuleName(e.target.value)}}
+            onClick={(e)=>{e.stopPropagation();}}
+          />
+          
+        ) : (
       <p key={subtopic.id}>{subtopic.name}</p>
+        )}
+        {isEditing && (
+          <button className="save-button" onClick={handleSaveClick}>
+           &nbsp;&nbsp; <TrendingFlatSharpIcon/>
+          </button>
+        )}
       </div>
     </div>
   );

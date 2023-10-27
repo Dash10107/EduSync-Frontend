@@ -6,6 +6,7 @@ import joining from "../../Assets/icons8-date-50 1.png"
 import Navbar from "../../Layouts/Navbar/Navbar";
 import { Progress } from "antd";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../Layouts/Loader/Loader";
 
 const ProfileComp = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const ProfileComp = () => {
  
 
   const fetchUser= async()=>{
+    setLoading(true);
         // Make a GET request to the protected route
      await   axios
         .get("https://edusync-backend.onrender.com/users/protected", {
@@ -118,7 +120,7 @@ setModulesStarted(modulesStarted);
     <div >
     <Navbar/>
       {loading ? (
-        <p>Loading...</p>
+        <Loader/>
       ) : userData ? (
         <div className="main-profile-container">
         <div className="profile-details-container">
