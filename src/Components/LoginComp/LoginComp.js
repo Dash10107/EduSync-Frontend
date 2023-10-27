@@ -15,6 +15,7 @@ const LoginComp = (props) => {
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [severity,setSeverity] = useState("error");
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [toastOpen, setToastOpen] = useState(false);
@@ -33,9 +34,18 @@ const LoginComp = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted");
+    
     const phrase = "somaiya.edu";
 
+    if(userName==="" || password===""){
+      setSeverity("warning");
+      setErrors({error:"Please fill in the required fields"})
+      setToastOpen(true);
+      setUserName("");
+      setPassword("");
+      setSeverity("error")
+      return
+    }
     if (!userName.endsWith(phrase)) {
       console.log("The string does not end with 'somaiya.edu'");
       setErrors({ error: "Please use somaiya.edu Email" });
@@ -44,6 +54,7 @@ const LoginComp = (props) => {
       setPassword("");
       return;
     }
+   
 
     let loginInfo = {
       email: userName,
@@ -136,7 +147,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
                 placeholder="Enter Your Email"
                 value={userName}
                 onChange={(e) => { setUserName(e.target.value) }}
-                required={true}
+                
               ></input>
              <div className="mailIcon"> <MailRoundedIcon/> </div>
             </div>
@@ -150,7 +161,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
                 placeholder="Enter Password"
                 value={password}
                 onChange={(e) => { setPassword(e.target.value) }}
-                required={true}
+                
               />
               <div className="mailIcon"><LockResetRoundedIcon/></div>
               <i onClick={togglePasswordVisiblity} className="eyeImgsec" style={{ marginLeft: "10%", cursor: "pointer", color: "black" }}>
@@ -185,7 +196,7 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
 
     </div>
     <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
             <ul>
               {Object.entries(errors).map(([key, value]) => (
                 <li key={key}>

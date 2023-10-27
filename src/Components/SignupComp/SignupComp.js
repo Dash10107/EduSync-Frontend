@@ -19,6 +19,7 @@ const SignupComp = (props) => {
   const { name, email, password, password2 } = formData;
 
   const navigate = useNavigate();
+  const [severity,setSeverity] = useState("error")
   const [errors, setErrors] = useState({});
   const [toastOpen, setToastOpen] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
@@ -37,10 +38,28 @@ const SignupComp = (props) => {
     e.preventDefault();
     console.log("Submitted");
     const phrase = "somaiya.edu";
+    if(email==="" || name==="" || password === "" || password2===""){
+     setSeverity("warning");
+      setErrors({ error: "Please fill in all the details" });
+      setToastOpen(true);
+      return;
+    }
+    if(password!==password2){
+      setSeverity("error")
+      setErrors({error:"Please enter same passwords in both the fields"});
+      setToastOpen(true);
+      return;
+    }
 
     if (!email.endsWith(phrase)) {
       console.log("The email does not end with 'somaiya.edu",);
       setErrors({ error: "Please use somaiya.edu Email", email });
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        password2: "",
+      });
       setToastOpen(true);
       return;
     }
@@ -171,7 +190,7 @@ const SignupComp = (props) => {
                 placeholder="Enter Your Name "
                 value={name}
                 onChange={handleChange}
-                required={true}
+                
               ></input>
             </div>
 
@@ -183,7 +202,7 @@ const SignupComp = (props) => {
                 placeholder="Enter Your Email"
                 value={email}
                 onChange={handleChange}
-                required={true}
+                
               ></input>
             </div>
 
@@ -196,7 +215,7 @@ const SignupComp = (props) => {
                 placeholder="Enter Password"
                 value={password}
                 onChange={handleChange}
-                required={true}
+                
               />
               <i onClick={togglePasswordVisiblity} className="eyeImgsec" style={{ marginLeft: "10%", cursor: "pointer", color: "black" }}>
                 {eye}
@@ -212,7 +231,7 @@ const SignupComp = (props) => {
                 placeholder="Confirm Password"
                 value={password2}
                 onChange={handleChange}
-                required={true}
+                
               />
               <i onClick={togglePasswordVisiblity2} className="eyeImgsec" style={{ marginLeft: "10%", cursor: "pointer", color: "black" }}>
                 {eye2}
@@ -237,7 +256,7 @@ const SignupComp = (props) => {
           </form>
         </div>
         <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
             <ul>
               {Object.entries(errors).map(([key, value]) => (
                 <li key={key}>
