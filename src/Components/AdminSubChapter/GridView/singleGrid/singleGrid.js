@@ -9,7 +9,7 @@ import axios from "axios";
 import { Dropdown } from "antd";
 
 const SingleGrid = (props) => {
-  const { subtopic,subchapters } = props;
+  const { subtopic,fetchChapters,subchapters } = props;
   const navigate = useNavigate();
   const chapterId = parseInt(localStorage.getItem("adminChapterId"));
   const moduleId = localStorage.getItem("adminModuleId");
@@ -48,6 +48,7 @@ const SingleGrid = (props) => {
         .then((response) => {
           console.log("Response", response);
           // Handle the success response here, update the UI, etc.
+          fetchChapters()
         })
         .catch((error) => {
           console.error(error);
@@ -55,7 +56,38 @@ const SingleGrid = (props) => {
         });
     };
     
-    const handleDelete = () => {};
+    const handleDelete = () => {
+      // Find the subtopic to delete by ID
+      const subtopicToDelete = subchapters.find((sub) => sub.id === subtopic.id);
+      
+      if (subtopicToDelete) {
+        // Filter out the subtopic to delete from the subtopics array
+        const updatedSubtopics = subchapters.filter((sub) => sub.id !== subtopicToDelete.id);
+        
+        // Make a PUT request to update the chapter's subtopics with the new data (excluding the deleted subtopic)
+        axios.put(
+          `https://edusync-backend.onrender.com/admin/updateChapter/${moduleId}/${chapterId}`,
+          {
+            subtopics: updatedSubtopics,
+          },
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          }
+        )
+          .then((response) => {
+            console.log("Response", response);
+            // Handle the success response here, update the UI, etc.
+            fetchChapters()
+          })
+          .catch((error) => {
+            console.error(error);
+            // Handle the error here
+          });
+      }
+    };
+    
   
     const items = [
       {

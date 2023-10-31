@@ -48,7 +48,22 @@ const SingleCard = (props) => {
  fetchModules();
   };
 
-  const handleDelete = () => {};
+  const handleDelete = async(e) => {
+    e.stopPropagation();
+    // Make the DELETE request to delete the chapter
+await axios.delete(`https://edusync-backend.onrender.com/admin/deleteModule/${module.id}`, {
+headers: {
+  Authorization: localStorage.getItem("token"), // Replace with your authorization token
+},
+})
+.then((response) => {
+  console.log("Chapter deleted successfully:", response.data);
+  fetchModules();
+})
+.catch((error) => {
+  console.error("Error deleting chapter:", error);
+});
+  };
 
   const items = [
     {

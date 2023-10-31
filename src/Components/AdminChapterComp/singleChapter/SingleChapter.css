@@ -61,8 +61,15 @@
 
 
   
-
- 
+.edit-input-small{
+  background-color: inherit;
+  color: white !important;
+  width: 50%;
+}
+ .fit-middle-input{
+  display: flex;
+  gap: 0.5vw;
+ }
   .center {
     margin: 0 auto !important;  /* Center the first div by setting margin to auto */
     margin-bottom: 30px !important;

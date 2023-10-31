@@ -114,6 +114,7 @@ fetchChapters();
     item={item}
     key={item.id}
     position={index === 0 ? "center" : (index % 2 === 1 ? "left" : "right")}
+    fetchChapters={fetchChapters}
    
   />
 

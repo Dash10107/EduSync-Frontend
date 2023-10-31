@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import axios from "axios";
 const GridView = (props) => {
 
-    const {subchapters,setSubChapterOpen} = props;
+    const {subchapters,fetchChapters,setSubChapterOpen} = props;
 
   
 
@@ -18,7 +18,7 @@ const GridView = (props) => {
   {subchapters?.map((subtopic, index) => (
     <Grid xs={6} sm={4} md={6} key={index}> 
     
-    <SingleGrid subtopic={subtopic} subchapters={subchapters} />
+    <SingleGrid subtopic={subtopic} fetchChapters={fetchChapters} subchapters={subchapters} />
     </Grid>
   ))}
   <Grid 

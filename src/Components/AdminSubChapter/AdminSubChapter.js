@@ -115,7 +115,7 @@ const AdminSubComp = (props) => {
 
 </div>
         
-          <GridView subchapters={subchapters} setSubChapterOpen={setSubChapterOpen}/>
+          <GridView subchapters={subchapters} fetchChapters={fetchChapters} setSubChapterOpen={setSubChapterOpen}/>
                 
  <ModalComp
             modalOpen={subChapterOpen}

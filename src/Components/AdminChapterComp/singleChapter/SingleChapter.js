@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SingleChapter.css";
 import { useNavigate } from "react-router-dom";
-import { Popover, Progress } from 'antd';
+import { Dropdown, Popover, Progress } from 'antd';
 // import gear from "../../../Assets/gear.png";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -10,7 +10,8 @@ import TrendingFlatSharpIcon from '@mui/icons-material/TrendingFlatSharp';
 import { motion } from 'framer-motion';
 import axios from "axios";
 const SingleChapter = (props) => {
-  const { item, position, progress } = props;
+  const { item,fetchChapters, position, progress } = props;
+  const moduleId = localStorage.getItem("adminModuleId");
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
   const content = (
@@ -37,22 +38,20 @@ const SingleChapter = (props) => {
 
     // State to track whether the card is in edit mode
     const [isEditing, setIsEditing] = useState(false);
-    const [newModuleName, setNewModuleName] = useState(module?.name);
+    const [newModuleName, setNewModuleName] = useState(item?.title);
   
-    const handleEditClick = () => {
+    const handleEditClick = (e) => {
+      e.stopPropagation();
       setIsEditing(true);
     };
   
     const handleSaveClick = (e) => {
       e.stopPropagation();
       setIsEditing(false);
-  
-   // Make a PUT request to update the module details
-   
-    // Make a PUT request to update the module details with the authorization token in the headers
+      // Make a PUT request to update the module details with the authorization token in the headers
     axios.put(
-      `https://edusync-backend.onrender.com/admin/updateModule/${module.id}`,
-      { name: newModuleName, description: module.description },
+      `https://edusync-backend.onrender.com/admin/updateChapter/${moduleId}/${item.id}`,
+      { title: newModuleName },
       {
         headers: {
           Authorization: localStorage.getItem("token"),
@@ -61,8 +60,9 @@ const SingleChapter = (props) => {
     )
       .then((response) => {
         console.log("Response", response);
-        module.name = newModuleName;
+        item.title = newModuleName;
         setNewModuleName("");
+        fetchChapters();
         // Handle the success response here, update the UI, etc.
       })
       .catch((error) => {
@@ -72,7 +72,22 @@ const SingleChapter = (props) => {
  
     };
   
-    const handleDelete = () => {};
+    const handleDelete = async(e) => {
+      e.stopPropagation();
+      // Make the DELETE request to delete the chapter
+await axios.delete(`https://edusync-backend.onrender.com/admin/deleteChapter/${moduleId}/${item.id}`, {
+  headers: {
+    Authorization: localStorage.getItem("token"), // Replace with your authorization token
+  },
+})
+  .then((response) => {
+    console.log("Chapter deleted successfully:", response.data);
+    fetchChapters();
+  })
+  .catch((error) => {
+    console.error("Error deleting chapter:", error);
+  });
+    };
   
     const items = [
       {
@@ -115,8 +130,12 @@ const SingleChapter = (props) => {
       }}
       onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
+                  <Dropdown menu={{ items }} trigger={["contextMenu"]} open={null}>
+            
+          
         {/* <div className="background-wheel" ref={wheelRef}> <img src={gear} alt=""/></div> */}
         <div className={`circle-div `} >
+        <MoreVertSharpIcon />
           <div className="item-text-container">
 
             {progress ? (
@@ -126,7 +145,15 @@ const SingleChapter = (props) => {
                 strokeWidth={10}
                 percent={progress.progressPercentage}
                 style={{ opacity: "0.7", zIndex: "0" }}
-                format={() => (<p className="item-text">{item.id}</p>)}
+                format={() => (
+             isEditing ?  <input
+            type="text"
+            className="edit-input"
+            value={newModuleName}
+            onChange={(e) => { setNewModuleName(e.target.value)}}
+            onClick={(e)=>{e.stopPropagation();}}
+          />:
+                <p className="item-text">{item.id}</p>)}
               />
             ) : (
               <Progress
@@ -134,15 +161,27 @@ const SingleChapter = (props) => {
                 size={isMobile ? 124 : 248}
                 strokeWidth={10}
                 percent={0}
-                format={() => (<p className="item-text">{item.id}</p>)}
-              />
+                format={() => (
+             isEditing ? <div className="fit-middle-input"> <input
+            type="text"
+            className="edit-input-small"
+            value={newModuleName}
+            onChange={(e) => { setNewModuleName(e.target.value)}}
+            
+            onClick={(e)=>{e.stopPropagation();}}
+          />
+                   <button className="save-button" onClick={handleSaveClick}>
+           &nbsp;&nbsp; <TrendingFlatSharpIcon/>
+          </button></div>:
+                <p className="item-text">{item.id}</p>)}              />
             )}
 
           </div>
 
         </div>
-
+</Dropdown>
       </motion.div>
+      
       {hovered && (
             <div className={`slide-text-${slideDirection}`}>
               <p className="item-title">{item.title}</p>
