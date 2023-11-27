@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Zigzag from "./Zigzag";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Loader from "../../Layouts/Loader/Loader";
+import { Alert, Snackbar } from "@mui/material";
 const ChapterComp = (props) => {
   const navigate = useNavigate();
   const moduleId = localStorage.getItem("moduleId");
@@ -14,7 +15,14 @@ const ChapterComp = (props) => {
   const [module,setModule] = useState({});
   const [loading,setLoading] = useState(true);
   const [progressPercentages, setProgressPercentages] = useState([]);
-
+  const [errors, setErrors] = useState({});
+  const [toastOpen, setToastOpen] = useState(false);
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      setToastOpen(false);
+      return;
+    }
+  }
   const fetchProgressPercentages = async () => {
     setLoading(true);
     try {
@@ -62,6 +70,8 @@ const ChapterComp = (props) => {
       })
     } catch (error) {
       console.log("error", error)
+      setErrors({"Error":error})
+      setToastOpen(true);
     }finally {
       // Set loading to false when data fetching is complete
       setLoading(false);
@@ -71,7 +81,9 @@ const ChapterComp = (props) => {
 useEffect(()=>{
 fetchChapters();
 },[])
-
+useEffect(()=>{
+fetchChapters();
+},[moduleId]);
   
   return (
     <div className="chapters-main">
@@ -108,6 +120,17 @@ fetchChapters();
 
       </div>
     )}
+    <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+            <ul>
+              {Object.entries(errors).map(([key, value]) => (
+                <li key={key}>
+                  {value}
+                </li>
+              ))}
+            </ul>
+          </Alert>
+        </Snackbar>
   </div>
   )
 };

@@ -36,3 +36,14 @@
     color: #4caf50; /* Green color for correct answers */
   }
   
+  .allQuestions{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .editQuestionDiv{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }

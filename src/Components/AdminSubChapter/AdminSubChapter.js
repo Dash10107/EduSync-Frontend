@@ -83,6 +83,8 @@ const AdminSubComp = (props) => {
         if (response.data.success) {
           
           //  alert('Subchapter added successfully');
+          setErrors({error:'Added subchapter succesfully'});
+          setToastOpen(true);
           setSubChapterOpen(false);
           fetchChapters();
         } else {

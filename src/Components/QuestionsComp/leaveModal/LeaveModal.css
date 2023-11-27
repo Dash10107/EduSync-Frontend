@@ -8,7 +8,7 @@
     align-items: center;
     width: 25vw;
     height: 20vh;
-    font-size: 1.3rem;
+    font-size: 2.5vh;
     font-family: "Poppins",sans-serif;
   }
   
@@ -18,7 +18,7 @@
     justify-content: space-between; /* Revert to original spacing */
     gap: 2vw;
     align-items: center; /* Center buttons vertically on smaller screens */
-    margin-top: 5vh; /* Adjust the margin as needed */
+    margin-top: 4vh; /* Adjust the margin as needed */
   
   }
   
@@ -26,6 +26,7 @@
     flex: 1;
     margin: 5px; /* Add some margin around buttons for spacing */
     transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Add smooth transition for button changes */
+    font-size: 2vh; 
   }
   
   /* Style for the first button */
@@ -66,7 +67,7 @@
   }
 
   .modal-text{
-    font-size: 1.5rem;
+    font-size: 2.5vh;
     font-family: "Poppins",sans-serif;
     font-weight: 500;
   }

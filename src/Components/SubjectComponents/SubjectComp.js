@@ -11,6 +11,7 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
 import Loader from "../../Layouts/Loader/Loader";
+import { Alert, Snackbar } from "@mui/material";
 
 const SubjectComp = (props) => {
   const navigate = useNavigate();
@@ -24,6 +25,15 @@ const SubjectComp = (props) => {
       const [listView,setListView] = useState(false);
       const [videoUrls, setVideoUrls] = useState([]);
       const [videosName,setVideosName] = useState([]);
+
+      const [errors, setErrors] = useState({});
+      const [toastOpen, setToastOpen] = useState(false);
+      const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          setToastOpen(false);
+          return;
+        }
+      }
       const fetchChapters=async()=>{
         setLoading(true);
         try {
@@ -85,16 +95,22 @@ const fetchVideos = async () => {
       },
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch video URLs');
-    }
-
     const data = await response.json();
+
+    if(response.status===200){
     console.log('Response',data);
     setVideosName(data.files);
     setVideoUrls(data.videoUrls);
+    }else{
+      console.log('Response not ok',response);
+     
+     
+
+    }
   } catch (error) {
     console.error('Error fetching video URLs:', error);
+    setErrors({"Error":"Error fetching Videos. "})
+    setToastOpen(true);
   }finally{
     setLoading(false);
   }
@@ -127,7 +143,17 @@ useEffect(() => {
           listView?(<ListView videoUrls={videoUrls} videosName={videosName}  />):(<GridView subchapters={subchapters}/>)
         }
         
- 
+        <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+            <ul>
+              {Object.entries(errors).map(([key, value]) => (
+                <li key={key}>
+                  {value}
+                </li>
+              ))}
+            </ul>
+          </Alert>
+        </Snackbar>
     </div>
   )
 };

@@ -6,6 +6,7 @@ import Navbar from "../../Layouts/Navbar/Navbar";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Alert, Snackbar } from "@mui/material";
 
 const AdminQuestionComp = (props) => {
     const navigate=useNavigate();
@@ -18,6 +19,16 @@ const AdminQuestionComp = (props) => {
     // const subjectName = localStorage.getItem("adminSubjectName");
     const [addQuestionOpen,setAddQuestionOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
+
+  const [errors, setErrors] = useState({});
+  const [toastOpen, setToastOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      setToastOpen(false);
+      return;
+    }
+  }
 
   const handleAddQuestion = (newQuestion) => {
     setQuestions([...questions, newQuestion]);
@@ -38,11 +49,14 @@ const AdminQuestionComp = (props) => {
         console.log('Response',response);
         
         setQuestions(response.data.questions);
+    
       } else {
         console.log("Status Code", response.status);
       }
     } catch (error) {
       console.log("error", error);
+      setErrors({error:'Failed to fetch questions.'});
+      setToastOpen(true);
     }
     
   };
@@ -69,13 +83,18 @@ const AdminQuestionComp = (props) => {
       if (response.status === 200) {
         console.log("Questions added successfully");
         // Clear the questions array after submission if needed
+        setErrors({error:'Added questions successfully.'});
+        setToastOpen(true);
         setQuestions([]);
         fetchQuestions();
+
       } else {
         console.log("Status Code", response.status);
       }
     } catch (error) {
       console.error("Error adding questions:", error);
+      setErrors({error:'Failed to fetch questions.'});
+      setToastOpen(true);
     }
   };
   
@@ -92,14 +111,18 @@ const AdminQuestionComp = (props) => {
      <p>{subChapterName}</p>
      </div></h3>
      <div>
-     <button className="submit-button" onClick={handleSubmit}>Submit</button>
+     <button className="submit-button" onClick={handleSubmit}>Submit All Questions</button>
      </div>
      <div >
       <h3 className="subject-heading-text" onClick={()=>{setAddQuestionOpen(true)}}> +</h3> 
      </div>
         </div>
         
-      <QuestionDisplay questions={questions} />
+      <QuestionDisplay questions={questions}
+      setErrors={setErrors}
+      setToastOpen={setToastOpen}
+      fetchQuestions={fetchQuestions}
+       />
 
 
     </div>
@@ -107,6 +130,18 @@ const AdminQuestionComp = (props) => {
     modalOpen = {addQuestionOpen}
     setModalOpen={setAddQuestionOpen}
      onAddQuestion={handleAddQuestion} />
+
+<Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+            <ul>
+              {Object.entries(errors).map(([key, value]) => (
+                <li key={key}>
+                  {value}
+                </li>
+              ))}
+            </ul>
+          </Alert>
+        </Snackbar>
     </>
   );
 };

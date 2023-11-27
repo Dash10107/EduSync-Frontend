@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import Loader from "../Loader/Loader";
 const Sidebar = (props) => {
+  const {onClose}=props;
     const navigate=useNavigate();
   const [modules, setModules] = useState([]);
   const [loading,setLoading] = useState(false);
@@ -45,9 +46,9 @@ const Sidebar = (props) => {
     <hr className="bg-black text-black h-0.5 mb-2 mr-3"></hr>
       <ul className="sidelist">
         {
-          loading ? (<Loader/>):
+          loading ? (<div className="loaderforsidebar"><Loader/></div>):
           modules.map(module => (
-          <SingleTab key={module.id} module={module} />
+          <SingleTab key={module.id} module={module}  onClose={onClose}/>
         ))}
       </ul>
     </div>

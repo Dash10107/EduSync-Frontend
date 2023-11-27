@@ -147,7 +147,7 @@ const Navbar = (props) => {
         onClose={onClose}
         open={open}
       >
-<Sidebar onClose={onClose} open={open}/>
+<Sidebar onClose={onClose} open={open} />
       </Drawer>
     </div>
   )

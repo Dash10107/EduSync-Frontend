@@ -74,7 +74,7 @@ const   handleGoBack = ()=>{
   };
   const handleEndTest = async (e) => {
     e.preventDefault();
-    if(correctAnswersCount / questions.length <= 0.7){
+    if(correctAnswersCount / questions.length < 0.7){
       console.log("Please Try Again");
       setShowRetryModal(true);
    

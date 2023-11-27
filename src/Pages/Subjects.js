@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Subjects = (props) => {
   const navigate = useNavigate();
   useEffect(()=>{
-    if( !localStorage.getItem("token") && localStorage.getItem("token") === ""){
+    if( !localStorage.getItem("token") || localStorage.getItem("token") === ""){
      navigate("/login"); 
     }else{
       return

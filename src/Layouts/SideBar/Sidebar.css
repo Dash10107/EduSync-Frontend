@@ -121,3 +121,9 @@
     margin-bottom: 8px;
   }
 }
+
+.loaderforsidebar{
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+}

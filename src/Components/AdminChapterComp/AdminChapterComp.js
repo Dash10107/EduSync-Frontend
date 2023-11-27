@@ -57,13 +57,13 @@ fetchChapters();
 
     const isMobile = window.innerWidth <= 600;
 
-    const handleSubmit = async (e,chapterName) => {
+    const handleSubmit = async (e,chapterName,chapterDescription) => {
         e.preventDefault();
     
         try {
           const response = await axios.post(`https://edusync-backend.onrender.com/admin/addChapter/${moduleId}`, {
             title:chapterName,
-            content:chapterName,
+            content:chapterDescription,
             subtopics:[]
           },
           {
@@ -75,7 +75,8 @@ fetchChapters();
     
           if (response.data.success) {
             
-             alert('Chapter added successfully');
+            setErrors({heading:'Added chapter successfully'});
+            setToastOpen(true)
             setChapterOpen(false);
             fetchChapters();
           } else {
