@@ -32,6 +32,62 @@ const LoginComp = (props) => {
     }
   }
 
+  const checkSubAdmin = async() => {
+    // Perform the GET request to check if the user is an admin
+   await fetch('https://edusync-backend.onrender.com/subadmin/checkSubAdmin', {
+      method: 'GET',
+      headers: {
+        'Authorization': localStorage.getItem('token'),
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          throw new Error('Not an Sub admin');
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("SubAdmin",true);
+        navigate("/subadmin/home");
+      })
+      .catch((error) => {
+      console.log(error);
+      localStorage.setItem("SubAdmin",false);
+       navigate("/home");
+      });
+  }
+
+  const checkAdmin = async() => {
+    // Perform the GET request to check if the user is an admin
+   await fetch('https://edusync-backend.onrender.com/admin/checkAdmin', {
+      method: 'GET',
+      headers: {
+        'Authorization': localStorage.getItem('token'),
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          throw new Error('Not an admin');
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("Admin",true);
+        navigate("/admin/home");
+      })
+      .catch((error) => {
+      console.log(error);
+      localStorage.setItem("Admin",false);
+       checkSubAdmin();
+      });
+  }
+
+
+
   const onSubmit = async (e) => {
     e.preventDefault();
     
@@ -68,9 +124,10 @@ const LoginComp = (props) => {
       if (result.success) {
         if (result.token) {
           localStorage.setItem("token", result.token);
+          
+          checkAdmin();
           setUserName("");
           setPassword("");
-        navigate("/admin/home");
           
         } else {
           console.log(result.token);

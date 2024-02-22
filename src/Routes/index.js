@@ -16,6 +16,7 @@ import HomePage from "../Pages/Content/Home";
 import Classroom from "../Pages/Classroom/Classroom";
 import ClassroomSingle from "../Pages/Classroom/ClassroomSingle";
 import SurpriseTest from "../Pages/Classroom/SurpriseTest";
+import SubAdminHome from "../Pages/SubAdmin/SubAdminHome";
 
 ;
 
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
   {
     path:"admin/questions",
     element:<AdminQuestion/>
+  },
+  {
+    path:"subadmin/home",
+    element:<SubAdminHome/>
   }
 ]);
 

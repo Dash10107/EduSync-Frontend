@@ -8,9 +8,9 @@ const HomePage = () => {
     <div>
     <HomeComp/>
     <br></br>
-      <button onClick={()=>{navigate("/classrooms")}}> Go to Content</button>
+      <button onClick={()=>{navigate("/content")}}> Go to Content</button>
       <br></br>
-      <button onClick={()=>{navigate("/content")}}> Go to Classroom</button>
+      <button onClick={()=>{navigate("/classrooms")}}> Go to Classroom</button>
     </div>
   )
 }

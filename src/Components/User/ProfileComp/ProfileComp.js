@@ -7,6 +7,9 @@ import Navbar from "../../../Layouts/Navbar/Navbar";
 import { Progress } from "antd";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../Layouts/Loader/Loader";
+import { FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
+import { TextareaAutosize } from '@mui/base/TextareaAutosize';
+import { styled } from '@mui/system';
 
 const ProfileComp = () => {
   const navigate = useNavigate();
@@ -111,10 +114,90 @@ setModulesStarted(modulesStarted);
     }
   }
 
+ 
+  const [feedback, setFeedback] = useState('');
+
+
+
+  const handleFeedbackChange = (event) => {
+    
+    setFeedback(event.target.value);
+  };
+
+  const [subadminUsers, setSubadminUsers] = useState([]);
+  const [selectedName, setSelectedName] = useState('');
+  const [selectedUserId, setSelectedUserId] = useState('');
+
+  const handleSubmit = async () => {
+    try {
+      const subAdminId = selectedUserId
+      const message = feedback
+      console.log('SubAdminId',subAdminId);
+      console.log('message',message);
+      
+      
+      if(subAdminId === "" || message === "" ){
+        console.log('Please fill the values');
+        
+        return
+      }
+      // Make a POST request to the server
+      const response = await axios.post(
+        'https://edusync-backend.onrender.com/feedandnotice/post-feedback',
+        {
+          subAdminId: subAdminId,
+          message: message,
+        },
+        {
+          headers: {
+            Authorization: `${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+      const result = response.data; // response.data is used to get the data from the response
+      console.warn('Result', result);
+  
+      if (result.message) {
+        // Handle success, for example, clear the form
+        setSelectedUserId('');
+        setFeedback('');
+        console.log('Feedback posted successfully');
+      }
+    } catch (error) {
+      console.error('Error posting feedback:', error);
+    }
+  };
+  
+  const handleNameChange = (event) => {
+    const selectedOption = event.target.value;
+    const selectedSubadmin = subadminUsers.find(user => user.name === selectedOption);
+
+    setSelectedName(selectedOption);
+    setSelectedUserId(selectedSubadmin ? selectedSubadmin._id : '');
+  };
+
+  const fetchSubadminUsers = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/users/subadminUsers',{      headers: {
+        Authorization: localStorage.getItem("token"),
+      }});
+      setSubadminUsers(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching subadmin users:', error);
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     fetchUser();
     fetchMainProgress();
+    fetchSubadminUsers();
       }, []);
+
+
+
 
   return (
     <div >
@@ -196,6 +279,42 @@ setModulesStarted(modulesStarted);
     <p>Subchapters Completed</p>
   </div>
 </div>
+
+<div className="feedback-form">
+  <div className="input-group">
+    <label htmlFor="name" className="label">
+      Select Name:
+    </label>
+    <select id="name" value={selectedName} onChange={handleNameChange} className="select">
+      <option value="">Select...</option>
+      {subadminUsers?.map((user) => (
+        <option key={user._id} value={user.name}>
+          {user.name}
+        </option>
+      ))}
+    </select>
+  </div>
+
+  <div className="input-group">
+    <label htmlFor="feedback" className="label">
+      Enter your feedback:
+    </label>
+    <textarea
+      id="feedback"
+      placeholder="Enter your feedback..."
+      value={feedback}
+      onChange={handleFeedbackChange}
+      rows={5}
+      className="textarea feedback-textarea"
+    />
+  </div>
+<div className="submit_Div">
+  <button className="submit-button" onClick={handleSubmit}>
+    Submit
+  </button>
+  </div>
+</div>
+
 
 
 

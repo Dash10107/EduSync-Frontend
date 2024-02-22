@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 const AdminHome = () => {
   const navigate = useNavigate();
-
   useEffect(() => {
     // Perform the GET request to check if the user is an admin
     fetch('https://edusync-backend.onrender.com/admin/checkAdmin', {
@@ -30,9 +29,7 @@ const AdminHome = () => {
        navigate("/home");
       });
   }, []); 
-
-
-  return (
+    return (
     <div>
       <AdminHomeComp/>
     </div>
