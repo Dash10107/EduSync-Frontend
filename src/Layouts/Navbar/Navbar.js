@@ -13,7 +13,8 @@ const Navbar = (props) => {
   const {isLogin,isAdmin} = props;
 
   const navigate = useNavigate();
-
+  const currentPath = window.location.pathname;
+  const isHome = currentPath.startsWith("/home");
   const [loading, setLoading] = useState(true);
   const [userDetailName,setUserName] = useState("");
   const [fullName,setFullName] = useState("");
@@ -106,7 +107,7 @@ const Navbar = (props) => {
   return (
     <div className="navbar-main  ">
       <div className=" hamburger justify-start">
-   {isLogin || isAdmin? (<span></span>):(<span className="" > 
+   {isLogin || isAdmin || isHome? (<span></span>):(<span className="" > 
    
    <MenuRoundedIcon onClick={showDrawer} fontSize={window.innerWidth <= 600 ? "large" :"larger"}/></span>)} 
     {/* <span className="underlining">{localStorage.getItem("SubjectName")}</span> */}

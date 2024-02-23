@@ -2,13 +2,24 @@ import React from 'react'
 import "./Sidebar.css"
 import { useNavigate } from 'react-router-dom';
 const SingleTab = (props) => {
-    const {module,onClose} = props;
+    const {module,classroom,onClose} = props;
     const navigate = useNavigate();
 
 
   return (
     <div>
-              <div key={module.id} className="single-tab" 
+    {classroom?(
+      <div key={classroom.code} className="single-tab" 
+        onClick={()=>{
+        localStorage.setItem("ClassroomCode",classroom.code);
+        localStorage.setItem("ClassroomName",classroom.name);
+          navigate("/classrooms/single");
+          onClose();
+        }}>
+         {classroom.name}   
+        </div>
+    ):(
+      <div key={module.id} className="single-tab" 
         onClick={()=>{
         localStorage.setItem("moduleId",module.id);
         localStorage.setItem("SubjectName",module.name);
@@ -17,6 +28,9 @@ const SingleTab = (props) => {
         }}>
          {module.name}   
         </div>
+    )}
+
+              
     </div>
   )
 }

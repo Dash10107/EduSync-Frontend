@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Dashboard from '../../Components/Classroom/ClassroomDashboard/Dashboard';
 
 const Classroom = () => {
     const navigate = useNavigate();
+    useEffect(()=>{
+      if( !localStorage.getItem("token") || localStorage.getItem("token") === ""){
+       navigate("/login"); 
+      }else{
+        return
+      }
+  },[])
   return (
     <div>
-      Classrooms Dashboard Page 
-      <br></br>
-      <button onClick={()=>{navigate("/classrooms/single")}}> Go to Individual Classroom </button>
-      <br></br>
-      <button onClick={()=>{navigate("/content")}}> Go to Content</button>
+    
+     <Dashboard/>
+
     </div>
   )
 }

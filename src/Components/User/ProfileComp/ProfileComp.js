@@ -180,7 +180,7 @@ setModulesStarted(modulesStarted);
 
   const fetchSubadminUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/users/subadminUsers',{      headers: {
+      const response = await axios.get('https://edusync-backend.onrender.com/users/subadminUsers',{      headers: {
         Authorization: localStorage.getItem("token"),
       }});
       setSubadminUsers(response.data);
