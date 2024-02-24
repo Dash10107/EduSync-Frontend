@@ -42,7 +42,7 @@ const Sidebar = (props) => {
     setLoading(true);
     try {
 
-      await axios.get('http://localhost:5000/subadmin/classrooms/student', {
+      await axios.get('https://edusync-backend.onrender.com/subadmin/classrooms/student', {
         headers: {
           Authorization: localStorage.getItem("token"),
         }

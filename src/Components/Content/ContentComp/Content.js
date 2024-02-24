@@ -7,6 +7,7 @@ import EastIcon from '@mui/icons-material/East';
 import { Box, Grid, Input, InputAdornment } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import Loader from "../../../Layouts/Loader/Loader";
+import Footer from "../../../Layouts/Footer/Footer";
 const Content = (props) => {
     const [modules,setModules] = useState([]);
     const [continueLoading, setContinueLoading] = useState(true);  
@@ -240,6 +241,7 @@ fetchProgress();
   )
 }
         </div>
+        {/* <Footer/> */}
       </div>
     )
   };

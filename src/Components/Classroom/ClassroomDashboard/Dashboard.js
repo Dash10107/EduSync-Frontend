@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import  "./Dashboard.css"
 import Navbar from "../../../Layouts/Navbar/Navbar";
 import axios from "axios";
@@ -11,7 +11,7 @@ const Dashboard = (props) => {
     setLoading(true);
     try {
 
-      await axios.get('http://localhost:5000/subadmin/classrooms/student', {
+      await axios.get('https://edusync-backend.onrender.com/subadmin/classrooms/student', {
         headers: {
           Authorization: localStorage.getItem("token"),
         }
@@ -32,6 +32,10 @@ const Dashboard = (props) => {
       setLoading(false);
     }
   }
+
+  useEffect(()=>{
+    fetchClassrooms();
+  },[]);
 
   return (
     <div>

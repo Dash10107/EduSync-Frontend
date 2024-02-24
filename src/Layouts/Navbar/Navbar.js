@@ -106,14 +106,29 @@ const Navbar = (props) => {
 
   return (
     <div className="navbar-main  ">
-      <div className=" hamburger justify-start">
-   {isLogin || isAdmin || isHome? (<span></span>):(<span className="" > 
+      <div className=" hamburger justify-start ">
+ <span className="flex " style={{alignItems:"center"}} > 
    
-   <MenuRoundedIcon onClick={showDrawer} fontSize={window.innerWidth <= 600 ? "large" :"larger"}/></span>)} 
+ {isLogin || isAdmin || isHome? (<span></span>):(  <MenuRoundedIcon onClick={showDrawer} fontSize={window.innerWidth <= 600 ? "large" :"larger"}/> )}
+  <span className="flex text-xl lg:text-2xl font-semibold md:px-6 pt-1 cursor-pointer" onClick={()=>{navigate("/home");}}>EduSync</span> </span> 
     {/* <span className="underlining">{localStorage.getItem("SubjectName")}</span> */}
+    
       </div>
 <div className=" justify-center">
-<img src={logo} className='logoImg rounded ' onClick={()=>{navigate("/home")}}   alt=" 1" />
+<div className=' hidden md:block'>
+            <ul className='flex '>
+              <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
+                <span onClick={()=>{navigate("/content")}} className="underline-effect">Content</span>
+              </div>
+              <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
+                <span onClick={()=>{navigate("/classrooms")}} className="underline-effect">Classroom</span>
+              </div>
+              <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
+                <span onClick={()=>{navigate("/")}} className="underline-effect">NoticeBoard</span>
+              </div>
+            </ul>
+          </div>
+{/* <img src={logo} className='logoImg rounded ' onClick={()=>{navigate("/home")}}   alt=" 1" /> */}
 </div>
 {isLogin ? (<div className=" justify-end lastDiv"></div>):
 (<div>
