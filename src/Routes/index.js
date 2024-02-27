@@ -17,6 +17,8 @@ import Classroom from "../Pages/Classroom/Classroom";
 import ClassroomSingle from "../Pages/Classroom/ClassroomSingle";
 import SurpriseTest from "../Pages/Classroom/SurpriseTest";
 import SubAdminHome from "../Pages/SubAdmin/SubAdminHome";
+import VerifyEmail from "../Pages/User/VerifyEmail";
+import BeforeVerify from "../Pages/User/BeforeVerify";
 
 ;
 
@@ -32,6 +34,14 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element:  <Login />,
+  },
+  {
+    path: "/verifyemail/:id/:token",
+    element: <VerifyEmail />
+  },
+  {
+    path:"/verifyemail",
+    element:<BeforeVerify/>
   },
   {
     path:"/home",

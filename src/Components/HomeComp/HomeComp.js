@@ -5,6 +5,7 @@ import Navbar from "../../Layouts/Navbar/Navbar";
 import Left from "./Left";
 import Chat from "./Chat";
 import MobileChat from "./MobileChat";
+import Footer from "../../Layouts/Footer/Footer";
 
 const HomeComp = (props) => {
 
@@ -78,7 +79,7 @@ try {
     <Navbar/>
     <div className='xl:flex'>
       <div className='xl:w-[70%] w-[100%]'>
-        <Left modules={modules} />
+        <Left modules={modules} allLoading={allLoading} />
       </div>
       <div className='w-[30%] hidden xl:block border-l-2 h-screen'>
         <Chat   chatArray={chatArray} setChatArray={setChatArray} submitChat={submitChat} />
@@ -87,7 +88,7 @@ try {
         <MobileChat   chatArray={chatArray} setChatArray={setChatArray} submitChat={submitChat} />
       </div>
      </div>
-
+    <Footer/>
     </div>
   )
 };

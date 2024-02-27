@@ -37,7 +37,7 @@ const SignupComp = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Submitted");
-    const phrase = "somaiya.edu";
+    
     if(email==="" || name==="" || password === "" || password2===""){
      setSeverity("warning");
       setErrors({ error: "Please fill in all the details" });
@@ -51,29 +51,20 @@ const SignupComp = (props) => {
       return;
     }
 
-    if (!email.endsWith(phrase)) {
-      console.log("The email does not end with 'somaiya.edu",);
-      setErrors({ error: "Please use somaiya.edu Email", email });
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        password2: "",
-      });
-      setToastOpen(true);
-      return;
-    }
+   
     try {
       // Send a POST request to the server
       const response = await axios.post(
         "https://edusync-backend.onrender.com/users/register",
         formData
       );
-      console.log("Response", response)
-      if (response.status === 200) {
+      const result = await response.json();
+      console.warn("Result", result);
+  
+      if (response.status === 201) {
         // If the registration is successful, you can handle the response here
 
-        Login(email, password);
+        
         setFormData({
           name: "",
           email: "",
@@ -81,13 +72,15 @@ const SignupComp = (props) => {
           password2: "",
         });
 
+    
+        navigate("/verifyemail");
 
       } else { console.log(response.status) }
 
     } catch (error) {
       // If there's an error, handle it here
-      console.error("Registration error", error.response.data);
-      setErrors(error.response.data);
+      console.error("Registration error", error);
+      setErrors(error?.response?.data);
       setToastOpen(true);
 
     }
@@ -106,53 +99,7 @@ const SignupComp = (props) => {
   }
 
 
-  const Login = async (userName, passWord) => {
-    const phrase = "somaiya.edu";
 
-    if (!userName.endsWith(phrase)) {
-
-      console.log("The string does not end with 'somaiya.edu : ", userName);
-      return;
-    }
-
-    let loginInfo = {
-      email: userName,
-      password: passWord
-    }
-    console.log(loginInfo);
-    try {
-      const response = await fetch('https://edusync-backend.onrender.com/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginInfo)
-
-      });
-
-      const result = await response.json();
-      console.warn("Result", result);
-
-      if (result.success) {
-        if (result.token) {
-          localStorage.setItem("token", result.token);
-
-          navigate("/home");
-        } else {
-          console.log(result.token);
-        }
-      } else {
-        console.log(result);
-
-      }
-
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
-      setToastOpen(true);
-    }
-
-  }
   return (
     <div className="login-main-div overflow-hidden">
       <Navbar isLogin={true} />

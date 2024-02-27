@@ -121,6 +121,14 @@ const LoginComp = (props) => {
       const result = await response.json();
       console.warn("Result", result);
 
+      if(result.message==="An Email sent to your account please verify"){
+        
+        navigate("/verifyemail");
+     
+      }else{
+        console.log("Message",result.message)
+      }
+
       if (result.success) {
         if (result.token) {
           localStorage.setItem("token", result.token);
@@ -134,15 +142,16 @@ const LoginComp = (props) => {
         }
       } else {
         console.log(result);
-        setErrors(result);
-     
+
+        setErrors({error:result.message});
+
         setToastOpen(true);
       }
      
 
     } catch (error) {
       console.error(error);
-      setErrors(error.response);
+      setErrors(error);
      
       setToastOpen(true);
     }
@@ -245,13 +254,11 @@ hover:ring-4 ring-blue-950 ring-offset-4 */}
     </div>
     <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
           <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
-            <ul>
-              {Object.entries(errors).map(([key, value]) => (
-                <li key={key}>
-                  {value}
-                </li>
-              ))}
-            </ul>
+            
+              
+              <p>There is an error </p> 
+              
+            
           </Alert>
         </Snackbar>
     </>

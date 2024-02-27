@@ -14,10 +14,7 @@ const HomePage = () => {
   return (
     <div>
     <HomeComp/>
-    <br></br>
-      <button onClick={()=>{navigate("/content")}}> Go to Content</button>
-      <br></br>
-      <button onClick={()=>{navigate("/classrooms")}}> Go to Classroom</button>
+
     </div>
   )
 }

@@ -1,0 +1,11 @@
+.subbar{
+    display: flex;
+    font-size: 1.4rem;
+    font-family: 'Syne', sans-serif;
+    text-align: left;
+    padding-left: 2vw;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    justify-content: space-between;
+    padding-right: 2vw;
+}
