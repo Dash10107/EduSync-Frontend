@@ -11,10 +11,13 @@ const HomeComp = (props) => {
 
   const [modules,setModules] = useState([]);
   const [allLoading,setAllLoading] = useState(true);
+  const [chatLoading,setChatLoading] = useState(false);
 const [chatArray,setChatArray] = useState([
   { type: 'result', content: 'Hello,How can I Help You ?' },
 ])
+
   const submitChat= async(promp)=>{
+    setChatLoading(true);
     try {
 
     if(promp===""){
@@ -24,11 +27,16 @@ const [chatArray,setChatArray] = useState([
     }
 
     const response = await axios.post(
-      'http://localhost:4000/generate',
+      'http://localhost:4000/generate ',
       {
         prompt:promp
-      },
+      },{
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        }
+       }
     );
+    console.log("Response",response)
 
     if(response.status===200){
     const result = response.data; // response.data is used to get the data from the response
@@ -39,8 +47,9 @@ const [chatArray,setChatArray] = useState([
     }
   }catch (error) {
       console.log('Error',error);
-      
-      
+           
+    }finally{
+      setChatLoading(false);
     }
 
   }
@@ -82,10 +91,10 @@ try {
         <Left modules={modules} allLoading={allLoading} />
       </div>
       <div className='w-[30%] hidden xl:block border-l-2 h-screen'>
-        <Chat   chatArray={chatArray} setChatArray={setChatArray} submitChat={submitChat} />
+        <Chat   chatArray={chatArray} setChatArray={setChatArray} chatLoading={chatLoading} submitChat={submitChat} />
       </div>
       <div className='w-[30%] block xl:hidden'>
-        <MobileChat   chatArray={chatArray} setChatArray={setChatArray} submitChat={submitChat} />
+        <MobileChat   chatArray={chatArray} setChatArray={setChatArray} chatLoading={chatLoading} submitChat={submitChat} />
       </div>
      </div>
     <Footer/>
