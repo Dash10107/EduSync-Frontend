@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import ListSubheader from '@mui/material/ListSubheader';
 
-const People = ({clasroom}) => {
+const People = ({clasroom,teacherName,studentNames}) => {
   return (
     <>
     <Box className='my-6'>
@@ -23,7 +23,7 @@ const People = ({clasroom}) => {
               <ListItemAvatar>
                 <Avatar />
               </ListItemAvatar>
-              <ListItemText primary="Megha Kapse" />
+              <ListItemText primary={teacherName} />
             </ListItemButton>
           </ListItem>
     </List>
@@ -34,59 +34,17 @@ const People = ({clasroom}) => {
       <Divider />
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <List sx={{ bgcolor: 'background.paper' }} className="w-[90%] mt-4">
-          <ListItem className='my-1'>
+        {studentNames.map((name)=>{
+          return (
+            <ListItem className='my-1'>
             <ListItemButton>
               <ListItemAvatar>
                 <Avatar />
               </ListItemAvatar>
-              <ListItemText primary="Vinay Vora" />
+              <ListItemText primary={name} />
             </ListItemButton>
-          </ListItem>
-
-          <ListItem className='my-1'>
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar />
-              </ListItemAvatar>
-              <ListItemText primary="Vinay Vora" />
-            </ListItemButton>
-          </ListItem>
-          
-          <ListItem className='my-1'>
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar />
-              </ListItemAvatar>
-              <ListItemText primary="Vinay Vora" />
-            </ListItemButton>
-          </ListItem>
-          
-          <ListItem className='my-1'>
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar />
-              </ListItemAvatar>
-              <ListItemText primary="Vinay Vora" />
-            </ListItemButton>
-          </ListItem>
-          
-          <ListItem className='my-1'>
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar />
-              </ListItemAvatar>
-              <ListItemText primary="Vinay Vora" />
-            </ListItemButton>
-          </ListItem>
-          
-          <ListItem className='my-1'>
-            <ListItemButton>
-              <ListItemAvatar>
-                <Avatar />
-              </ListItemAvatar>
-              <ListItemText primary="Vinay Vora" />
-            </ListItemButton>
-          </ListItem>
+          </ListItem>)
+        })}
         </List>
       </Box>
     </Box>

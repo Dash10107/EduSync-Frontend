@@ -9,43 +9,35 @@ import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
 import ListSubheader from '@mui/material/ListSubheader';
+import EntityModal from './EntityModal';
 
-const TestResults = () => {
+const TestResults = ({results}) => {
+  console.log('Classroom Tests',results);
+  const [modalOpen,setModalOpen] = React.useState(false);
+  const [currenttest,setCurrentTest] = React.useState({});
   return (
     <div className="flex justify-center my-6">
       <div className='w-full lg:w-[80%]'>
         <List sx={{ width: '100%' }} className='w-70'>
           <ListSubheader sx={{ fontWeight: 'bold', fontSize: '1.1rem' }}>Test Results</ListSubheader>
           <Divider />
-          <ListItem sx={{alignItems: 'center' }}>
+          {results?.map((test)=>{
+        return (<>
+          <ListItem sx={{alignItems: 'center' }} onClick={()=>{setModalOpen(true);setCurrentTest(test)}}>
             <ListItemAvatar>
               <Avatar>
                 <ImageIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+            <ListItemText primary={test?.testName}  />
           </ListItem>
-          <Divider />
-          <ListItem sx={{alignItems: 'center' }}>
-            <ListItemAvatar>
-              <Avatar>
-                <WorkIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-          </ListItem>
-          <Divider />
-          <ListItem sx={{alignItems: 'center' }}>
-            <ListItemAvatar>
-              <Avatar>
-                <BeachAccessIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-          </ListItem>
-          <Divider />
+          <Divider className=''/>
+        </>)
+      })}
         </List>
+        <EntityModal modalOpen={modalOpen} setModalOpen={setModalOpen} test={currenttest} />
       </div>
+     
     </div>
   );
 };

@@ -241,7 +241,7 @@ fetchProgress();
   )
 }
         </div>
-        {/* <Footer/> */}
+        <Footer/>
       </div>
     )
   };

@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import SubNavbar from './SubNavbar';
 
 
-const Main = ({clasroom}) => {
+const Main = ({clasroom,teacherName,studentNames,forms,results}) => {
 
   
   return (
@@ -16,7 +16,7 @@ const Main = ({clasroom}) => {
           </div>
         </div>
       </div>
-      <div className="text-gray-600 mb-4 "><SubNavbar clasroom={clasroom} /></div>
+      <div className="text-gray-600 mb-4 "><SubNavbar clasroom={clasroom} teacherName={teacherName} forms={forms} results={results} studentNames={studentNames}/></div>
     </div>
   );
 };

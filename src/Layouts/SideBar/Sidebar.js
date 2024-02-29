@@ -5,6 +5,9 @@ import SingleTab from "./SingleTab";
 import { useNavigate } from "react-router-dom";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import Loader from "../Loader/Loader";
+import FolderCopyIcon from '@mui/icons-material/FolderCopy';
+import SchoolIcon from '@mui/icons-material/School';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 const Sidebar = (props) => {
   const {onClose}=props;
     const navigate=useNavigate();
@@ -73,6 +76,12 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar">
     <button className="home-button" onClick={()=>{navigate("/home")}}> <HomeRoundedIcon/> <p>Home</p> </button>
+    
+    <button className="home-button" onClick={()=>{navigate("/content")}}> <FolderCopyIcon/> <p>Content</p> </button>
+    
+    <button className="home-button" onClick={()=>{navigate("/classrooms")}}> <SchoolIcon/> <p>Classrooms</p> </button>
+    
+    <button className="home-button" onClick={()=>{navigate("/noticeboard")}}> <DynamicFeedIcon/> <p>Noticeboard</p> </button>
     <hr className="bg-black text-black h-0.5 mb-2 mr-3"></hr>
       <ul className="sidelist">
         {

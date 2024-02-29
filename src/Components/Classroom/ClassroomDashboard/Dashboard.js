@@ -6,8 +6,10 @@ import CardLayout from "./CardLayout";
 import EastIcon from '@mui/icons-material/East';
 import AddIcon from '@mui/icons-material/Add';
 import ModalComp from "./AddModuleModel/Modal";
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, Box, Snackbar,Skeleton } from "@mui/material";
 import Loader from "../../../Layouts/Loader/Loader";
+import Footer from "../../../Layouts/Footer/Footer";
+
 
 
 
@@ -97,11 +99,20 @@ const Dashboard = (props) => {
  <div className="all-classrooms">
  {
   loading ? (
-    <Loader/>// Display a loading indicator while data is being fetched
+    [1, 2, 3].map((index) => (
+     
+          <Box key={index} sx={{ pt: 0.5, width: '100%', maxWidth: '400px',     margin: '0 auto 10px',
+    height: { xs: '100px', sm: '150px', md: '200px' }, }}>
+             <Skeleton height="100%" width={{ xs: '80%', sm: '70%', md: '60%' }} />
+                <Skeleton width={{ xs: '80%', sm: '70%', md: '60%' }} />
+              </Box>
+              
+            ))
+    
   ):(
  <div className='grid md:grid-cols-2 xl:grid-cols-3  justify-center px-6 md:px-8 xl:px-12'>
  
-    {classrooms?.map(clasroom=>(<>
+    { classrooms?.map(clasroom=>(<>
       <CardLayout clasroom={clasroom} />
  
 </>
@@ -127,6 +138,7 @@ const Dashboard = (props) => {
             </ul>
           </Alert>
         </Snackbar>
+        <Footer/>
     </div>
   )
 };

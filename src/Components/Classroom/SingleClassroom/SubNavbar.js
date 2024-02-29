@@ -36,13 +36,16 @@ function a11yProps(index) {
   };
 }
 
-const SubNavbar = ({ clasroom }) => {
+const SubNavbar = ({ clasroom,teacherName,studentNames,forms,results }) => {
   const theme = useTheme();
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const windowWidth = window.innerWidth;
+  const bool =   windowWidth>=1024 ? true : false;
+  console.log(windowWidth)
 
   return (
     <>
@@ -61,7 +64,9 @@ const SubNavbar = ({ clasroom }) => {
               >
                 {/* Show three tabs on mobile */}
                 <Tab label="Stream" {...a11yProps(0)} />
-                <Tab className='lg:hidden' label="Classwork" {...a11yProps(1)} />
+             
+               {!bool  && <Tab className='lg:hidden ' label="Classwork" {...a11yProps(1)} /> } 
+              
                 <Tab label="People" {...a11yProps(2)} />
               </Tabs>
             </AppBar>
@@ -72,10 +77,10 @@ const SubNavbar = ({ clasroom }) => {
         </TabPanel>
 
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <Classwork />
+          <Classwork forms={forms} results={results} />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <People />
+          <People teacherName={teacherName} studentNames={studentNames} />
         </TabPanel>
       </Box>
     </>

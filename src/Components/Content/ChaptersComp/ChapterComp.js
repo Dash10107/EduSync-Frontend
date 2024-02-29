@@ -8,6 +8,7 @@ import Zigzag from "./Zigzag";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Loader from "../../../Layouts/Loader/Loader";
 import { Alert, Snackbar } from "@mui/material";
+import Footer from "../../../Layouts/Footer/Footer";
 const ChapterComp = (props) => {
   const navigate = useNavigate();
   const moduleId = localStorage.getItem("moduleId");
@@ -131,6 +132,7 @@ fetchChapters();
             </ul>
           </Alert>
         </Snackbar>
+        <Footer/>
   </div>
   )
 };

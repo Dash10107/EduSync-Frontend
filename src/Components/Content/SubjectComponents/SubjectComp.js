@@ -12,6 +12,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../Layouts/Loader/Loader";
 import { Alert, Snackbar } from "@mui/material";
+import Footer from "../../../Layouts/Footer/Footer";
 
 const SubjectComp = (props) => {
   const navigate = useNavigate();
@@ -154,6 +155,7 @@ useEffect(() => {
             </ul>
           </Alert>
         </Snackbar>
+        <Footer/>
     </div>
   )
 };
