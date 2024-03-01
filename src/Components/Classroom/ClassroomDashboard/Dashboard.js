@@ -110,12 +110,12 @@ const Dashboard = (props) => {
             ))
     
   ):(
- <div className='grid md:grid-cols-2 xl:grid-cols-3  justify-center px-6 md:px-8 xl:px-12'>
+ <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-10 justify-center px-6 md:px-8 xl:px-12'>
  
     { classrooms?.map(clasroom=>(<>
       <CardLayout clasroom={clasroom} />
- 
-</>
+      </>
+
     ))}
    
     </div>

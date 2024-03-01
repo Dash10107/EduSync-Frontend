@@ -124,7 +124,7 @@ const Navbar = (props) => {
                 <span onClick={()=>{navigate("/classrooms")}} className="underline-effect">Classroom</span>
               </div>
               <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
-                <span onClick={()=>{navigate("/")}} className="underline-effect">NoticeBoard</span>
+                <span onClick={()=>{navigate("/noticeboard")}} className="underline-effect">NoticeBoard</span>
               </div>
             </ul>
           </div>

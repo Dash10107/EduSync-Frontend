@@ -1,0 +1,22 @@
+/* LoginButton.css */
+
+@keyframes gradientAnimation {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+  
+  .custom-button {
+    @apply relative bg-gradient-to-r from-white via-white to-purple-900 border-2 border-blue-900 text-black justify-center  rounded text-sm font-bold;
+    background-size: 200% 100%;
+    background-position: right bottom;
+  }
+  
+  .custom-button:hover {
+    @apply bg-gradient-to-r from-blue-700 via-blue-200 to-blue-700 text-black;
+    animation: gradientAnimation 1s ease-out forwards;
+  }
+  

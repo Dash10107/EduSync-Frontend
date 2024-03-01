@@ -45,7 +45,6 @@ const SubNavbar = ({ clasroom,teacherName,studentNames,forms,results }) => {
   };
   const windowWidth = window.innerWidth;
   const bool =   windowWidth>=1024 ? true : false;
-  console.log(windowWidth)
 
   return (
     <>

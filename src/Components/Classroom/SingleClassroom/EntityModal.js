@@ -22,7 +22,7 @@ function EntityModal(props) {
        
       try {
   
-        await axios.post(`http://localhost:5000/users/user-details    `,{
+        await axios.post(`https://edusync-backend.onrender.com/users/user-details    `,{
           ids:userIds
         }, {
           headers: {
