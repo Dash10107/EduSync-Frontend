@@ -9,8 +9,10 @@ import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
 import ListSubheader from '@mui/material/ListSubheader';
+import { useNavigate } from 'react-router-dom';
 
 const SupriseTest = ({clasroom,forms}) => {
+  const navigate = useNavigate();
   return (
     <div className="flex justify-center my-6">
       <div className='lg:w-[80%] w-full'>
@@ -18,7 +20,7 @@ const SupriseTest = ({clasroom,forms}) => {
           <ListSubheader sx={{ fontWeight: 'bold', fontSize: '1.3rem' }}>Surprise Tests</ListSubheader>
           <Divider />
         {forms?.map((form)=>{return(<>
-          <ListItem sx={{alignItems: 'center' }}>
+          <ListItem sx={{alignItems: 'center' }} key={form._id} onClick={()=>{localStorage.setItem("formId",form._id);navigate("/classrooms/test")}}>
             <ListItemAvatar>
               <Avatar>
                 <ImageIcon />

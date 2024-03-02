@@ -19,6 +19,7 @@ import SurpriseTest from "../Pages/Classroom/SurpriseTest";
 import SubAdminHome from "../Pages/SubAdmin/SubAdminHome";
 import VerifyEmail from "../Pages/User/VerifyEmail";
 import BeforeVerify from "../Pages/User/BeforeVerify";
+import SinglePost from "../Pages/Classroom/SinglePost";
 
 ;
 
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
   {
     path:"/classrooms/single",
     element:<ClassroomSingle/>,
+  },
+  {
+    path:"/classrooms/single/post",
+    element:<SinglePost/>,
   },
   {
     path:"/classrooms/test",

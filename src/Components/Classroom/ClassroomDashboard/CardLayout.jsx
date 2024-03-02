@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 function CardLayout({clasroom}) {
   const navigate = useNavigate();
   return (
-    <Card sx={{ maxWidth: 450}} className='m-8 mb-10 ' onClick={()=>{console.log(clasroom);localStorage.setItem("classroomCode",clasroom.code);navigate("/classrooms/single")}}>
+    <Card sx={{ maxWidth: 450}} className='m-8 mb-10 ' onClick={()=>{console.log(clasroom);localStorage.setItem("classroomCode",clasroom.code);localStorage.setItem("classroomName",clasroom.name);navigate("/classrooms/single")}}>
       <CardActionArea>
         <CardMedia
           component="img"

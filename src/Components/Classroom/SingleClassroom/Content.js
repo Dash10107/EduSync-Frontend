@@ -8,10 +8,12 @@ import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Content = ({clasroom}) => {
+  const navigate = useNavigate();
     
   return (
     <>
@@ -19,7 +21,7 @@ const Content = ({clasroom}) => {
         <List sx={{ bgcolor: 'background.paper' }} className="w-full lg:w-[90%]">
       {clasroom.posts?.map((post)=>{
         return (
-            <ListItem className='border border-gray-300 rounded-lg my-6 cursor-pointer'>
+            <ListItem key={post._id} className='border border-gray-300 rounded-lg my-6 cursor-pointer' onClick={()=>{ localStorage.setItem("postId",post._id); navigate("/classrooms/single/post")}}>
             <ListItemAvatar>
             <Avatar>
                 <ImageIcon />
