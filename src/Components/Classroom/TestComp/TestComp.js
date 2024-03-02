@@ -20,7 +20,7 @@ const TestComp = () => {
         setLoading(true);
         try {
     
-          await axios.get(`http://localhost:5000/subadmin/classrooms/${code}/forms/${formId}`, {
+          await axios.get(`https://edusync-backend.onrender.com/subadmin/classrooms/${code}/forms/${formId}`, {
             headers: {
               Authorization: localStorage.getItem("token"),
             }
@@ -54,7 +54,7 @@ const updateUserAnswers = (answers) => {
    
     try {
 
-      await axios.put(`http://localhost:5000/subadmin/classrooms/${code}/update-form-results`,{
+      await axios.put(`https://edusync-backend.onrender.com/subadmin/classrooms/${code}/update-form-results`,{
         formId:formId,
         marks:mark
       }, {

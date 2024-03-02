@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import SubAdminComp from '../../Components/SubAdmin/SubAdminHome/SubAdminComp';
 
 const SubAdminHome = () => {
     const navigate = useNavigate();
@@ -31,7 +32,7 @@ const SubAdminHome = () => {
       },[]);
   return (
     <div>
-      Sub Admin Ka Home 
+<SubAdminComp/> 
     </div>
   )
 }

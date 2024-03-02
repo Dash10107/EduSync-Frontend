@@ -20,6 +20,7 @@ import SubAdminHome from "../Pages/SubAdmin/SubAdminHome";
 import VerifyEmail from "../Pages/User/VerifyEmail";
 import BeforeVerify from "../Pages/User/BeforeVerify";
 import SinglePost from "../Pages/Classroom/SinglePost";
+import SubAdminClassroom from "../Pages/SubAdmin/SubAdminClassroom";
 
 ;
 
@@ -111,7 +112,12 @@ export const router = createBrowserRouter([
   {
     path:"subadmin/home",
     element:<SubAdminHome/>
+  },
+  {
+    path:"subadmin/classroom",
+    element:<SubAdminClassroom/>
   }
+
 ]);
 
 export default router;

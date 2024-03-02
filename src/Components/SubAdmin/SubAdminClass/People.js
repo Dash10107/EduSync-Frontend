@@ -8,8 +8,37 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import ListSubheader from '@mui/material/ListSubheader';
+import axios from 'axios';
+import DeleteIcon from '@mui/icons-material/Delete';
+const People = ({clasroom,teacherName,studentNames,fetchClassroom}) => {
+  const code = localStorage.getItem("classroomCode");
 
-const People = ({clasroom,teacherName,studentNames}) => {
+  const handleDeleteClick = async(e,id)=>{
+
+    e.stopPropagation();  
+    e.preventDefault();
+    try {
+    
+      await axios.delete(`http://localhost:5000/subadmin/classrooms/${code}/removestudent/${id}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        }
+      }).then(response => {
+        console.log("Response", response);
+
+        if (response.status === 200) {
+
+          console.log(response?.message);
+          fetchClassroom();
+          
+        } else {
+          console.log("Status Code", response.status);
+        }
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
   return (
     <>
     <Box className='my-6'>
@@ -35,6 +64,7 @@ const People = ({clasroom,teacherName,studentNames}) => {
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <List sx={{ bgcolor: 'background.paper' }} className="w-[90%] mt-4">
         {studentNames.map((name)=>{
+          console.log(name)
           return (
             <ListItem className='my-1'>
             <ListItemButton>
@@ -43,6 +73,7 @@ const People = ({clasroom,teacherName,studentNames}) => {
               </ListItemAvatar>
               <ListItemText primary={name.name} />
             </ListItemButton>
+            <DeleteIcon onClick={(e) => handleDeleteClick(e,name.id)} />
           </ListItem>)
         })}
         </List>
