@@ -10,6 +10,7 @@ import Divider from '@mui/material/Divider';
 import ListSubheader from '@mui/material/ListSubheader';
 import axios from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 const People = ({clasroom,teacherName,studentNames,fetchClassroom}) => {
   const code = localStorage.getItem("classroomCode");
 

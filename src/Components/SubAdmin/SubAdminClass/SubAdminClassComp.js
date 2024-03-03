@@ -107,15 +107,15 @@ const SubAdminClassComp = () => {
   return (
 <div className="page-container h-screen flex flex-col">
       <div className="flex-grow">
-        <Navbar  />
+        <Navbar isSubAdmin={true}  />
         <div className='flex'>
           <div className='w-[20%] h-screen lg:block hidden'>
             <div className='h-[20%]'></div>
             <div className='h-[35%]'>
-              <SupriseTest clasroom={clasroom} forms={forms} />
+              <SupriseTest clasroom={clasroom} forms={forms} fetchClassroom={fetchClassroom}/>
             </div>
             <div className='h-[35%]'>
-              <TestResults clasroom={clasroom} results={results}  />
+              <TestResults clasroom={clasroom} results={results} fetchClassroom={fetchClassroom} />
             </div>
           </div>
           <div className='lg:w-[80%] flex justify-center w-full'>

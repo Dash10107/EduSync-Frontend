@@ -68,7 +68,7 @@ const SubAdminComp = () => {
   return (
     <div>
         <div>
-    <Navbar/>
+    <Navbar isSubAdmin={true}/>
     <div className='xl:flex'>
       <div className='xl:w-[100%] w-[100%]'>
         <Left classrooms={classrooms} loading={loading} fetchFeedbacks={fetchFeedbacks} fetchClassrooms={fetchClassrooms} feedbacks={feedbacks} />

@@ -72,11 +72,11 @@ const SubNavbar = ({ clasroom,teacherName,studentNames,forms,results,fetchClassr
           </div>
         </div>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Content clasroom={clasroom} fetchClassroom={fetchClassroom} />
+          <Content clasroom={clasroom} fetchClassroom={fetchClassroom}  />
         </TabPanel>
 
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <Classwork forms={forms} results={results} />
+          <Classwork forms={forms} results={results} clasroom={clasroom}  fetchClassroom={fetchClassroom} />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           <People teacherName={teacherName} fetchClassroom={fetchClassroom} studentNames={studentNames} />

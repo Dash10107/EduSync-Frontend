@@ -64,7 +64,7 @@ function Left({classrooms,loading,feedbacks,fetchFeedbacks,fetchClassrooms}) {
    
     </div>
     <div className='px-4 py-6 md:p-8 lg:p-10'>
-      <span className='text-lg md:text-lg lg:text-xl xl:text-2xl font-medium'>Pending Works {'->'} </span>
+      <span className='text-lg md:text-lg lg:text-xl xl:text-2xl font-medium'>Pending Feedbacks {'->'} </span>
     </div>
     <div className='px-6 md:mx-12 lg:grid lg:grid-cols-2 md:px-8 xl:px-12'>
     {feedbacks?.map((feedback)=>(<PendingList fetchFeedbacks={fetchFeedbacks} feedback={feedback} />))}

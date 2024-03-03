@@ -11,11 +11,7 @@ function EntityModal(props) {
   const studentIds = test?.testScores?.map(score => score.studentId);
 
 
-    // function createData(marksId,studentId,name,marks) {
-    //   return { marksId,studentId,name,marks };
-    // }
-    
-    // const rows = [];
+
 
 
     const fetchStudentDetail = async (userIds) => {
@@ -79,7 +75,7 @@ function EntityModal(props) {
                 {row._id}
               </TableCell>
               <TableCell >{row.studentId}</TableCell>
-              <TableCell >{studentNames[index]}</TableCell>
+              <TableCell >{studentNames[index].name}</TableCell>
               <TableCell >{row.marks}</TableCell>
             
             </TableRow>

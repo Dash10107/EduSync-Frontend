@@ -1,20 +1,20 @@
 import { Modal, Pagination, Spin } from 'antd'
 import React, { useEffect, useState } from 'react'
-
-import "./EntityModal.css"
 import { Box, Input, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import axios from 'axios';
-function EntityModal(props) {
-    const {modalOpen,setModalOpen,test,fetchClassroom} = props;
+function AddResultModal(props) {
+    const {modalOpen,setModalOpen,clasroom,fetchClassroom} = props;
     const [studentNames,setStudentNames] = useState([]);
+    const [title,setTitle] = useState("");
+    const code = localStorage.getItem("classroomCode");
+  
+  const studentIds = clasroom?.students
 
-  const studentIds = test?.testScores?.map(score => score.studentId);
-
-  const [result,setResult] = useState([]);
-  const code = localStorage.getItem("classroomCode");
+const [result,setResult] = useState([]);
 
 const handleChange = async (id, marks) => {
   const intMarks = parseInt(marks);
+
   // Check if an object with the same id already exists in the array
   const existingIndex = result.findIndex(obj => obj.studentId === id);
 
@@ -33,6 +33,38 @@ const handleChange = async (id, marks) => {
   // You can now use the updated result state as needed
   // ...
 };
+
+const handleSubmit = async () => {
+  console.log(result);
+  try {
+    const response = await axios.put(
+      `http://localhost:5000/subadmin/classrooms/${code}/update-test-results`,
+      {
+        testName:title,
+        results: result,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      console.log("Result added successfully");
+      setResult([]);
+      setTitle("");
+      setModalOpen(false);
+      fetchClassroom();
+    } else {
+      console.log("Status Code", response.status);
+    }
+  } catch (error) {
+    console.error("Error adding questions:", error);
+  }
+};
+
+
 
     const fetchStudentDetail = async (userIds) => {
        
@@ -58,38 +90,7 @@ const handleChange = async (id, marks) => {
         console.log("error", error);
       }
     }
-
-    const handleSubmit = async () => {
-      console.log(result);
-      if(result.length ===0){
-        return;
-      }
-      try {
-        const response = await axios.put(
-          `http://localhost:5000/subadmin/classrooms/${code}/update-existing-test/${test._id}`,
-          {
-            results: result,
-          },
-          {
-            headers: {
-              Authorization: localStorage.getItem("token"),
-            },
-          }
-        );
-    
-        if (response.status === 200) {
-          console.log("Result added successfully");
-          setResult([]);
-          setModalOpen(false);
-          fetchClassroom();
-        } else {
-          console.log("Status Code", response.status);
-        }
-      } catch (error) {
-        console.error("Error adding questions:", error);
-      }
-    };
-    useEffect(()=>{fetchStudentDetail(studentIds)},[])
+    useEffect(()=>{fetchStudentDetail(studentIds)},[studentIds])
   return (
 
     <Modal    centered
@@ -102,14 +103,25 @@ const handleChange = async (id, marks) => {
   >
   <div className='fullmodal'>
   <div className='headerEntity'>  
-  <div className='titleforEntity'>{test?.testName}</div>
+  <div className='titleforEntity'> 
+     Put Up Test Results     </div>
   </div>
+  <div>
+  Test Title :   &nbsp;&nbsp;&nbsp;&nbsp;
+  <Input className='modal-inputNew'
+  style={{margin:0}}
+    type="text"
+     disableUnderline={true}
+      value={title}
+      placeholder='Title'
+     onChange={(e)=>{setTitle(e.target.value)}}
+         ></Input>
+         </div>
   <Box sx={{ width: '100%' }}>
   <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-          <TableCell>MarksId</TableCell>
             <TableCell>StudentID</TableCell>
             <TableCell >Student Name</TableCell>
             <TableCell >Marks</TableCell>
@@ -117,39 +129,47 @@ const handleChange = async (id, marks) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {test?.testScores?.map((row,index) => (
+          {/* {test?.testScores?.map((row,index) => (
             <TableRow
               key={row._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {row._id}
-              </TableCell>
               <TableCell >{row.studentId}</TableCell>
-              <TableCell >{studentNames[index]?.name}</TableCell>
-              <TableCell >
-              <Input type='number'    
-               value={result.find(obj => obj.studentId === row.studentId)?.marks || row.marks}
-              onChange={(e) => { const previousResult = test?.testScores?.map(({ _id, ...rest }) => ({ studentId: rest.studentId, marks: rest.marks }));
-  setResult(previousResult);
-  ;handleChange(row.studentId, e.target.value) }}/> 
-            
-            </TableCell>
+              <TableCell >{studentNames[index]}</TableCell>
+              <TableCell >{row.marks}</TableCell>
             
             </TableRow>
-          ))}
+          ))} */}
+          {
+            studentNames.map((name,index)=>{
+              return(
+                <TableRow
+              key={studentIds[index]}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell >{name.id}</TableCell>
+              <TableCell >{name.name}</TableCell>
+              <TableCell >
+              <Input type='text'    
+              value={result.find(obj => obj.studentId === name.id)?.marks || ''}
+              onChange={(e) => { handleChange(name.id, e.target.value) }}/> 
+            
+            </TableCell>
+            </TableRow>
+              )
+
+            })
+          }
         </TableBody>
       </Table>
     </TableContainer>
         </Box>
-        {result.length !== 0 &&
-          <div className="subMitDiv">
+        <div className="subMitDiv">
 <button className="submit-button" onClick={handleSubmit}>Upload The Result </button>
-</div>}
-
+</div>
 </div>
   </Modal>
   )
 }
 
-export default EntityModal
+export default AddResultModal

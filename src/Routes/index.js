@@ -21,6 +21,7 @@ import VerifyEmail from "../Pages/User/VerifyEmail";
 import BeforeVerify from "../Pages/User/BeforeVerify";
 import SinglePost from "../Pages/Classroom/SinglePost";
 import SubAdminClassroom from "../Pages/SubAdmin/SubAdminClassroom";
+import SubAdminTest from "../Pages/SubAdmin/SubAdminTest";
 
 ;
 
@@ -116,6 +117,10 @@ export const router = createBrowserRouter([
   {
     path:"subadmin/classroom",
     element:<SubAdminClassroom/>
+  },
+  {
+    path:"/subadmin/classrooms/createTest",
+    element:<SubAdminTest/>
   }
 
 ]);

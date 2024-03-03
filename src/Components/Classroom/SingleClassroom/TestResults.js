@@ -12,7 +12,6 @@ import ListSubheader from '@mui/material/ListSubheader';
 import EntityModal from './EntityModal';
 
 const TestResults = ({results}) => {
-  console.log('Classroom Tests',results);
   const [modalOpen,setModalOpen] = React.useState(false);
   const [currenttest,setCurrentTest] = React.useState({});
   return (

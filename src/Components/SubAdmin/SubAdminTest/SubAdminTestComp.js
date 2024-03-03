@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from "react";
-import "./AdminQuestionComp.css";
+import "./SubAdminTest.css";
 import QuestionDisplay from "./QuestionDisplay/QuestionDisplay";
 import AddQuestion from "./AddQuestionModal/AddQuestionModal";
 import Navbar from "../../../Layouts/Navbar/Navbar";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, Input, Snackbar } from "@mui/material";
 
-const AdminQuestionComp = (props) => {
+const SubAdminTestComp = (props) => {
     const navigate=useNavigate();
-
-    const moduleId = localStorage.getItem("adminModuleId");
-    const chapterId = parseInt(localStorage.getItem("adminChapterId"));
-    const subChapterId = localStorage.getItem("adminSubChapterId");
-    const subChapterName = localStorage.getItem("adminSubChapter");
-    // const chapterName = localStorage.getItem("adminChapterName");
-    // const subjectName = localStorage.getItem("adminSubjectName");
     const [addQuestionOpen,setAddQuestionOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
-
+  const [title,setTitle] = useState("");
   const [errors, setErrors] = useState({});
   const [toastOpen, setToastOpen] = useState(false);
-
+  const code = localStorage.getItem("classroomCode");
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       setToastOpen(false);
@@ -34,43 +27,13 @@ const AdminQuestionComp = (props) => {
     setQuestions([...questions, newQuestion]);
   };
 
-  const fetchQuestions = async () => {
-    try {
-      const response = await axios.get(
-        `https://edusync-backend.onrender.com/module/allQuestions/${moduleId}/${chapterId}/${subChapterId}`,
-        {
-          headers: {
-            Authorization: localStorage.getItem("token"),
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        console.log('Response',response);
-        
-        setQuestions(response.data.questions);
-    
-      } else {
-        console.log("Status Code", response.status);
-      }
-    } catch (error) {
-      console.log("error", error);
-      setErrors({error:'Failed to fetch questions.'});
-      setToastOpen(true);
-    }
-    
-  };
-
-  useEffect(()=>{
-    fetchQuestions()
-  },[])
 
   const handleSubmit = async () => {
-    console.log(questions)
     try {
       const response = await axios.post(
-        `https://edusync-backend.onrender.com/admin/addQuestions/${moduleId}/${chapterId}/${subChapterId}`,
+        `http://localhost:5000/subadmin/classrooms/${code}/addforms`,
         {
+          title:title,
           questions: questions,
         },
         {
@@ -86,14 +49,14 @@ const AdminQuestionComp = (props) => {
         setErrors({error:'Added questions successfully.'});
         setToastOpen(true);
         setQuestions([]);
-        fetchQuestions();
-
+        setTitle("");
+        navigate(-1);
       } else {
         console.log("Status Code", response.status);
       }
     } catch (error) {
       console.error("Error adding questions:", error);
-      setErrors({error:'Failed to fetch questions.'});
+      setErrors({error:'Error adding  questions.'});
       setToastOpen(true);
     }
   };
@@ -102,29 +65,35 @@ const AdminQuestionComp = (props) => {
   return (
     <>
     <div className="adminQuestionComp">
-    <Navbar  isAdmin={true} />
+    <Navbar  isSubAdmin={true} />
     <div className="subchapter-heading">
           <h3 className="subject-heading-text"> 
+
           
           <div className="goBack">
-    <p className="back-icon" onClick={()=>{navigate("/admin/subchapter")}}><ArrowBackIosIcon fontSize="large"/> </p>
-     <p>{subChapterName}</p>
+    <p className="back-icon" onClick={()=>{navigate("/subadmin/classroom")}}><ArrowBackIosIcon fontSize="large"/> </p>
+     <p>Test Title :</p>
+     <Input className='modal-inputNew'  type="text"
+     disableUnderline={true}
+      value={title}
+      placeholder='Title'
+     onChange={(e)=>{setTitle(e.target.value)}}
+         ></Input>
      </div></h3>
+
      <div>
-     <button className="submit-button" onClick={handleSubmit}>Submit All Questions</button>
+  
      </div>
      <div >
-      <h3 className="subject-heading-text" onClick={()=>{setAddQuestionOpen(true)}}> +</h3> 
+      <h5 className="subject-heading-text" onClick={()=>{setAddQuestionOpen(true)}}>  Add Question +</h5> 
      </div>
         </div>
         
       <QuestionDisplay questions={questions}
-      setErrors={setErrors}
-      setToastOpen={setToastOpen}
-      fetchQuestions={fetchQuestions}
        />
-
-
+<div className="subMitDiv">
+<button className="submit-button" onClick={handleSubmit}>Create The Test </button>
+</div>
     </div>
     <AddQuestion
     modalOpen = {addQuestionOpen}
@@ -146,4 +115,4 @@ const AdminQuestionComp = (props) => {
   );
 };
 
-export default AdminQuestionComp;
+export default SubAdminTestComp;

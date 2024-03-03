@@ -10,7 +10,7 @@ import Sidebar from "../SideBar/Sidebar";
 
 const Navbar = (props) => {
 
-  const {isLogin,isAdmin} = props;
+  const {isLogin,isAdmin,isSubAdmin} = props;
 
   const navigate = useNavigate();
   const currentPath = window.location.pathname;
@@ -109,15 +109,26 @@ const Navbar = (props) => {
       <div className=" hamburger justify-start ">
  <span className="flex " style={{alignItems:"center"}} > 
    
- {isLogin || isAdmin || isHome? (<span></span>):(  <MenuRoundedIcon onClick={showDrawer} fontSize={window.innerWidth <= 600 ? "large" :"larger"}/> )}
+ {isLogin || isAdmin || isHome || isSubAdmin? (<span></span>):(  <MenuRoundedIcon onClick={showDrawer} fontSize={window.innerWidth <= 600 ? "large" :"larger"}/> )}
   <span className="flex text-xl lg:text-2xl font-semibold md:px-6 pt-1 cursor-pointer" onClick={()=>{navigate("/home");}}>EduSync</span> </span> 
     {/* <span className="underlining">{localStorage.getItem("SubjectName")}</span> */}
     
       </div>
 <div className=" justify-center">
 <div className=' hidden md:block'>
-            <ul className='flex '>
+            
+{isSubAdmin ? ( <ul className='flex '>  
+           <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
+                <span onClick={()=>{navigate("/content")}} className="underline-effect">Content</span>
+              </div>
               <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
+                <span onClick={()=>{navigate("/subadmin/home")}} className="underline-effect">Classroom</span>
+              </div>
+              <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
+                <span onClick={()=>{navigate("/admin/noticeboard")}} className="underline-effect">NoticeBoard</span>
+              </div></ul>
+              ): (   <ul className='flex '>
+                           <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
                 <span onClick={()=>{navigate("/content")}} className="underline-effect">Content</span>
               </div>
               <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
@@ -125,12 +136,12 @@ const Navbar = (props) => {
               </div>
               <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
                 <span onClick={()=>{navigate("/noticeboard")}} className="underline-effect">NoticeBoard</span>
-              </div>
-            </ul>
+              </div></ul>)}
+
           </div>
 {/* <img src={logo} className='logoImg rounded ' onClick={()=>{navigate("/home")}}   alt=" 1" /> */}
 </div>
-{isLogin ? (<div className=" justify-end lastDiv"></div>):
+{isLogin ? (<div className=" justify-end lastDiv"><button className="text-md xl:text-xl font-semibold" onClick={()=>{navigate("/login")}}>Login</button></div>):
 (<div>
 <Dropdown menu={{ items }} trigger={['click']}>
 {

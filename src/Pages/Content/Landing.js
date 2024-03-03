@@ -1,5 +1,5 @@
 import React from 'react'
-import LandingComp from '../../Components/LandingComp/LandingComp'
+import LandingComp from '../../Components/LandingComp/Landing'
 
 const Landing = () => {
   return (
