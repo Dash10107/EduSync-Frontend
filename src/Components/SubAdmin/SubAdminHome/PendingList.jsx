@@ -16,7 +16,7 @@ const PendingList = ({feedback,fetchFeedbacks}) => {
     const deleteFeedback = async()=>{
         try {
     
-            await axios.delete(`https://edusync-backend.onrender.com/feedandnotice//delete-feedback/${feedbackId}`, {
+            await axios.delete(`https://edusync-backend.onrender.com/feedandnotice/delete-feedback/${feedbackId}`, {
               headers: {
                 Authorization: localStorage.getItem("token"),
               }

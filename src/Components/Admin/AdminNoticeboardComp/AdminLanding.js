@@ -2,18 +2,23 @@ import React, { useEffect, useState } from 'react'
 import LandingList from './LandingList'
 import Divider from '@mui/material/Divider'
 import ModalLandingList from './ModalLandingList'
-import Navbar from '../../Layouts/Navbar/Navbar'
 import axios from 'axios'
-import Footer from '../../Layouts/Footer/Footer'
+import Navbar from '../../../Layouts/Navbar/Navbar'
+import Footer from '../../../Layouts/Footer/Footer'
+import { ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
+// import Footer from '../../Layouts/Footer/Footer'
+// import Navbar from '../../Layouts/Navbar/Navbar'
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import ModalComp from './Modal'
 
-
-const LandingComp = () => {
-  const [selectedNotice, setSelectedNotice] = useState(null);
+const AdminLandingComp = () => {
     const [notices,setNotices] = useState([]);
     const [searchInput, setSearchInput] = useState(""); 
     const [searchModules,setSearchModules] = useState([]);
     const currentPath = window.location.pathname;
-    const isNoticeBoard = currentPath.startsWith("/noticeboard");
+    const isNoticeBoard = currentPath.startsWith("/admin/noticeboard");
+    const [open,setModalOpen] = useState(false);
 
     const fetchNotices = async()=>{
       try {
@@ -50,8 +55,39 @@ const LandingComp = () => {
               setSearchModules(searchedModulesData)
             }, [searchInput,notices]);
 
+            const handleSubmit = async (e,name,content) => {
+              e.preventDefault();
+              if(name === "" || content === ""){
+                console.log('Please Enter Title And Content for Notice');
+                
+                return;
+              }
+          
+              try {
+                const response = await axios.post(`https://edusync-backend.onrender.com/feedandnotice/add-notices`,{
+                  title:name,
+                  content:content
+                },
+                {
+                  headers:{
+                    Authorization: localStorage.getItem("token"), // Include your authorization token here
+          
+                  }
+                });
+          
+                if (response.status === 201) {
+                  
+                  // alert('Module added successfully');
+                  setModalOpen(false);
+                  fetchNotices()
+                } 
+              } catch (error) {
+                console.error('Error:', error);
+              }
+            };
+
   return (<>
-   <Navbar isLogin={!isNoticeBoard}  />
+   <Navbar  isAdmin={true} />
     <div className="flex ">
     
       <div> 
@@ -71,17 +107,30 @@ const LandingComp = () => {
           />
             </div>
           </div>
+          <ListItem alignItems="flex-start" className='cursor-pointer' onClick={()=>{setModalOpen(true)}} >
+        <ListItemAvatar>
+          <AddIcon />
+        </ListItemAvatar>
+        <ListItemText
+          primary=<p className='text-md lg:text-xl font-semibold'>Add New Notice</p>
+          secondary={
+            <React.Fragment>
+            </React.Fragment>
+          }
+        />
+        </ListItem>
+        <Divider style={{marginBottom:"2vh"}} />
           {
                           searchInput !== "" ? (
         searchModules.map((notice) => {
           return (
-          <LandingList notice={notice} />
+          <LandingList notice={notice} fetchNotices={fetchNotices}/>
           )
         }) 
                           ):(
                           notices?.map((notice)=>{
                           return (
-          <LandingList notice={notice} />
+          <LandingList notice={notice} fetchNotices={fetchNotices} />
           )
                         }))}
         </div>
@@ -91,12 +140,17 @@ const LandingComp = () => {
           <img src="https://img.freepik.com/free-vector/internet-addiction-abstract-concept-vector-illustration-real-life-substitution-living-online-disorder-web-addiction-digital-addictive-behavior-internet-overuse-social-media-abstract-metaphor_335657-2266.jpg?w=740&t=st=1709365826~exp=1709366426~hmac=4d1d87dae7e862bd6ac2d6d5cd37a75d44d21733abd1025f44bd101252654a0c" alt="" />
         </div>
       </div>
-      
+    
     </div>
+   
     {isNoticeBoard && <Footer/>}
-
+    <ModalComp
+      modalOpen={open}
+      setModalOpen={setModalOpen}
+      handleSubmit={handleSubmit}
+    />
     </>
   )
 }
 
-export default LandingComp
+export default AdminLandingComp

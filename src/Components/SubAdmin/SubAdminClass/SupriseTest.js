@@ -24,7 +24,7 @@ const SupriseTest = ({clasroom,forms,fetchClassroom}) => {
     e.preventDefault();
     try {
     
-      await axios.delete(`http://localhost:5000/subadmin/classrooms/${code}/forms/${id}`, {
+      await axios.delete(`https://edusync-backend.onrender.com/subadmin/classrooms/${code}/forms/${id}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         }

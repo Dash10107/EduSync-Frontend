@@ -27,7 +27,7 @@ const TestResults = ({results,clasroom,fetchClassroom}) => {
     e.preventDefault();
     try {
     
-      await axios.delete(`http://localhost:5000/subadmin/classrooms/${code}/results/${id}`, {
+      await axios.delete(`https://edusync-backend.onrender.com/subadmin/classrooms/${code}/results/${id}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         }

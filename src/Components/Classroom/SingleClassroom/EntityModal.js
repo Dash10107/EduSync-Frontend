@@ -9,7 +9,9 @@ function EntityModal(props) {
     const [studentNames,setStudentNames] = useState([]);
 
   const studentIds = test?.testScores?.map(score => score.studentId);
+  console.log(studentIds);
 
+  
 
 
 
@@ -18,7 +20,7 @@ function EntityModal(props) {
        
       try {
   
-        await axios.post(`https://edusync-backend.onrender.com/users/user-details    `,{
+        await axios.post(`https://edusync-backend.onrender.com/users/user-details`,{
           ids:userIds
         }, {
           headers: {

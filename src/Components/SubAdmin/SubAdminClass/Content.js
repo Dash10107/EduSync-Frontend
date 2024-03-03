@@ -28,7 +28,7 @@ const Content = ({clasroom,fetchClassroom}) => {
         formData.append('content', content);
         formData.append('file', file);
 
-        const response = await fetch(`http://localhost:5000/subadmin/classrooms/${code}/addposts`, {
+        const response = await fetch(`https://edusync-backend.onrender.com/subadmin/classrooms/${code}/addposts`, {
           method: 'POST',
           headers: {
             // Add your custom headers here
@@ -57,7 +57,7 @@ const Content = ({clasroom,fetchClassroom}) => {
     e.preventDefault();
     try {
     
-      await axios.delete(`http://localhost:5000/subadmin/classrooms/${code}/posts/${id}`, {
+      await axios.delete(`https://edusync-backend.onrender.com/subadmin/classrooms/${code}/posts/${id}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         }

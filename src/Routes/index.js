@@ -22,6 +22,8 @@ import BeforeVerify from "../Pages/User/BeforeVerify";
 import SinglePost from "../Pages/Classroom/SinglePost";
 import SubAdminClassroom from "../Pages/SubAdmin/SubAdminClassroom";
 import SubAdminTest from "../Pages/SubAdmin/SubAdminTest";
+import AdminNoticeboard from "../Pages/Admin/AdminNoticeboard";
+import AdminRegister from "../Pages/Admin/AdminRegister";
 
 ;
 
@@ -109,6 +111,14 @@ export const router = createBrowserRouter([
   {
     path:"admin/questions",
     element:<AdminQuestion/>
+  },
+  {
+    path:"admin/noticeboard",
+    element:<AdminNoticeboard/>
+  },
+  {
+    path:"admin/register",
+    element:<AdminRegister/>
   },
   {
     path:"subadmin/home",

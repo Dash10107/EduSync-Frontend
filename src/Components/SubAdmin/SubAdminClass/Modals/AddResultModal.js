@@ -38,7 +38,7 @@ const handleSubmit = async () => {
   console.log(result);
   try {
     const response = await axios.put(
-      `http://localhost:5000/subadmin/classrooms/${code}/update-test-results`,
+      `https://edusync-backend.onrender.com/subadmin/classrooms/${code}/update-test-results`,
       {
         testName:title,
         results: result,
@@ -70,7 +70,7 @@ const handleSubmit = async () => {
        
       try {
   
-        await axios.post(`http://localhost:5000/users/user-details    `,{
+        await axios.post(`https://edusync-backend.onrender.com/users/user-details    `,{
           ids:userIds
         }, {
           headers: {

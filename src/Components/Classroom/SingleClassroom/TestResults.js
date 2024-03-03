@@ -22,7 +22,7 @@ const TestResults = ({results}) => {
           <Divider />
           {results?.map((test)=>{
         return (<>
-          <ListItem sx={{alignItems: 'center' }} onClick={()=>{setModalOpen(true);setCurrentTest(test)}}>
+          <ListItem sx={{alignItems: 'center' }} onClick={()=>{setCurrentTest(test);setModalOpen(true)}}>
             <ListItemAvatar>
               <Avatar>
                 <ImageIcon />

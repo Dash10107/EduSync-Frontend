@@ -38,7 +38,7 @@ const handleChange = async (id, marks) => {
        
       try {
   
-        await axios.post(`http://localhost:5000/users/user-details    `,{
+        await axios.post(`https://edusync-backend.onrender.com/users/user-details    `,{
           ids:userIds
         }, {
           headers: {
@@ -66,7 +66,7 @@ const handleChange = async (id, marks) => {
       }
       try {
         const response = await axios.put(
-          `http://localhost:5000/subadmin/classrooms/${code}/update-existing-test/${test._id}`,
+          `https://edusync-backend.onrender.com/subadmin/classrooms/${code}/update-existing-test/${test._id}`,
           {
             results: result,
           },

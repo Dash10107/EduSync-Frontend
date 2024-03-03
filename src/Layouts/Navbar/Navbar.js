@@ -117,7 +117,19 @@ const Navbar = (props) => {
 <div className=" justify-center">
 <div className=' hidden md:block'>
             
-{isSubAdmin ? ( <ul className='flex '>  
+{
+  isAdmin ? (<ul className='flex '>  
+           <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
+                <span onClick={()=>{navigate("/admin/home")}} className="underline-effect">Content</span>
+              </div>
+              <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
+                <span onClick={()=>{navigate("/admin/noticeboard")}} className="underline-effect">NoticeBoard</span>
+              </div>
+              <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
+                <span onClick={()=>{navigate("/admin/register")}} className="underline-effect">Register</span>
+              </div></ul>):
+  (  
+  isSubAdmin ? ( <ul className='flex '>  
            <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
                 <span onClick={()=>{navigate("/content")}} className="underline-effect">Content</span>
               </div>
@@ -125,7 +137,7 @@ const Navbar = (props) => {
                 <span onClick={()=>{navigate("/subadmin/home")}} className="underline-effect">Classroom</span>
               </div>
               <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
-                <span onClick={()=>{navigate("/admin/noticeboard")}} className="underline-effect">NoticeBoard</span>
+                <span onClick={()=>{navigate("/noticeboard")}} className="underline-effect">NoticeBoard</span>
               </div></ul>
               ): (   <ul className='flex '>
                            <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
@@ -136,7 +148,7 @@ const Navbar = (props) => {
               </div>
               <div className='text-md xl:text-xl font-semibold px-4 pt-2 lg:px-8 cursor-pointer'>
                 <span onClick={()=>{navigate("/noticeboard")}} className="underline-effect">NoticeBoard</span>
-              </div></ul>)}
+              </div></ul>))}
 
           </div>
 {/* <img src={logo} className='logoImg rounded ' onClick={()=>{navigate("/home")}}   alt=" 1" /> */}
