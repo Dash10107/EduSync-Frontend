@@ -24,6 +24,7 @@ const {videosName,videoUrls} = props;
       ) : (
         <Loader/>
       )}
+      {/* <iframe title="Please " src="https://drive.google.com/file/d/11ejOy1uD6ur2XVIsYiubjDf3MroNBMFZ/preview" width="640" height="480" allow="autoplay"></iframe> */}
       </Grid>
       </Box>
       </div>

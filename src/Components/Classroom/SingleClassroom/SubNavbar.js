@@ -62,11 +62,9 @@ const SubNavbar = ({ clasroom,teacherName,studentNames,forms,results }) => {
                 className='bg-gray-100 text-gray-900'
               >
                 {/* Show three tabs on mobile */}
-                <Tab label="Stream" {...a11yProps(0)} />
-             
-               {!bool  && <Tab className='lg:hidden ' label="Classwork" {...a11yProps(1)} /> } 
-              
-                <Tab label="People" {...a11yProps(2)} />
+                <Tab label="Stream" {...a11yProps(0)} />          
+                <Tab label="People" {...a11yProps(1)} />
+                {!bool  && <Tab className='lg:hidden ' label="Classwork" {...a11yProps(2)} /> } 
               </Tabs>
             </AppBar>
           </div>

@@ -6,21 +6,25 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
+import DynamicFeedOutlinedIcon from '@mui/icons-material/DynamicFeedOutlined';
+import { useNavigate } from 'react-router-dom';
 
-
-const PendingList = () => {
+const PendingList = ({classroom}) => {
+    
+    const navigate = useNavigate();
+    
   return (
     <>
-    <div className='m-4'>
+    <div className='m-4 cursor-pointer' onClick={()=>{localStorage.setItem("classroomCode",classroom.code);localStorage.setItem("classroomName",classroom.name);navigate("/classrooms/single")}}>
         <List sx={{ width: '100%', maxWidth: 550}} className=''>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <Avatar>
+               <DynamicFeedOutlinedIcon/>
+               </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                primary="Brunch this weekend?"
+                primary= {<p className='text-lg font-semibold'>{classroom?.name}</p>}
                 secondary={
                     <React.Fragment>
                     <Typography
@@ -29,15 +33,20 @@ const PendingList = () => {
                         variant="body2"
                         color="text.primary"
                     >
-                        Ali Connors
+                      
                     </Typography>
-                    {" — I'll be in your neighborhood doing errands this… ihaefb iwef oiwbrybf rbbfryb yubgsyrbgyugbeyurgyeusb geyur rgurgb"}
+                    <div className="mb-4 py-2">
+  <p className="text-sm font-semibold whitespace-pre-line break-words">
+    {classroom?.posts[0]?.content}
+  </p>
+  <span className="text-gray-600 whitespace-pre-line break-words">
+    {classroom?.posts[0]?.fileUrl}
+  </span>
+</div>
+
                     </React.Fragment>
                 }
                 />
-            <IconButton edge="end" aria-label="delete">
-                      <DeleteIcon />
-                    </IconButton>
             </ListItem>
             <Divider variant="inset" component="li" />
         </List>

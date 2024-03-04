@@ -105,7 +105,7 @@ const SingleClassroom = () => {
     useEffect(()=>{setTestsResults(clasroom.test)},[clasroom]);
     useEffect(()=>{setForms(clasroom.forms)},[clasroom]);
   return (
-<div className="page-container h-screen flex flex-col">
+<div className="page-container bg-white h-screen flex flex-col">
       <div className="flex-grow">
         <Navbar  />
         <div className='flex'>

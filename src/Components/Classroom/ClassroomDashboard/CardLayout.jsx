@@ -8,13 +8,21 @@ import { useNavigate } from 'react-router-dom';
 
 function CardLayout({clasroom}) {
   const navigate = useNavigate();
+  const backgroundImages = [
+    'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
+    // Add more image URLs as needed
+  ];
+
+  // Randomly pick an image URL
+  const randomBackgroundImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+  
   return (
     <Card sx={{ maxWidth: 450}} className='m-8 mb-10 ' onClick={()=>{console.log(clasroom);localStorage.setItem("classroomCode",clasroom.code);localStorage.setItem("classroomName",clasroom.name);navigate("/classrooms/single")}}>
       <CardActionArea>
         <CardMedia
           component="img"
           
-          image="https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg"
+          image={randomBackgroundImage}
           alt="green iguana"
         />
         <CardContent>

@@ -3,7 +3,7 @@ import CardLayout from './CardLayout';
 import PendingList from './PendingList';
 import { Box, Skeleton } from '@mui/material';
 
-function Left({modules,allLoading}) {
+function Left({modules,allLoading,loading,classrooms}) {
   console.log(allLoading);
   return (
     <>
@@ -30,15 +30,15 @@ function Left({modules,allLoading}) {
    
     </div>
     <div className='px-4 py-6 md:p-8 lg:p-10'>
-      <span className='text-lg md:text-lg lg:text-xl xl:text-2xl font-medium'>Pending Works {'->'} </span>
+      <span className='text-lg md:text-lg lg:text-xl xl:text-2xl font-medium'>Latest Updates {'->'} </span>
     </div>
     <div className='px-6 md:mx-12 lg:grid lg:grid-cols-2 md:px-8 xl:px-12'>
-    
-      <PendingList />
-      <PendingList />
-      <PendingList />
-      <PendingList />
-      <PendingList />
+    {
+      classrooms.map((classroom)=>{
+        return ( <PendingList  classroom={classroom} />)
+      })
+    }
+     
     </div>
     </>
   );

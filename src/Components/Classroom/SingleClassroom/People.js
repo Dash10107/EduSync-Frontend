@@ -12,13 +12,15 @@ import ListSubheader from '@mui/material/ListSubheader';
 const People = ({clasroom,teacherName,studentNames}) => {
   return (
     <>
-    <Box className='my-6'>
+    <Box className='my-6 ' >
     {/* Teacher  */}
-    <ListSubheader sx={{ fontWeight: 'bold', fontSize: '1.3rem' }}>Teachers</ListSubheader>
+    <ListSubheader className='mb-5' sx={{ fontWeight: 'bold', fontSize: '1.3rem'}}>Teachers
     <Divider />
+    </ListSubheader>
+
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    <List sx={{ bgcolor: 'background.paper' }} className="w-[90%] mb-20 mt-4">
-    <ListItem disablePadding>
+    <List sx={{ bgcolor: 'background.paper' }} className="w-[90%] h-[7%]  mt-4 ">
+    <ListItem disablePadding className='mb-3'>
             <ListItemButton>
               <ListItemAvatar>
                 <Avatar />
@@ -30,8 +32,8 @@ const People = ({clasroom,teacherName,studentNames}) => {
     </Box>
 
     {/* Student Section */}
-    <ListSubheader sx={{ fontWeight: 'bold', fontSize: '1.3rem' }}>Students</ListSubheader>
-      <Divider />
+    <ListSubheader className='my-7 mb-5' sx={{ fontWeight: 'bold', fontSize: '1.3rem' }}>Students  <Divider /></ListSubheader>
+     
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <List sx={{ bgcolor: 'background.paper' }} className="w-[90%] mt-4">
         {studentNames.map((name)=>{

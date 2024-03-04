@@ -58,8 +58,12 @@ const SignupComp = (props) => {
         "https://edusync-backend.onrender.com/users/register",
         formData
       );
-      const result = await response.json();
-      console.warn("Result", result);
+  
+
+
+  // Access the response data directly
+  const result = response.data;
+  console.warn("Result", result);   
   
       if (response.status === 201) {
         // If the registration is successful, you can handle the response here
@@ -80,7 +84,7 @@ const SignupComp = (props) => {
     } catch (error) {
       // If there's an error, handle it here
       console.error("Registration error", error);
-      setErrors(error?.response?.data);
+      setErrors({error:error.message});
       setToastOpen(true);
 
     }

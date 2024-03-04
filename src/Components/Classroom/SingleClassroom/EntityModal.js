@@ -7,6 +7,7 @@ import axios from 'axios';
 function EntityModal(props) {
     const {modalOpen,setModalOpen,test} = props;
     const [studentNames,setStudentNames] = useState([]);
+    const [waiting ,setWaiting] = useState(false);
 
   const studentIds = test?.testScores?.map(score => score.studentId);
   console.log(studentIds);
@@ -17,7 +18,8 @@ function EntityModal(props) {
 
 
     const fetchStudentDetail = async (userIds) => {
-       
+
+       setWaiting(true);
       try {
   
         await axios.post(`https://edusync-backend.onrender.com/users/user-details`,{
@@ -31,6 +33,7 @@ function EntityModal(props) {
   
           if (response.status === 200) {
             setStudentNames(response.data.users)
+            setWaiting(false);
               
           } else {
             console.log("Status Code", response.status);
@@ -40,7 +43,7 @@ function EntityModal(props) {
         console.log("error", error);
       }
     }
-    useEffect(()=>{fetchStudentDetail(studentIds)},[studentIds])
+    useEffect(()=>{  fetchStudentDetail(studentIds)},[])
   return (
 
     <Modal    centered
@@ -59,11 +62,11 @@ function EntityModal(props) {
   <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
-          <TableCell>MarksId</TableCell>
-            <TableCell>StudentID</TableCell>
-            <TableCell >Student Name</TableCell>
-            <TableCell >Marks</TableCell>
+          <TableRow className="bg-blue-400 text-white">
+          <TableCell   className=' border-r'><span className='text-white text-lg bold'>MarksId </span></TableCell>
+            <TableCell className=' border-r'><span className='text-white text-lg bold'>StudentID</span></TableCell>
+            <TableCell className=' border-r'><span className='text-white text-lg bold'>Student Name</span></TableCell>
+            <TableCell className=' border-r'><span className='text-white text-lg bold'>Marks</span></TableCell>
             
           </TableRow>
         </TableHead>
@@ -71,14 +74,14 @@ function EntityModal(props) {
           {test?.testScores?.map((row,index) => (
             <TableRow
               key={row._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              // sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell  className='text-white border-r' component="th" scope="row">
                 {row._id}
               </TableCell>
-              <TableCell >{row.studentId}</TableCell>
-              <TableCell >{studentNames[index].name}</TableCell>
-              <TableCell >{row.marks}</TableCell>
+              <TableCell className='text-white border-r'>{row.studentId}</TableCell>
+              <TableCell className='text-white border-r'>{ !waiting  &&  studentNames[index]?.name}</TableCell>
+              <TableCell className='text-white border-r'>{row.marks}</TableCell>
             
             </TableRow>
           ))}

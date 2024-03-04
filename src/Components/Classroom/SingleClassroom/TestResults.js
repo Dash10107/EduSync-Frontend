@@ -10,6 +10,7 @@ import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
 import ListSubheader from '@mui/material/ListSubheader';
 import EntityModal from './EntityModal';
+import { ListItemButton } from '@mui/material';
 
 const TestResults = ({results}) => {
   const [modalOpen,setModalOpen] = React.useState(false);
@@ -23,12 +24,14 @@ const TestResults = ({results}) => {
           {results?.map((test)=>{
         return (<>
           <ListItem sx={{alignItems: 'center' }} onClick={()=>{setCurrentTest(test);setModalOpen(true)}}>
+          <ListItemButton>
             <ListItemAvatar>
               <Avatar>
                 <ImageIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary={test?.testName}  />
+            </ListItemButton>
           </ListItem>
           <Divider className=''/>
         </>)

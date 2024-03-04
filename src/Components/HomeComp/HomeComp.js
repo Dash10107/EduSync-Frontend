@@ -10,7 +10,9 @@ import Footer from "../../Layouts/Footer/Footer";
 const HomeComp = (props) => {
 
   const [modules,setModules] = useState([]);
-  const [allLoading,setAllLoading] = useState(true);
+  const [allLoading,setAllLoading] = useState(false);
+  const [classrooms, setClassrooms] = useState([]);
+  const [loading,setLoading] = useState(false);
   const [chatLoading,setChatLoading] = useState(false);
 const [chatArray,setChatArray] = useState([
   { type: 'result', content: 'Hello,How can I Help You ?' },
@@ -82,13 +84,53 @@ try {
     setAllLoading(false);
   }
   }
-  useEffect(()=>{fetchModules();},[])
+
+  const fetchClassrooms = async () => {
+    setLoading(true);
+    try {
+
+      await axios.get('https://edusync-backend.onrender.com/subadmin/classrooms/student', {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        }
+      }).then(response => {
+        console.log("Response", response);
+
+        if (response.status === 200) {
+          const classroomsArray = response?.data?.classrooms;
+          let lastThreeClassrooms = [];
+          if (classroomsArray && classroomsArray.length >= 3) {
+            // Shuffle the array randomly
+            const shuffledClassrooms = classroomsArray.sort(() => Math.random() - 0.5);
+          
+            // Get the last three classrooms
+             lastThreeClassrooms = shuffledClassrooms.slice(-3);
+          
+            console.log("Randomly selected last three classrooms:", lastThreeClassrooms);
+          } else {
+            console.log("Not enough classrooms to select from.");
+            lastThreeClassrooms = classroomsArray
+          }
+          setClassrooms(lastThreeClassrooms);
+          
+        } else {
+          console.log("Status Code", response.status);
+        }
+      });
+    } catch (error) {
+      console.log("error", error);
+    }finally{
+      setLoading(false);
+    }
+  }
+  
+  useEffect(()=>{fetchModules();fetchClassrooms()},[])
   return (
     <div>
     <Navbar/>
     <div className='xl:flex'>
       <div className='xl:w-[70%] w-[100%]'>
-        <Left modules={modules} allLoading={allLoading} />
+        <Left modules={modules} allLoading={allLoading} loading={loading} classrooms={classrooms} />
       </div>
       <div className='w-[30%] hidden xl:block border-l-2 h-screen'>
         <Chat   chatArray={chatArray} setChatArray={setChatArray} chatLoading={chatLoading} submitChat={submitChat} />

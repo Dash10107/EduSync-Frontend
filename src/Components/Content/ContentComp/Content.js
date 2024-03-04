@@ -113,30 +113,13 @@ fetchProgress();
             {modules
               .filter((module) => progressIds.includes(module.id)) // Filter modules based on progressIds
               .map((module, _i) => {
-                const borderLeftColor =
-                  _i % 3 === 1
-                    ? "#7A00F3"
-                    : _i % 3 === 2
-                    ? "#EB8338"
-                    : "#569bf7";
 
-                const lighterShadowColor = `rgba(${parseInt(
-                  borderLeftColor.slice(1, 3),
-                  16
-                )}, ${parseInt(borderLeftColor.slice(3, 5), 16)}, ${parseInt(
-                  borderLeftColor.slice(5, 7),
-                  16
-                )}, 0.5)`;
 
                 return (
                   <Grid item xs={12} sm={6} md={4} key={module.id}>
                   <SingleCard
                     module={module}
-                    style={{
-                      borderLeft: `10px solid ${borderLeftColor}`,
-                      boxShadow: `0 5px 10px ${lighterShadowColor}`,
-                    }}
-                    tiltedColor={{backgroundColor:`${borderLeftColor}`}}
+
                     key={module.id}
                   />
                   </Grid>
@@ -181,54 +164,24 @@ fetchProgress();
     >
       {searchInput !== "" ? (
         searchModules.map((module, _i) => {
-          const borderLeftColor =
-            _i % 3 === 1 ? "#7A00F3" : _i % 3 === 2 ? "#EB8338" : "#569bf7";
 
-          // Calculate a lighter shadow color
-          const lighterShadowColor = `rgba(${parseInt(
-            borderLeftColor.slice(1, 3),
-            16
-          )}, ${parseInt(borderLeftColor.slice(3, 5), 16)}, ${parseInt(
-            borderLeftColor.slice(5, 7),
-            16
-          )}, 0.5)`;
 
           return (
             <Grid item xs={6}  key={module.id}>
               <SingleCard
                 module={module}
-                style={{
-                  borderLeft: `10px solid ${borderLeftColor}`,
-                  boxShadow: `0 5px 10px ${lighterShadowColor}`,
-                }}
-                tiltedColor={{backgroundColor:`${borderLeftColor}`}}
+
               />
             </Grid>
           );
         })
       ) : (
         modules.map((module, _i) => {
-          const borderLeftColor =
-            _i % 3 === 1 ? "#7A00F3" : _i % 3 === 2 ? "#EB8338" : "#569bf7";
-
-          // Calculate a lighter shadow color
-          const lighterShadowColor = `rgba(${parseInt(
-            borderLeftColor.slice(1, 3),
-            16
-          )}, ${parseInt(borderLeftColor.slice(3, 5), 16)}, ${parseInt(
-            borderLeftColor.slice(5, 7),
-            16
-          )}, 0.5)`;
 
           return (
             <Grid item xs={12} sm={6} md={4} key={module.id}>
               <SingleCard
                 module={module}
-                style={{
-                  borderLeft: `10px solid ${borderLeftColor}`,
-                  boxShadow: `0 5px 10px ${lighterShadowColor}`,
-                }}
-                tiltedColor={{backgroundColor:`${borderLeftColor}`}}
               />
             </Grid>
           );
