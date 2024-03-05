@@ -72,10 +72,11 @@ const AddPostModalComp = ({modalOpen,setModalOpen,handleSubmit}) => {
           </button>,
         ]}
       >
-          <div className="box">
+          <div className="box" style={{    display: "flex",flexDirection: "column"}}>
 
      <Input className='modal-inputNew'  type="text"
      disableUnderline={true}
+     style={{margin:0,marginTop:"2vh"}}
       value={newname}
       placeholder='Title'
      onChange={(e)=>{setNewName(e.target.value);console.log(newname);}}
@@ -83,6 +84,7 @@ const AddPostModalComp = ({modalOpen,setModalOpen,handleSubmit}) => {
          <Input className='modal-inputNew'  type="text"
      disableUnderline={true}
       value={content}
+      style={{margin:0,marginTop:"2vh",marginBottom:"3vh"}}
       placeholder='Content'
      onChange={(e)=>{setContent(e.target.value);console.log(content);}}
          ></Input>
@@ -92,6 +94,7 @@ const AddPostModalComp = ({modalOpen,setModalOpen,handleSubmit}) => {
       placeholder="Select Any File (PDF/Image)"
       accept=".pdf, image/*"
       onChange={handleChange}
+      style={{margin:0,marginTop:"2vh",marginBottom:"3vh"}}
       required
 
     />

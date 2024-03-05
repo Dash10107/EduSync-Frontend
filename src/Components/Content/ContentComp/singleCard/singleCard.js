@@ -14,9 +14,7 @@ const SingleCard = (props) => {
         'https://www.zilliondesigns.com/blog/wp-content/uploads/purple-and-yellow-logos.png',
 
     'https://img.freepik.com/free-vector/abstract-design-background_23-2148476930.jpg?w=1380&t=st=1709569826~exp=1709570426~hmac=3e754682a635b29903f5164f5fc0192b9a95d068b37acae0078b4d44bb529e00',
-    
-    'https://img.freepik.com/free-vector/abstract-halftone-background_23-2148584597.jpg?w=1380&t=st=1709569891~exp=1709570491~hmac=18a70dc05c3896ca34ef83bdb82f221a01556d8e7824f271cc457004e8977612',
-    
+        
     'https://img.freepik.com/free-vector/gradient-geometric-wallpaper_23-2148818785.jpg?w=1380&t=st=1709569933~exp=1709570533~hmac=851b359dcaf183e18173aa9f395e9ea91873d421be28edd6356c1503fc59993d',
     
     'https://i.pinimg.com/originals/84/52/da/8452da14928e52125115013069257045.jpg',

@@ -58,7 +58,8 @@ const LandingComp = () => {
        
       </div>
       <div className="flex-1 flex flex-col overflow-y-hidden mt-14 ">
-        <div className='py-8 lg:px-12 px-4 xl:px-20 md:px-8 h-[90vh] ' style={{overflowY: 'scroll', '-ms-overflow-style': 'none', 'scrollbar-width': 'none' }}>
+        <div className='py-8 lg:px-12 px-4 xl:px-20 md:px-8 h-[90vh] scrollbar-remove' 
+>
           <div className='flex justify-between items-center lg:px-10 px-4 lg:text-3xl text-2xl py-4 font-semibold bg-gradient-to-r rounded-lg my-2'>
             <div className=''>Notices</div>
             <div className="relative w-[60%] max-w-xl ">
