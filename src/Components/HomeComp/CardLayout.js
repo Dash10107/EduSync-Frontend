@@ -16,6 +16,7 @@ function CardLayout({module}) {
 
   // Randomly pick an image URL
   const randomBackgroundImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+  const firstSentence = module?.description?.substring(0, module?.description.indexOf('.') + 1) || module?.description;
   return (
     <Card sx={{ maxWidth: 345 }} className='m-8'
             onClick={()=>{
@@ -35,7 +36,7 @@ function CardLayout({module}) {
             {module.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          {module.description}
+          {firstSentence}
           </Typography>
         </CardContent>
       </CardActionArea>

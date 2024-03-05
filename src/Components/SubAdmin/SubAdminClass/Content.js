@@ -40,7 +40,9 @@ const Content = ({clasroom,fetchClassroom}) => {
 
       const result =   await response.json();
       if(result.success===true){
-         alert('Successfully Posted');
+        fetchClassroom(); 
+        alert('Successfully Posted');
+         
       }else{
         alert(result.message)
       }

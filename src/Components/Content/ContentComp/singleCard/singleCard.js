@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react"
 import  "./singleCard.css"
 import { useNavigate } from "react-router-dom";
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
 
 const SingleCard = (props) => {
     const {module,style,tiltedColor} = props;
@@ -31,20 +33,39 @@ const SingleCard = (props) => {
     
   const navigate = useNavigate();
     
+  const handleButtonClick = () => {
+    localStorage.setItem("moduleId", module.id);
+    localStorage.setItem("SubjectName", module.name);
+    navigate("/chapters");
+  };
+  
+  const firstSentence = module?.description?.substring(0, module?.description.indexOf('.') + 1) || module?.description;
   return (
-   <div>
-        <div style={{ backgroundImage: `url('${randomBackgroundImage}')` }} key={module.id} className="single-card" 
-        onClick={()=>{
+    <Card sx={{ maxWidth: 505 }} className='m-8'
+            onClick={()=>{
         localStorage.setItem("moduleId",module.id);
         localStorage.setItem("SubjectName",module.name);
         navigate("/chapters")
         }}>
-        <div className="tilted-div" style={tiltedColor} ></div>
-          <h3 className="single-card-title">{module.name}</h3>
-        </div>
-    </div>
-   
-  )
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="40"
+          image={randomBackgroundImage}
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {module.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+          {firstSentence}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  );
+
 };
 
 export default SingleCard;

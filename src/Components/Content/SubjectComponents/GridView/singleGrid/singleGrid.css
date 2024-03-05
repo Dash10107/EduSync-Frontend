@@ -1,8 +1,9 @@
 /* singleGrid.css */
 .single-grid {
-  background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
-    width: 90%; /* Set the width to 100% for responsiveness */
-    min-height: 150px; /* Set a minimum height for the box */
+
+
+    width: 60%; /* Set the width to 100% for responsiveness */
+    
     border-radius: 10px;
     padding: 20px; /* Increase padding for better text visibility */
     display: flex;
@@ -11,7 +12,7 @@
     text-align: center;
     font-family: "Poppins", sans-serif;
     font-size: 16px;
-    color: #FFFFFF;
+    background-color: white !important;
     margin: 10px; /* Reduce margin for spacing between grid items */
     margin-left: 5%;
     cursor: pointer;
@@ -21,6 +22,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word; /* Allow long words to break onto a new line */
+    margin-bottom: 4vh;
   }
   
   .single-grid:hover {
@@ -28,11 +30,11 @@
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
   }
   
-  .left-side-grid{
+  /* .left-side-grid{
     width: 5vw;
     height: 100px;
     padding-right: 6vw;
-    border-right: 2px solid white;
+    border-right: 2px solid black;
     display: flex;
    text-align: left;
     align-items: center;
@@ -48,15 +50,15 @@
     justify-content: right;
     text-align: right;
 
-  }
+  } */
 
   @media (max-width: 600px) {
-    .left-side-grid{
+    /* .left-side-grid{
       width: 18vw;
       padding-right: 7vw;
     }
     .single-grid{
       font-size: 13px;
-    }
+    } */
 
   }

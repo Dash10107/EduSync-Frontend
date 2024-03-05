@@ -8,7 +8,7 @@ const SingleGrid = (props) => {
 
   return (
     <div
-      className="single-grid" // Add the class here
+      className="single-grid w-[60%] "// Add the class here
       onClick={() => {
         localStorage.setItem("subChapterId", subtopic.id);
         localStorage.setItem("SubChapter", subtopic.name);
@@ -16,9 +16,9 @@ const SingleGrid = (props) => {
       }}
     >
     <div className="left-side-grid">
-        <p>{subtopic.id}</p>
+        {/* <p>{subtopic.id}</p> */}
         </div>
-        <div className="right-side-grid">
+        <div className="right-side-grid  text-lg">
       <p key={subtopic.id}>{subtopic.name}</p>
       </div>
     </div>

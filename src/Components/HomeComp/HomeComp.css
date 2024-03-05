@@ -18,3 +18,8 @@
   opacity: 0;
   transform: translateY(20px);
 }
+
+.sticky-chat {
+  position: sticky;
+  top: 0;
+}

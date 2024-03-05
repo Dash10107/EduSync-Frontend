@@ -16,10 +16,31 @@ function Chat(props) {
     }
   }, [chatArray]);
 
+  const [isAtTop, setIsAtTop] = useState(true);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      // You can adjust this threshold as needed
+      const threshold = 10 * window.innerHeight / 100;
+      
+      if (scrollTop < threshold) {
+        setIsAtTop(true);
+      } else {
+        setIsAtTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    // Cleanup function to remove the event listener when component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); 
 
   return (
-    <div className='fixed top-[10vh] bottom-0 w-[30%] flex flex-col bg-gray-100 shadow-xl p-8 rounded-lg border-l-2'>
+    <div className={`fixed ${isAtTop ? 'top-[10vh]' : 'top-0'} bottom-0 w-[30%] flex flex-col bg-gray-100 shadow-xl p-8 rounded-lg border-l-2`}>
       <div className='p-4 bg-[#DCDEFC] text-black rounded-lg flex items-center justify-start'>
         <img src={chatbotIcon} alt='Chatbot Icon' className='w-8 h-8 mr-2 rounded-full' /> Chat with <span className='font-bold text-xl px-2'>CHATBOT</span>
       </div>

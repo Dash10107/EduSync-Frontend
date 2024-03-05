@@ -2,10 +2,11 @@
     display: flex;
     justify-content: space-between;
     padding-right: 5vw;
-    margin-bottom: 5vh;
+   
     cursor: pointer;
     padding-left: 5vw;
     margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
  .goBack{

@@ -9,18 +9,14 @@ const GridView = (props) => {
 
 
   return (
-    <div className="mainGrid">
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-  {subchapters.map((subtopic, index) => (
-    <Grid xs={6} sm={4} md={6} key={index}> 
-    
-    <SingleGrid subtopic={subtopic} />
-    </Grid>
-  ))}
-</Grid>
-</Box>
+    <div className=" main-grid">
+      {subchapters.map((subtopic, index) => (
+      
+          <SingleGrid subtopic={subtopic} />
+     
+      ))}
     </div>
+
   )
 };
 

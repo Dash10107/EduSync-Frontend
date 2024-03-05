@@ -1,5 +1,11 @@
-.mainGrid{
+.main-grid{
     width: 100vw;
-    margin-top: 10vh;
-    margin-bottom: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    
+    padding-top: 2vh;
+    padding-bottom: 2vh;
 }
