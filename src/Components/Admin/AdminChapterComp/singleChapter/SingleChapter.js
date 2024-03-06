@@ -15,13 +15,13 @@ const SingleChapter = (props) => {
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
   const content = (
-    <div className="popover-content">
+    <div className="popover-content-admin">
       {item.content}
     </div>
   );
   
   const title = (
-    <div className="popover-title">
+    <div className="popover-title-admin">
       {item.title}
     </div>
   );
@@ -114,7 +114,7 @@ await axios.delete(`https://edusync-backend.onrender.com/admin/deleteChapter/${m
     ];
   return (
   
-    <div className={`main-chapter-div`}  >
+    <div className={`main-chapter-div-admin`}  >
       <Popover content={content} title={title}>
       <motion.div 
       
@@ -122,7 +122,7 @@ await axios.delete(`https://edusync-backend.onrender.com/admin/deleteChapter/${m
         animate={{   x:  hovered ? position==="left"? 500: position==="right" && -500 : 0 }}   // Target position (on-screen)
         transition={{ duration: 1 }}
       
-      className={`outside-div  ${position} `} 
+      className={`outside-admin-div  ${position} `} 
       onClick={() => {
         localStorage.setItem("adminChapterId", item.id);
         localStorage.setItem("adminChapterName", item.title);
@@ -134,7 +134,7 @@ await axios.delete(`https://edusync-backend.onrender.com/admin/deleteChapter/${m
             
           
         {/* <div className="background-wheel" ref={wheelRef}> <img src={gear} alt=""/></div> */}
-        <div className={`circle-div `} >
+        <div className={`circle-div-admin `} >
         <MoreVertSharpIcon />
           <div className="item-text-container">
 
@@ -153,7 +153,7 @@ await axios.delete(`https://edusync-backend.onrender.com/admin/deleteChapter/${m
             onChange={(e) => { setNewModuleName(e.target.value)}}
             onClick={(e)=>{e.stopPropagation();}}
           />:
-                <p className="item-text">{item.id}</p>)}
+                <p className="item-text-admin">{item.id}</p>)}
               />
             ) : (
               <Progress
@@ -173,7 +173,7 @@ await axios.delete(`https://edusync-backend.onrender.com/admin/deleteChapter/${m
                    <button className="save-button" onClick={handleSaveClick}>
            &nbsp;&nbsp; <TrendingFlatSharpIcon/>
           </button></div>:
-                <p className="item-text">{item.id}</p>)}              />
+                <p className="item-text-admin">{item.id}</p>)}              />
             )}
 
           </div>
@@ -183,8 +183,8 @@ await axios.delete(`https://edusync-backend.onrender.com/admin/deleteChapter/${m
       </motion.div>
       
       {hovered && (
-            <div className={`slide-text-${slideDirection}`}>
-              <p className="item-title">{item.title}</p>
+            <div className={`slide-text-${slideDirection}-admin`}>
+              <p className="item-title-admin">{item.title}</p>
             </div>
           )}
           </Popover>

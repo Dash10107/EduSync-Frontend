@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
 
-
+import FeedbackIcon from '@mui/icons-material/Feedback';
 const PendingList = ({feedback,fetchFeedbacks}) => {
     const feedbackId = feedback?._id;
     const deleteFeedback = async()=>{
@@ -43,7 +43,7 @@ const PendingList = ({feedback,fetchFeedbacks}) => {
         <List sx={{ width: '100%', maxWidth: 550}} className=''>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+             <FeedbackIcon/>
                 </ListItemAvatar>
                 <ListItemText
                 // primary="Brunch this weekend?"

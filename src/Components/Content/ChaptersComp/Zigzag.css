@@ -19,6 +19,8 @@
 
 .single-chapter{
     position: relative;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
 }
 
 .centerImg{

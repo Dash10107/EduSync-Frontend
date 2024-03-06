@@ -8,8 +8,9 @@ import Loader from "../Loader/Loader";
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 import SchoolIcon from '@mui/icons-material/School';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import LogoutIcon from '@mui/icons-material/Logout';
 const Sidebar = (props) => {
-  const {onClose}=props;
+  const {onClose,isProfile}=props;
     const navigate=useNavigate();
     const currentPath = window.location.pathname;
     const isClassroom = currentPath.startsWith("/classrooms");
@@ -73,9 +74,26 @@ const Sidebar = (props) => {
     
   }, []);
 
+  const handleLogout = (e)=>{
+    e.preventDefault();
+    localStorage.setItem("token","")
+    localStorage.setItem("allowRedirect",false);
+    navigate("/login");
+    
+  }
   return (
     <div className="sidebar">
-    <button className="home-button" onClick={()=>{navigate("/home")}}> <HomeRoundedIcon/> <p>Home</p> </button>
+{isProfile ? <div>
+  <button className="home-button" onClick={()=>{navigate("/profile")}}> <HomeRoundedIcon/> <p>User Details </p> </button>
+    
+    <button className="home-button" onClick={()=>{navigate("/content/profile")}}> <FolderCopyIcon/> <p>Content Progress </p> </button>
+    
+    <button className="home-button" onClick={()=>{navigate("/classroom/profile")}}> <SchoolIcon/> <p>Classrooms Performance</p> </button>
+    
+    <button className="home-button" onClick={()=>{navigate("/feedback")}}> <DynamicFeedIcon/> <p>Feedback</p> </button>
+    <button className="home-button" onClick={handleLogout}> <LogoutIcon/> <p>Logout</p> </button>
+
+</div> :    ( <div><button className="home-button" onClick={()=>{navigate("/home")}}> <HomeRoundedIcon/> <p>Home</p> </button>
     
     <button className="home-button" onClick={()=>{navigate("/content")}}> <FolderCopyIcon/> <p>Content</p> </button>
     
@@ -97,7 +115,7 @@ const Sidebar = (props) => {
           
         ))
         )}
-      </ul>
+      </ul></div>)}
     </div>
   );
 }

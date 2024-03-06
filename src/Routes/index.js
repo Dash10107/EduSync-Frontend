@@ -24,6 +24,9 @@ import SubAdminClassroom from "../Pages/SubAdmin/SubAdminClassroom";
 import SubAdminTest from "../Pages/SubAdmin/SubAdminTest";
 import AdminNoticeboard from "../Pages/Admin/AdminNoticeboard";
 import AdminRegister from "../Pages/Admin/AdminRegister";
+import ContentProfile from "../Pages/User/ContentProfile";
+import ClassroomProgress from "../Pages/User/ClassroomProgress";
+import Feedback from "../Pages/User/Feedback";
 
 ;
 
@@ -96,6 +99,19 @@ export const router = createBrowserRouter([
     path: "/profile/modules",
     element: <ModulesProgress /> ,
   },
+  {
+    path: "/content/profile",
+    element: <ContentProfile /> ,
+  },
+  {
+    path: "/classroom/profile",
+    element: <ClassroomProgress /> ,
+  },
+  {
+    path: "/feedback",
+    element: <Feedback /> ,
+  },
+
   {
     path:"/admin/home",
     element:<AdminHome/>

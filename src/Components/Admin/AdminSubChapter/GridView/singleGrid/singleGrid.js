@@ -116,7 +116,7 @@ const SingleGrid = (props) => {
 
   return (
     <div
-      className="single-grid" // Add the class here
+      className="single-grid-admin" // Add the class here
       onClick={() => {
         localStorage.setItem("adminSubChapterId", subtopic.id);
         localStorage.setItem("adminSubChapter", subtopic.name);
@@ -128,10 +128,10 @@ const SingleGrid = (props) => {
             <MoreVertSharpIcon />
           </Dropdown>
         </div>
-    <div className="left-side-grid">
+    <div className="left-side-grid-admin">
         <p>{subtopic.id}</p>
         </div>
-        <div className="right-side-grid">
+        <div className="right-side-grid-admin">
         {isEditing ? (
           <input
             type="text"
@@ -145,7 +145,7 @@ const SingleGrid = (props) => {
       <p key={subtopic.id}>{subtopic.name}</p>
         )}
         {isEditing && (
-          <button className="save-button" onClick={handleSaveClick}>
+          <button className="save-button-admin" onClick={handleSaveClick}>
            &nbsp;&nbsp; <TrendingFlatSharpIcon/>
           </button>
         )}

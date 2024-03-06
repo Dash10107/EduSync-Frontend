@@ -10,7 +10,7 @@ import Sidebar from "../SideBar/Sidebar";
 
 const Navbar = (props) => {
 
-  const {isLogin,isAdmin,isSubAdmin} = props;
+  const {isLogin,isAdmin,isSubAdmin,isProfile} = props;
 
   const navigate = useNavigate();
   const currentPath = window.location.pathname;
@@ -186,7 +186,7 @@ const Navbar = (props) => {
         onClose={onClose}
         open={open}
       >
-<Sidebar onClose={onClose} open={open} />
+<Sidebar onClose={onClose} isProfile={isProfile} open={open} />
       </Drawer>
     </div>
   )

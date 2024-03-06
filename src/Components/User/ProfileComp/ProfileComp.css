@@ -46,7 +46,7 @@
 .progress-card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 16px;
   background-color: #2b4162;
   background-image: linear-gradient(315deg, #12100e 0%,#2b4162  74%);
@@ -54,7 +54,7 @@
   border-radius: 8px; /* Adjust border radius as needed */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for the card */
   margin-top: 4vh;
-  width: 80%;
+  width: 60%;
   margin-left: 10%;
   padding-right: 5%;
   transition: transform 0.2s, box-shadow 0.2s; 
@@ -126,62 +126,3 @@
   }
 }
 
-.feedback-form {
-  width: 90%;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.input-group {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 16px;
-}
-
-.label {
-  margin-bottom: 8px;
-}
-
-.select,
-.textarea {
-  width: 80%;
-  padding: 8px;
-  box-sizing: border-box;
-  margin-bottom: 8px;
-}
-
-.feedback-textarea {
-  box-sizing: border-box;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-.feedback-textarea:focus {
-  transform: translateY(-4px);
-}
-
-.submit-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.submit-button:hover {
-  background-color: #45a049;
-}
-
-.submit_Div{
-  display: flex;
-  justify-content: center;
-  padding-top: 5%;
-}

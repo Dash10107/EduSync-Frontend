@@ -57,8 +57,8 @@ const AdminRegisterComp = (props) => {
         "https://edusync-backend.onrender.com/users/register",
         formData
       );
-      const result = await response.json();
-      console.warn("Result", result);
+      const result = response.data;
+      console.warn("Result", result); 
   
       if (response.status === 201) {
         // If the registration is successful, you can handle the response here
@@ -79,7 +79,7 @@ const AdminRegisterComp = (props) => {
     } catch (error) {
       // If there's an error, handle it here
       console.error("Registration error", error);
-      setErrors(error?.response?.data);
+      setErrors({error:error.message});
       setToastOpen(true);
 
     }
@@ -101,7 +101,7 @@ const AdminRegisterComp = (props) => {
 
   return (
     <div className="login-main-div overflow-hidden">
-      <Navbar isLogin={true} />
+      <Navbar isAdmin={true} />
 
       {/* daksh ye div mene add kiya hai image and login ko ek container mein daalne k liye  */}
       <div className="flex md:space-x-10 lg:space-x-10 h-full justify-center">
@@ -125,7 +125,7 @@ const AdminRegisterComp = (props) => {
 
 <div className="input-group text-2xl font-bold">
             {/* yape font awesome ka icon add krna hai */}
-              Register New Admin
+              Register New   Teacher
             </div>
 
             <div className="input-group">

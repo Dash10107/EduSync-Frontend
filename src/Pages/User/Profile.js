@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 //import ProfileComp from '../../Components/ProfileComp/ProfileComp'
 import { useNavigate } from 'react-router-dom';
-import ProfileComp from '../../Components/User/ProfileComp/ProfileComp';
+// import ProfileComp from '../../Components/User/ProfileComp/ProfileComp';
+import ProfileMain from '../../Components/User/ProfileMain/ProfileMain';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Profile = () => {
 },[])
   return (
     <div>
-      <ProfileComp/>
+      <ProfileMain/>
     </div>
   )
 }
