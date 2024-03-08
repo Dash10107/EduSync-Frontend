@@ -1,0 +1,116 @@
+/* QuestionComp.css */
+.questions-div {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .questions-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    
+    background-color: #f0f0f0;
+    font-family: "Poppins",sans-serif;
+
+  }
+  
+ 
+  .single-question-main {
+    flex-grow: 1; /* This makes the div take up the remaining vertical space */
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    gap: 20px; /* Add spacing between elements */
+  }
+  
+  
+
+.progress-section{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 1vh;
+}
+.progress-content{
+
+    width: 90%;
+    
+}
+
+.next-button {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  white-space: nowrap;
+  background-color: #010157;
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 5px; /* Reduce border radius to match the vertical-option button */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  padding: 0.5% 20%;
+}
+
+.next-button:hover {
+  background-color: #010157;
+  /* border-color: #0056b3; */
+  transform: scale(1.1);
+}
+
+
+
+
+/* Add styles for the completion message */
+.completion-message {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+  /* background-color: #f0f0f0; */
+  font-size: 1.8rem;
+  align-self: center;
+  padding: 20px;
+ height: 35vh;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+
+
+
+
+/* Style for different completion messages based on the score */
+/* You can use class names like .perfect, .good, .try-again */
+.perfect {
+  color: #4caf50; /* Green for perfect score */
+}
+
+.good {
+  color: #007bff; /* Blue for good score */
+}
+
+.try-again {
+  color: #ff5722; /* Red for try again message */
+}
+
+/* Example CSS for celebration animation */
+.celebration-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -9999; /* Ensure it's above other content */
+}
+
+
+/* Media query for larger screens (e.g., tablets and desktops) */
+@media screen and (min-width: 768px) {
+    .questions-heading{
+        font-size: 3.5vh;
+        
+    }
+}
+

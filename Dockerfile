@@ -1,19 +1,26 @@
+# Builder stage
 FROM node:alpine AS builder
 
- WORKDIR /app
+WORKDIR /app
 
-  COPY package*.json  ./ 
-  RUN npm install
-  COPY . .
+COPY package*.json ./
+RUN npm install
+COPY . .
 
-# Building our application
+# Build the application
 RUN npm run build
 
-# Fetching the latest nginx image
-FROM nginx
+# Final stage
+FROM nginx:alpine
 
-# Copying built assets from builder
+# Copy built assets from the builder stage to Nginx
 COPY --from=builder /app/build /usr/share/nginx/html
 
-# Copying our nginx.conf
+# Copy Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,128 @@
+/* ProfileComp.css */
+.profile-details-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically for smaller screens */
+  align-items: center; /* Center items horizontally */
+  text-align: center; /* Center text within the container */
+  width: 100%;
+  
+}
+
+.profile-image {
+  /* Add any additional styling for the image section here */
+}
+
+.profile-image img {
+  max-width: 100%; /* Adjust image size to fit the section */
+}
+
+.profile-text {
+  /* Add any additional styling for the text section here */
+  font-size: 18px; /* Adjust font size as needed */
+}
+
+.joining-container {
+  display: flex;
+  align-items: center;
+  margin-top: 2vh;
+}
+
+.joining-image {
+  flex: 0 0 auto; /* Do not grow, do not shrink, keep original size */
+  margin-right: 20px; /* Add spacing between image and text */
+}
+
+.joining-image img {
+  max-width: 100%; /* Adjust image size as needed */
+}
+
+.joining-text {
+  flex: 1; /* Grow to fill remaining space */
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  overflow: hidden; /* Hide overflow text if it doesn't fit */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+}
+
+.progress-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: #2b4162;
+  background-image: linear-gradient(315deg, #12100e 0%,#2b4162  74%);
+  color: white;
+  border-radius: 8px; /* Adjust border radius as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for the card */
+  margin-top: 4vh;
+  width: 60%;
+  margin-left: 10%;
+  padding-right: 5%;
+  transition: transform 0.2s, box-shadow 0.2s; 
+}
+.progress-card:hover {
+  transform: scale(1.05); /* Scale the card up slightly on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Add a shadow on hover for depth effect */
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  border-right: 3px solid white; 
+  padding-right: 10%;
+}
+
+.text-container {
+  text-align: right;
+  font-family: "Poppins",sans-serif;
+  font-size: 2.2rem;
+  margin-left: 16px; /* Adjust the margin between progress and text */
+}
+
+
+.modules-progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 5vh;
+  color:black !important;
+}
+
+.top-part {
+  margin: 20px 0;
+  background-color: black;
+}
+
+.bottom-part {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left-side,
+.right-side {
+  flex: 1;
+  text-align: center;
+}
+
+.left-side {
+  border-right: 2px solid white; /* Add a border between left and right sides */
+  padding-right: 10px; /* Add some padding to separate the text from the border */
+}
+
+.main-profile-container{
+  margin-bottom: 10vh;
+}
+
+@media (max-width: 600px) {
+  .progress-card{
+
+  }
+  .progress-container{
+
+  }
+  .text-container{
+    font-size: 1rem;
+  }
+}
+
