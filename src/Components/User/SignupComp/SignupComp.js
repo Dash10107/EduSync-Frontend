@@ -7,6 +7,40 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Alert, Snackbar } from "@mui/material";
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+// TODO remove, this demo shouldn't need to reset the theme.
+
+const defaultTheme = createTheme();
+
 const SignupComp = (props) => {
   // Create state variables to store user input
   const [formData, setFormData] = useState({
@@ -105,120 +139,137 @@ const SignupComp = (props) => {
 
 
   return (
-    <div className="login-main-div overflow-hidden">
-      <Navbar isLogin={true} />
-
-      {/* daksh ye div mene add kiya hai image and login ko ek container mein daalne k liye  */}
-      <div className="flex md:space-x-10 lg:space-x-10 h-full justify-center">
-
-        {/* ye img hai login card k baju wala */}
-        <div>
-          <img src="https://www.alphalearn.com/wp-content/uploads/2021/11/e-learning-2.jpg" alt="help" className="h-[31rem] hidden rounded md:block
-          // responsive design css
-          md:w-[25rem] lg:w-[43rem] mt-10 2xl:w-[50rem] 2xl:h-[37rem]" />
-        </div>
-
-
-        {/* This is login card */}
-        <div className="md:mt-[2.5rem] mb-[200px] rounded-[20px] 
-        // responsive css design 
-      md:w-[28rem] md:ml-0 md:mr-24 md:h-96
-      lg:w-[33rem] lg:ml-0">
-
-          <form onSubmit={handleSubmit} className="login-card space-y-10 mt-20 md:mt-0 sm:mr-5 md:space-y-5 
-           2xl:space-y-10">
-
-<div className="input-group text-2xl font-bold">
-            {/* yape font awesome ka icon add krna hai */}
-              SIGNUP
+  <>
+     <ThemeProvider theme={defaultTheme}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: 'url(https://researchleap.com/wp-content/uploads/2020/03/ed-tech1553237040995.jpg)',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square className='flex flex-col items-center'>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <div className='flex items-center'>
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5" className='p-4'>
+              Sign up
+            </Typography>
             </div>
-
-            <div className="input-group">
-              <input
-                type="text"
-                className="rounded py-1 text-center bg-gray-200 placeholder-black  border-b-2 border-black text-black  signup-input"
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
                 name="name"
                 placeholder="Enter Your Name "
                 value={name}
                 onChange={handleChange}
-                
-              ></input>
-            </div>
-
-            <div className="input-group">
-              <input
-                type="email"
-                className="rounded py-1 text-center bg-gray-200 placeholder-black  border-b-2 border-black text-black signup-input "
+                autoComplete="name"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
                 name="email"
                 placeholder="Enter Your Email"
                 value={email}
                 onChange={handleChange}
-                
-              ></input>
-            </div>
-
-            <div className="input-group" style={{ display: "flex", alignItems: "center" }}>
-              <input
-                type={passwordShown ? "text" : "password"}
-                id="password"
-                className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black signup-input"
+                autoComplete="email"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
                 name="password"
-                placeholder="Enter Password"
+                label="Password"
+                type={passwordShown ? "text" : "password"}
                 value={password}
                 onChange={handleChange}
-                
+                id="password"
+                autoComplete="current-password"
+                InputProps={{
+        endAdornment: (
+          <IconButton
+            edge="end"
+            aria-label="toggle password visibility"
+            onClick={togglePasswordVisiblity}
+            className="eyeIcon"
+          >
+            {passwordShown ? <VisibilityIcon /> : <VisibilityOffIcon />}
+          </IconButton>
+        ),
+      }}
               />
-              <i onClick={togglePasswordVisiblity} className="eyeImgsec" style={{ marginLeft: "10%", cursor: "pointer", color: "black" }}>
-                {eye}
-              </i>
-            </div>
-
-            <div className="input-group" style={{ display: "flex", alignItems: "center" }}>
-              <input
-                type={passwordShown2 ? "text" : "password"}
-                id="password2"
-                className=" fa-solid fa-lock rounded py-1 text-center bg-gray-200 placeholder-black border-b-2 border-black text-black signup-input"
+              <TextField
+                margin="normal"
+                required
+                fullWidth
                 name="password2"
-                placeholder="Confirm Password"
+                label="Confirm Password"
                 value={password2}
                 onChange={handleChange}
-                
+                type={passwordShown2 ? "text" : "password"}
+                id="password2"
+                autoComplete="current-password"
+                InputProps={{
+        endAdornment: (
+          <IconButton
+            edge="end"
+            aria-label="toggle password visibility"
+            onClick={togglePasswordVisiblity2}
+            className="eyeIcon"
+          >
+            {passwordShown2 ? <VisibilityIcon /> : <VisibilityOffIcon />}
+          </IconButton>
+        ),
+      }}
               />
-              <i onClick={togglePasswordVisiblity2} className="eyeImgsec" style={{ marginLeft: "10%", cursor: "pointer", color: "black" }}>
-                {eye2}
-              </i>
-            </div>
-
-            <div className=" space-y-1 self-center ">
-              <div className="flex">
-                <hr className="bg-black text-black h-0.5 w-[7rem] lg:w-[10rem] mt-2.5 mr-3" />
-                OR
-                <hr className="bg-black text-black w-[7rem] h-0.5 lg:w-[10rem] mt-2.5 ml-3" />
-              </div>
-
-              <div className="underlining text-lg" onClick={() => { navigate("/login") }}> Already An User ? <span >Login</span></div>
-            </div>
-            {/* sm:ml-[0rem] md:ml-[4rem] lg:ml-[10rem] */}
-            <div className="bg-[#324A5F] text-white border-2 border-blue-950 px-10 font-semibold py-0.5 rounded-lg text-xl self-center w-[25vw]">
-              <button type="submit" className="login-submit-btn">
-                Signup
-              </button>
-            </div>
-          </form>
-        </div>
-        <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
-          <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
-            <ul>
-              {Object.entries(errors).map(([key, value]) => (
-                <li key={key}>
-                  {value}
-                </li>
-              ))}
-            </ul>
-          </Alert>
-        </Snackbar>
-      </div>
-    </div>
+             
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign up
+              </Button>
+              <Grid container>
+                <Grid item>
+                  <Link  variant="body2" onClick={(e)=>{e.preventDefault(); navigate("/login")}}>
+                    {"Already have an account ? Log in"}
+                  </Link>
+                </Grid>
+              </Grid>
+              <Copyright sx={{ mt: 5 }} />
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+  </>
   );
 };
 
