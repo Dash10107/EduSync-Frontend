@@ -296,17 +296,11 @@ const LoginComp = (props) => {
     </ThemeProvider>
     <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
           <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
-<<<<<<< HEAD
-          {Object.entries(errors).map(([key, value]) => (
-                <p key={key}>
-                  {value}
-                </p>
-              ))}
-=======
+
             
               
               <p>There is an error with credentials </p> 
->>>>>>> 29e392a6ad5ed92dc51743ffe9c0245fdaacc2e8
+
               
               {/* <p>There is an error </p>  */}
  

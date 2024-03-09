@@ -8,6 +8,15 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import { useNavigate } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
 import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
   buildStyles
@@ -16,21 +25,18 @@ import 'react-circular-progressbar/dist/styles.css';
 
 import './ProfileGraph.css';
 import axios from 'axios';
-import {
-  BarChart,
-  Bar,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  PieChart, Pie,
-} from 'recharts';
+
 
 const ProfileClassComp = () => {
   const navigate = useNavigate();
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
 
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -106,40 +112,14 @@ const ProfileClassComp = () => {
     fetchUser();
   }, []);
 
-<<<<<<< HEAD
-      useEffect(() => {
-        fetchUser();
-       
-          }, []);
 
-          const renderDoughnutCharts = () => {
-            return testResults.map((test, index) => (
-              <div className='m-8 items-center'>
-              <div key={index}>
-                <h4 className='text-lg font-semibold text-gray-800 mb-2'>{test.testName}</h4>
-                <ResponsiveContainer width='100%' height={140}>
-                  <PieChart className='w-24' height={240}>
-                    <Pie    
-                      className='h-20 w-20'
-                      dataKey='marks'
-                      data={[{ marks: test.marks }, { marks: 100 - test.marks,empty: true }]}
-                      innerRadius='60%'
-                      outerRadius='80%'
-                      fill='#8884d8'
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-              </div>
-            ));
-          };
         
-          
-=======
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
->>>>>>> 29e392a6ad5ed92dc51743ffe9c0245fdaacc2e8
+
+
 
   return (
     <>
@@ -175,59 +155,35 @@ const ProfileClassComp = () => {
           </div>
         </div>
         <div className='w-[100%] lg:w-[85%]'>
-<<<<<<< HEAD
 
-        <div className='w-[100%] h-[40%] flex justify-center items-center my-8'>
-=======
+
+       
+
           <div className='w-[100%] flex justify-center items-center my-8'>
->>>>>>> 29e392a6ad5ed92dc51743ffe9c0245fdaacc2e8
-            <div className='w-[60%] text-center text-4xl font-semibold '>
+            <div className='w-[100%] text-center text-4xl font-semibold '>
               <h3 className='text-gray-800'>Classroom Performance Of Student</h3>
-              <div className='w-[100%] flex my-8  '>
-                <div className='w-[80%]'>
+              <div className='w-[100%] flex justify-center items-center my-8  '>
+                <div className='w-[100%] flex justify-center items-center'>
+                   
+                  {testChartResults.length!==0 && 
                   <Bar
                     data={testChartResults}
                     height={400}
-                    options={{
-                      maintainAspectRatio: false,
-                      scales: {
-                        yAxes: [
-                          {
-                            ticks: {
-                              beginAtZero: true,
-                            },
-                          },
-                        ],
-                      },
-                      legend: {
-                        labels: {
-                          fontSize: 0,
+                    width={"1000%"}
+                    options = {{
+                      responsive: false,
+                      plugins: {
+                        legend: {
+                          position: 'top',
                         },
                       },
                     }}
-                  />
+                  />}
+                  
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
 
-        </div>
-        <div className='w-full h-screen flex flex-col items-center justify-center'>
-  <div className='w-3/4 h-full text-center'>
-    <ResponsiveContainer width='100%' height='80%'>
-      <BarChart data={testResults} width={250} height={80} >
-        <XAxis dataKey='testName' />
-        <YAxis type='number' domain={[0, 100]} tickFormatter={(value) => `${value}%`} />
-        <Tooltip formatter={(value) => `${value}%`} />
-        <Legend />
-        <Bar dataKey='marks' name='Marks' fill="#8884d8" />
-      </BarChart>
-    </ResponsiveContainer>
-  </div>
-  <div className='m-8 grid grid-cols-3 w-[100%]'>{renderDoughnutCharts()}</div>
-</div>
-
-=======
           </div>
           <div className='w-[100%]  flex my-8'>
             <div className='text-4xl font-semibold '>
@@ -248,30 +204,8 @@ const ProfileClassComp = () => {
               <div className='overview-sec'>
                 <p className='overview-text'>Overview Of Each Test </p>
                 {activeTab === 'offline' &&
-                  formResults.map((test) => (
+                  testResults?.map((test) => (
                     <div key={test.formId} className='my-progress-card'>
-                      <CircularProgressbarWithChildren
-                        className='progress-in-active'
-                        value={test.marks}
-                        counterClockwise
-                        strokeWidth={5}
-                        styles={buildStyles({
-                          textColor: '#1F1926',
-                          pathColor: '#EF6746',
-                          trailColor: '#FFDCD4',
-                        })}
-                      >
-                        <div>
-                          <span style={{ fontSize: '2vh', fontWeight: 700, fontFamily: 'Poppins' }}>{test.marks}</span>
-                          <span style={{ fontSize: '1.5vh', fontWeight: 700, fontFamily: 'Poppins' }}>%</span>
-                        </div>
-                      </CircularProgressbarWithChildren>
-                      <p className='overview-text'>{test.formName}</p>
-                    </div>
-                  ))}
-                {activeTab === 'surprise' &&
-                  testResults.map((test) => (
-                    <div key={test.testId} className='my-progress-card'>
                       <CircularProgressbarWithChildren
                         className='progress-in-active'
                         value={test.marks}
@@ -291,10 +225,32 @@ const ProfileClassComp = () => {
                       <p className='overview-text'>{test.testName}</p>
                     </div>
                   ))}
+                {activeTab === 'surprise' &&
+                  formResults.map((test) => (
+                    <div key={test.testId} className='my-progress-card'>
+                      <CircularProgressbarWithChildren
+                        className='progress-in-active'
+                        value={test.marks}
+                        counterClockwise
+                        strokeWidth={5}
+                        styles={buildStyles({
+                          textColor: '#1F1926',
+                          pathColor: '#EF6746',
+                          trailColor: '#FFDCD4',
+                        })}
+                      >
+                        <div>
+                          <span style={{ fontSize: '2vh', fontWeight: 700, fontFamily: 'Poppins' }}>{test.marks}</span>
+                          <span style={{ fontSize: '1.5vh', fontWeight: 700, fontFamily: 'Poppins' }}>%</span>
+                        </div>
+                      </CircularProgressbarWithChildren>
+                      <p className='overview-text'>{test.formName}</p>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
->>>>>>> 29e392a6ad5ed92dc51743ffe9c0245fdaacc2e8
+
         </div>
       </div>
     </>
