@@ -4,18 +4,13 @@ import React, { useEffect, useState } from 'react'
 import "./EntityModal.css"
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import axios from 'axios';
+import Loader from '../../../Layouts/Loader/Loader';
 function EntityModal(props) {
     const {modalOpen,setModalOpen,test} = props;
     const [studentNames,setStudentNames] = useState([]);
     const [waiting ,setWaiting] = useState(false);
 
   const studentIds = test?.testScores?.map(score => score.studentId);
-  console.log(studentIds);
-
-  
-
-
-
 
     const fetchStudentDetail = async (userIds) => {
 
@@ -43,7 +38,9 @@ function EntityModal(props) {
         console.log("error", error);
       }
     }
+    
     useEffect(()=>{  fetchStudentDetail(studentIds)},[])
+
   return (
 
     <Modal    centered
@@ -58,8 +55,10 @@ function EntityModal(props) {
   <div className='headerEntity'>  
   <div className='titleforEntity'>{test?.testName}</div>
   </div>
-  <Box sx={{ width: '100%' }}>
-  <TableContainer component={Paper}>
+  {!waiting ?
+  <Box sx={{ width: '100%', maxHeight: '500px', overflowY: 'auto' }}>
+
+ <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow className="bg-blue-400 text-white">
@@ -87,8 +86,10 @@ function EntityModal(props) {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer>  
+
         </Box>
+        : <Loader/> }
 </div>
   </Modal>
   )
