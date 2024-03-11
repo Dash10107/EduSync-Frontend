@@ -12,9 +12,18 @@ import Navbar from "../../../Layouts/Navbar/Navbar";
 import { Progress } from "antd";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../Layouts/Loader/Loader";
-import { FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
-import { TextareaAutosize } from '@mui/base/TextareaAutosize';
-import { styled } from '@mui/system';
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Ticks,
+} from 'chart.js'
 
 const ProfileComp = () => {
   const navigate = useNavigate();
@@ -25,6 +34,17 @@ const ProfileComp = () => {
   const [chaptersStarted,setChapterStarted] = useState(0);
   const [modulesStarted,setModulesStarted] = useState(0);
   const [subchaptersStarted,setSubChapterStarted] = useState(0);
+  const [moduleProgressData, setModuleProgressData] = useState([]);
+ 
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+  )
 
  
 
@@ -57,7 +77,25 @@ const ProfileComp = () => {
         });
   }
 
+ const fetchModulesProgress = async () => {
+    try {
+      const response = await axios.get("https://edusync-backend.onrender.com/progress/modules", {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
+      console.log("Response",response);
 
+
+      if (response.status === 200) {
+        setModuleProgressData(response.data?.allModulesProgress);
+      } else {
+        console.log("Status Code", response.status);
+      }
+    } catch (error) {
+      console.error("error", error);
+    }
+  };
 
   const fetchMainProgress = async()=>{
     try {
@@ -125,11 +163,25 @@ setModulesStarted(modulesStarted);
     navigate("/login");
     
   }
+   // Bar chart data
+   const barChartData = {
+    labels: moduleProgressData.map((module) => module.moduleName),
+    datasets: [
+      {
+        label: 'Module Progress',
+        data: moduleProgressData.map((module) => module.moduleProgressPercentage),
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
 
 
   useEffect(() => {
     fetchUser();
     fetchMainProgress();
+    fetchModulesProgress();
   
       }, []);
 
@@ -170,7 +222,7 @@ setModulesStarted(modulesStarted);
       percent={progressPercentage}
       strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }} // Set the color to your desired col
       format={() => `${progressPercentage}%`}
-      size={window.innerWidth <= 600 ? 100 : 180} 
+      size={window.innerWidth <= 600 ? 80 : 180} 
       strokeWidth={8}
       trailColor="#fff" // Set the color of the empty progress bar
     />
@@ -187,7 +239,7 @@ setModulesStarted(modulesStarted);
       percent={chaptersStarted}
       strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}// Set the color to your desired col
       format={() => `${chaptersStarted}%`}
-      size={window.innerWidth <= 600 ? 100 : 180} 
+      size={window.innerWidth <= 600 ? 80 : 180} 
       strokeWidth={8}
       trailColor="#fff" // Set the color of the empty progress bar
     />
@@ -203,7 +255,7 @@ setModulesStarted(modulesStarted);
       percent={subchaptersStarted}
       strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
       format={() => `${subchaptersStarted}%`}
-      size={window.innerWidth <= 600 ? 100 : 180} 
+      size={window.innerWidth <= 600 ? 80 : 180} 
       strokeWidth={8}
       trailColor={"#fff"} // Set the color of the empty progress bar
      
@@ -215,12 +267,33 @@ setModulesStarted(modulesStarted);
   </div>
 </div>
 
+<div className="w-[80%] mt-4">
+          <Bar
+            data={barChartData}
+            options={{
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  max: 100,
+                },
+              },
+              plugins: {
+                legend: {
+                  display: false,
+                },
+              },
+            }}
+          />
+        </div>
+
     </div>
 
         </div>
         </div>
 
+       
 
+    
 
         
 

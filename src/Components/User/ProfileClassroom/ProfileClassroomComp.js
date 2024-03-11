@@ -137,7 +137,7 @@ const ProfileClassComp = () => {
               <h3 className='text-gray-800'>Classroom Performance Of Student</h3>
               <div className='w-[100%] flex my-8  '>
                 <div className='w-[80%]'>
-                  <Bar
+                  {/* <Bar
                     data={testChartResults}
                     height={400}
                     options={{
@@ -157,7 +157,7 @@ const ProfileClassComp = () => {
                         },
                       },
                     }}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

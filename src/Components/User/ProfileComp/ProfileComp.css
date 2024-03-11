@@ -114,15 +114,17 @@
   margin-bottom: 10vh;
 }
 
-@media (max-width: 600px) {
-  .progress-card{
 
+  @media (max-width: 600px) {
+    .progress-card {
+      width: 90%;
+      margin-left: 0;
+      margin-bottom: 2vh;
+    }
   }
-  .progress-container{
 
-  }
   .text-container{
     font-size: 1rem;
   }
-}
+
 
