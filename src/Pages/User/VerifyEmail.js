@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
 const VerifyEmail = () => {
@@ -13,12 +13,7 @@ const VerifyEmail = () => {
               console.log("Response",response);
               
               if(response.status===200){
-        
-               if(response.data.success === true ){
-                navigate("/login")
-               }else{
-
-               }
+               return true;
         
               }else{console.log("Status Code",response.status);
               }
@@ -29,9 +24,13 @@ const VerifyEmail = () => {
           }
     }
 
-    if(id!=="" && token !==""){
-      verifyEmail()
-    }
+    useEffect(()=>{
+      if(id!=="" && token !==""){
+       const b = verifyEmail();
+       b && navigate("/login");
+      }
+    },[]);
+
   return (
     <div>
      

@@ -8,6 +8,15 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import { useNavigate } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
 import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
   buildStyles
@@ -17,8 +26,17 @@ import 'react-circular-progressbar/dist/styles.css';
 import './ProfileGraph.css';
 import axios from 'axios';
 
+
 const ProfileClassComp = () => {
   const navigate = useNavigate();
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
 
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -94,9 +112,14 @@ const ProfileClassComp = () => {
     fetchUser();
   }, []);
 
+
+        
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
+
+
 
   return (
     <>
@@ -132,35 +155,35 @@ const ProfileClassComp = () => {
           </div>
         </div>
         <div className='w-[100%] lg:w-[85%]'>
+
+
+       
+
           <div className='w-[100%] flex justify-center items-center my-8'>
-            <div className='w-[60%] text-center text-4xl font-semibold '>
+            <div className='w-[100%] text-center text-4xl font-semibold '>
               <h3 className='text-gray-800'>Classroom Performance Of Student</h3>
-              <div className='w-[100%] flex my-8  '>
-                <div className='w-[80%]'>
-                  {/* <Bar
+              <div className='w-[100%] flex justify-center items-center my-8  '>
+                <div className='w-[100%] flex justify-center items-center'>
+                   
+                  {testChartResults.length!==0 && 
+                  <Bar
                     data={testChartResults}
                     height={400}
-                    options={{
-                      maintainAspectRatio: false,
-                      scales: {
-                        yAxes: [
-                          {
-                            ticks: {
-                              beginAtZero: true,
-                            },
-                          },
-                        ],
-                      },
-                      legend: {
-                        labels: {
-                          fontSize: 0,
+                    width={"1000%"}
+                    options = {{
+                      responsive: false,
+                      plugins: {
+                        legend: {
+                          position: 'top',
                         },
                       },
                     }}
-                  /> */}
+                  />}
+                  
                 </div>
               </div>
             </div>
+
           </div>
           <div className='w-[100%]  flex my-8'>
             <div className='text-4xl font-semibold '>
@@ -181,30 +204,8 @@ const ProfileClassComp = () => {
               <div className='overview-sec'>
                 <p className='overview-text'>Overview Of Each Test </p>
                 {activeTab === 'offline' &&
-                  formResults.map((test) => (
+                  testResults?.map((test) => (
                     <div key={test.formId} className='my-progress-card'>
-                      <CircularProgressbarWithChildren
-                        className='progress-in-active'
-                        value={test.marks}
-                        counterClockwise
-                        strokeWidth={5}
-                        styles={buildStyles({
-                          textColor: '#1F1926',
-                          pathColor: '#EF6746',
-                          trailColor: '#FFDCD4',
-                        })}
-                      >
-                        <div>
-                          <span style={{ fontSize: '2vh', fontWeight: 700, fontFamily: 'Poppins' }}>{test.marks}</span>
-                          <span style={{ fontSize: '1.5vh', fontWeight: 700, fontFamily: 'Poppins' }}>%</span>
-                        </div>
-                      </CircularProgressbarWithChildren>
-                      <p className='overview-text'>{test.formName}</p>
-                    </div>
-                  ))}
-                {activeTab === 'surprise' &&
-                  testResults.map((test) => (
-                    <div key={test.testId} className='my-progress-card'>
                       <CircularProgressbarWithChildren
                         className='progress-in-active'
                         value={test.marks}
@@ -224,9 +225,32 @@ const ProfileClassComp = () => {
                       <p className='overview-text'>{test.testName}</p>
                     </div>
                   ))}
+                {activeTab === 'surprise' &&
+                  formResults.map((test) => (
+                    <div key={test.testId} className='my-progress-card'>
+                      <CircularProgressbarWithChildren
+                        className='progress-in-active'
+                        value={test.marks}
+                        counterClockwise
+                        strokeWidth={5}
+                        styles={buildStyles({
+                          textColor: '#1F1926',
+                          pathColor: '#EF6746',
+                          trailColor: '#FFDCD4',
+                        })}
+                      >
+                        <div>
+                          <span style={{ fontSize: '2vh', fontWeight: 700, fontFamily: 'Poppins' }}>{test.marks}</span>
+                          <span style={{ fontSize: '1.5vh', fontWeight: 700, fontFamily: 'Poppins' }}>%</span>
+                        </div>
+                      </CircularProgressbarWithChildren>
+                      <p className='overview-text'>{test.formName}</p>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </>

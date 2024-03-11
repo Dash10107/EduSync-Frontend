@@ -85,7 +85,7 @@ const SignupComp = (props) => {
       return;
     }
 
-   
+   //https://edusync-backend.onrender.com
     try {
       // Send a POST request to the server
       const response = await axios.post(

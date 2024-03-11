@@ -156,6 +156,8 @@ const LoginComp = (props) => {
      
       }else{
         console.log("Message",result.message)
+        setErrors(result);
+        setToastOpen(true);
       }
 
       if (result.success) {
@@ -294,10 +296,14 @@ const LoginComp = (props) => {
     </ThemeProvider>
     <Snackbar open={toastOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
           <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+
             
               
               <p>There is an error with credentials </p> 
+
               
+              {/* <p>There is an error </p>  */}
+ 
             
           </Alert>
         </Snackbar>
