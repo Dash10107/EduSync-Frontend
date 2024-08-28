@@ -1,0 +1,65 @@
+/* singleGrid.css */
+.single-grid {
+
+
+    width: 60%; /* Set the width to 100% for responsiveness */
+    
+    border-radius: 10px;
+    padding: 20px; /* Increase padding for better text visibility */
+    /* display: flex; */
+    align-items: center;
+    
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    background-color: #536878; /* Muted blue color */
+    color: white;
+    margin: 10px; /* Reduce margin for spacing between grid items */
+    margin-left: 5%;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    white-space: normal; /* Allow text to wrap */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word; /* Allow long words to break onto a new line */
+    margin-bottom: 4vh;
+  }
+  
+  .single-grid:hover {
+    transform: scale(1.05); /* Slightly expand on hover */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* .left-side-grid{
+    width: 5vw;
+    height: 100px;
+    padding-right: 6vw;
+    border-right: 2px solid black;
+    display: flex;
+   text-align: left;
+    align-items: center;
+    flex:0;
+    font-size: 2rem;
+    padding-left: 2vw;
+  }
+
+  .right-side-grid{
+    flex: 1;
+    display: flex;
+    padding-left: 0.5vw;
+    justify-content: right;
+    text-align: right;
+
+  } */
+
+  @media (max-width: 600px) {
+     /* .left-side-grid{
+      width: 18vw;
+      padding-right: 7vw;
+    } */
+    .single-grid{
+      font-size: 11px;
+    } 
+
+  }

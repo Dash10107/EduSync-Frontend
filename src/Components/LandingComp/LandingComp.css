@@ -1,0 +1,52 @@
+.nextButton{
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+
+ 
+}
+.nextButton:hover{
+  animation: optionSelected 0.5s ease;
+}
+
+.custom-prev-arrow{
+ z-index: 10;
+}
+
+.custom-next-arrow{
+z-index: 10;
+}
+
+/* CSS for animations on selecting an option */
+@keyframes optionSelected {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.slider-div{
+  width: 100vw;
+  display: flex !important;
+  justify-content: center;
+  /* height: 100vh;
+  align-items: center; */
+}
+
+/* LandingComp.css */
+.carousel-image {
+width: 40%; /* Adjust the width as needed */
+height: 60%; /* Set the same height as the viewport height for full-screen images */
+}
+
+/* LandingComp.css */
+.nextButton-container {
+position: absolute;
+bottom: 15%; /* Adjust the vertical position as needed */
+left: 50%;    /* Horizontally center the button */
+transform: translateX(-50%); /* Horizontally center the button */
+}

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200&display=swap');
+
+
+.CircularProgressbar .CircularProgressbar-text {
+    font-weight: 600;
+    font-family: 'Poppins';
+font-style: normal;
+
+    /* Styles for the text inside the progress bar */
+  }
+
+
+
+.export-symbol {
+    position: relative;
+    width: 7vw;
+    height: 6vh;
+    left: 91vw;
+    top: 3vh;
+    background: #4664F3;
+    border-radius: 41px;
+}
+
+
+
+.overview-symbol {
+    position: relative;
+    width: 82vw;
+    left: 16vw;
+    top: 2vh;
+    background: linear-gradient(180deg, #EFEFFF 0%, #EFEFFF 0.01%, #FFF9F4 100%);
+    border-radius: 20px;
+    height: 34vh;
+}
+
+
+
+
+.overview-sec {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns in a row */
+    gap: 2vw;
+    padding: 2vh;
+    background: linear-gradient(180deg, #EFEFFF 0%, #EFEFFF 0.01%, #FFF9F4 100%);
+    border-radius: 20px;
+}
+
+.overview-text {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 2vh;
+    line-height: 3vh;
+    color: #1F1926;
+    margin-bottom: 1vh;
+   
+}
+
+/* Define styles for the progress cards */
+.my-progress-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5vw; /* Adjust padding as needed */
+    background-color: #ffffff; /* Card background color */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(31, 25, 38, 0.1); /* Add a subtle box shadow */
+    transition: transform 0.2s ease-in-out; /* Add a smooth transition effect */
+    margin-bottom: 2vh;
+    width: 50%;
+}
+
+/* Hover effect for the cards */
+.my-progress-card:hover {
+    transform: scale(1.05); /* Increase size on hover */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .overview-sec {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .overview-sec {
+        grid-template-columns: 1fr; /* One column for even smaller screens */
+    }
+}
+
+/* ProfileGraph.css */
+
+/* ... your existing styles ... */
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .tab-button {
+    cursor: pointer;
+    padding: 8px 16px;
+    background-color: #4caf50; /* Green color, change as needed */
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    color: #fff;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .tab-button:hover {
+    background-color: #45a049; /* Darker green on hover, change as needed */
+  }
+  
+  .active-tab {
+    background-color: #2196f3; /* Blue color for the active tab, change as needed */
+  }  

@@ -1,0 +1,49 @@
+/* question-container style */
+.question-container {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+  }
+  
+  /* Question text style */
+  .question-container h4 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+  }
+  
+  /* Options list style */
+  .question-container ul {
+    list-style-type: disc;
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+  
+  /* Option item style */
+  .question-container li {
+    font-size: 16px;
+    color: #555;
+    list-style: none;
+    margin-bottom: 10px;
+  }
+  
+  /* Correct Answer text style */
+  .question-container p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #4caf50; /* Green color for correct answers */
+  }
+  
+  .allQuestions{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .editQuestionDiv{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }

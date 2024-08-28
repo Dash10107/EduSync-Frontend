@@ -1,0 +1,8 @@
+.loader{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    height: 20vh;
+    margin-bottom: 10vh;
+    align-items: center;
+}

@@ -1,0 +1,142 @@
+.single-question {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.question-text {
+  font-size: 20px;
+  font-family: "Poppins",sans-serif;
+  margin-bottom: 5%;
+ 
+  padding: 10px; /* Add padding to the question-text */
+  
+  
+  
+}
+
+input[type="radio"] {
+  transform: scale(1.5); /* Adjust the scale factor to increase or decrease the size */
+  margin-right: 10px; /* Add some spacing to separate the radio button from the label or text */
+}
+
+/* Common styles for both grid and vertical options */
+.grid-option,
+.vertical-option {
+  flex: 1; /* Equal distribution of remaining space */
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 2px solid transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #f0f0f0;
+  font-family: "Poppins",sans-serif;
+
+  
+}
+
+/* Hover styles for both grid and vertical options */
+.grid-option:hover,
+.vertical-option:hover {
+  background-color: #90e0ef;
+  color: #010157;
+}
+
+/* Styles for the selected option */
+.selected {
+  background-color: #90e0ef;
+  color: #010157;
+  font-weight: bold;
+}
+
+.code-text{
+  background-color: #f0f0f0 !important;
+}
+
+/* CSS for animations on selecting an option */
+@keyframes optionSelected {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.selected {
+  animation: optionSelected 0.5s ease;
+}
+
+/* Specific styles for the grid container */
+.grid-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px; /* Increase the gap as needed */
+  margin-top: 20px; /* Add margin to separate options from question-text */
+}
+
+/* Add margin between vertical options */
+.vertical-option {
+  margin-bottom: 20px; /* Adjust this value to set the desired gap */
+}
+
+/* Add a class for correct answers */
+.correct-answer {
+  background-color: #4caf50; /* Green background for correct answers */
+  color: #fff; /* White text color */
+}
+
+/* Add a class for incorrect answers */
+.incorrect-answer {
+  background-color: #ff5722; /* Red background for incorrect answers */
+  color: #fff; /* White text color */
+}
+
+
+.single-option {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  .option-text {
+    text-align: left;
+    margin-left: 10px;
+    font-family: "Poppins",sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+  }
+}
+
+/* Add this to your CSS file or component styles */
+.result-message {
+  background-color: #ff5722; /* Red background for incorrect answers */
+  color: #fff; /* White text color */
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  font-family: "Poppins",sans-serif;
+}
+
+.result-message.correct {
+  background-color: #4caf50; /* Green background for correct answers */
+}
+
+@media screen and (min-width: 768px) {
+.question-text{
+  font-size: 3.5vh;
+  font-weight: 500;
+}
+.option-text{
+  font-size: 2.5vh;
+}
+.grid-option,.vertical-options{
+  font-size: 2.5vh;
+}
+}

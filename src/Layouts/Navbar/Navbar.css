@@ -1,0 +1,71 @@
+.navbar-main{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    background: #324A5F;
+color: white;
+margin-bottom: 2vh;
+}
+
+
+
+
+.lastDiv{
+    display: flex;
+    align-items: center;
+    padding-right: 2vw;
+}
+
+
+.cirlceuser{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 2.2vh;
+line-height: 3vh;
+/* identical to box height */
+color: #FFFFFF;
+border-radius: 50%;
+ /* margin-top: 0.5vh; */
+
+ background-color:#0f0c29; 
+ background-color: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  
+ background-color:linear-gradient(to right, #24243e, #302b63, #0f0c29); 
+width: 5vh;
+height: 5vh;
+margin-right: 0.6vw;
+vertical-align: middle;
+padding-top: 1vh;
+text-align: center;
+  }
+  .circletext{
+  
+    vertical-align: middle;
+    
+  }
+
+  .hamburger{
+    padding-left: 2%;
+    font-size: 4rem;
+display: flex;
+justify-content: center;
+flex-direction: column;
+position: relative;
+top: -6%;
+
+  }
+  .logoImg{
+  
+    height: 12vh;
+    width:23vw;
+  }
+
+  @media (max-width: 600px) {
+    .logoImg{
+      width: 50vw;
+      height: 8vh;
+    }
+  }

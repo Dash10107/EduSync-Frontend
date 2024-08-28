@@ -1,0 +1,24 @@
+/* SingleTopic.css */
+.single-topic {
+  background: linear-gradient(109.6deg, rgb(20, 30, 48) 11.2%, rgb(36, 59, 85) 91.1%);
+    border: 2px solid #345874;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 0 10% 2.5%; /* 10% margin on both sides with 10px margin at the bottom */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: transform 0.2s; /* Add a hover animation for expansion */
+  
+    /* Additional styles for text wrapping, etc. */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  
+  .single-topic:hover {
+    transform: scale(1.05); /* Expand a bit on hover */
+  }
+  

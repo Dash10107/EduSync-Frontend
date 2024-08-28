@@ -1,0 +1,27 @@
+.border-img{
+    position: absolute;
+    mix-blend-mode: multiply;
+    z-index: -10;
+}
+
+.leftImg{
+    transform: scale(3);
+    position: relative;
+    left: 174%;
+    margin-top: 78.5%;
+}
+.rightImg{
+    transform: scale(2);
+    position: relative;
+    left: 165%;
+    margin-top: 22.5%;
+}
+
+
+
+.centerImg{
+    transform: scale(2);
+    position: relative;
+    left: 165%;
+    margin-top: 25%;
+}

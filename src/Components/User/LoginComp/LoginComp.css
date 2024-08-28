@@ -1,0 +1,38 @@
+.loginText{
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 4vh;
+}
+
+.mailIcon{
+ 
+        position: absolute;
+        width: 2rem;
+        left: -30%;
+        top: 28%;
+        color: black;
+}
+
+.login-submit-btn{
+    width: 50vw !important;
+    height: 5vh !important;
+}
+
+@media screen and (min-width: 768px) {
+    .mailIcon{
+ 
+        position: absolute;
+        width: 2rem;
+        left: 5%;
+        top: 18%;
+        color: black;
+}
+.login-submit-btn{
+    width: 16vw !important;
+    height: 5vh !important;
+}
+
+}
