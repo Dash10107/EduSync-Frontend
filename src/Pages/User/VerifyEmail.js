@@ -9,7 +9,7 @@ const VerifyEmail = () => {
     
     const verifyEmail = async()=>{
         try {
-            await axios.get(`https://edusync-backend.onrender.com/users/${id}/verify/${token}`).then(response => {
+            await axios.get(`https://edu-sync-backend.vercel.app/users/${id}/verify/${token}`).then(response => {
               console.log("Response",response);
               
               if(response.status===200){

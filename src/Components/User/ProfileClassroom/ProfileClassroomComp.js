@@ -69,7 +69,7 @@ const ProfileClassComp = () => {
     setLoading(true);
 
     try {
-      const response = await axios.get('https://edusync-backend.onrender.com/users/protected', {
+      const response = await axios.get('https://edu-sync-backend.vercel.app/users/protected', {
         headers: {
           Authorization: localStorage.getItem('token'),
         },

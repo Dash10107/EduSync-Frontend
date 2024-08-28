@@ -52,7 +52,7 @@ const ProfileComp = () => {
     setLoading(true);
         // Make a GET request to the protected route
      await   axios
-        .get("https://edusync-backend.onrender.com/users/protected", {
+        .get("https://edu-sync-backend.vercel.app/users/protected", {
           headers: {
             Authorization: localStorage.getItem("token"), // Include the token in the headers
           },
@@ -79,7 +79,7 @@ const ProfileComp = () => {
 
  const fetchModulesProgress = async () => {
     try {
-      const response = await axios.get("https://edusync-backend.onrender.com/progress/modules", {
+      const response = await axios.get("https://edu-sync-backend.vercel.app/progress/modules", {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -99,7 +99,7 @@ const ProfileComp = () => {
 
   const fetchMainProgress = async()=>{
     try {
-      await axios.get('https://edusync-backend.onrender.com/progress/',{
+      await axios.get('https://edu-sync-backend.vercel.app/progress/',{
         headers: {
           Authorization: localStorage.getItem("token"),
         }

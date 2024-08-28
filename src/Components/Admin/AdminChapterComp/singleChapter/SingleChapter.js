@@ -50,7 +50,7 @@ const SingleChapter = (props) => {
       setIsEditing(false);
       // Make a PUT request to update the module details with the authorization token in the headers
     axios.put(
-      `https://edusync-backend.onrender.com/admin/updateChapter/${moduleId}/${item.id}`,
+      `https://edu-sync-backend.vercel.app/admin/updateChapter/${moduleId}/${item.id}`,
       { title: newModuleName },
       {
         headers: {
@@ -75,7 +75,7 @@ const SingleChapter = (props) => {
     const handleDelete = async(e) => {
       e.stopPropagation();
       // Make the DELETE request to delete the chapter
-await axios.delete(`https://edusync-backend.onrender.com/admin/deleteChapter/${moduleId}/${item.id}`, {
+await axios.delete(`https://edu-sync-backend.vercel.app/admin/deleteChapter/${moduleId}/${item.id}`, {
   headers: {
     Authorization: localStorage.getItem("token"), // Replace with your authorization token
   },

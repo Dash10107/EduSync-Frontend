@@ -89,7 +89,7 @@ const SignupComp = (props) => {
     try {
       // Send a POST request to the server
       const response = await axios.post(
-        "https://edusync-backend.onrender.com/users/register",
+        "https://edu-sync-backend.vercel.app/users/register",
         formData
       );
   

@@ -23,7 +23,7 @@ const LandingList = ({notice,fetchNotices}) => {
   const deleteNotice = async()=>{
       try {
   
-          await axios.delete(`https://edusync-backend.onrender.com/feedandnotice/delete-notice/${feedbackId}`, {
+          await axios.delete(`https://edu-sync-backend.vercel.app/feedandnotice/delete-notice/${feedbackId}`, {
             headers: {
               Authorization: localStorage.getItem("token"),
             }

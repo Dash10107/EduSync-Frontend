@@ -20,7 +20,7 @@ const People = ({clasroom,teacherName,studentNames,fetchClassroom}) => {
     e.preventDefault();
     try {
     
-      await axios.delete(`https://edusync-backend.onrender.com/subadmin/classrooms/${code}/removestudent/${id}`, {
+      await axios.delete(`https://edu-sync-backend.vercel.app/subadmin/classrooms/${code}/removestudent/${id}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         }

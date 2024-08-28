@@ -38,7 +38,7 @@ const SubjectComp = (props) => {
       const fetchChapters=async()=>{
         setLoading(true);
         try {
-          await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
+          await axios.get(`https://edu-sync-backend.vercel.app/module/chapters/${moduleId}`,{
             headers: {
               Authorization: localStorage.getItem("token"),
             }
@@ -79,7 +79,7 @@ const fetchVideos = async () => {
   setLoading(true);
   try {
     // Make a request to your backend route to get video URLs.
-    const response = await fetch(`https://edusync-backend.onrender.com/videos/${SubjectName}/${ChapterName}`, {
+    const response = await fetch(`https://edu-sync-backend.vercel.app/videos/${SubjectName}/${ChapterName}`, {
       method: 'POST', // You may need to adjust the request method
       body: JSON.stringify({
           "token":{

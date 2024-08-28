@@ -6,7 +6,7 @@ const AdminNoticeboard = () => {
     const navigate = useNavigate();
     useEffect(() => {
       // Perform the GET request to check if the user is an admin
-      fetch('https://edusync-backend.onrender.com/admin/checkAdmin', {
+      fetch('https://edu-sync-backend.vercel.app/admin/checkAdmin', {
         method: 'GET',
         headers: {
           'Authorization': localStorage.getItem('token'),

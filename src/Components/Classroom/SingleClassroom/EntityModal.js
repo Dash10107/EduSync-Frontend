@@ -17,7 +17,7 @@ function EntityModal(props) {
        setWaiting(true);
       try {
   
-        await axios.post(`https://edusync-backend.onrender.com/users/user-details`,{
+        await axios.post(`https://edu-sync-backend.vercel.app/users/user-details`,{
           ids:userIds
         }, {
           headers: {

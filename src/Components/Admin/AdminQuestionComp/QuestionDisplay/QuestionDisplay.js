@@ -65,7 +65,7 @@ const QuestionDisplay = ({ questions,setErrors,setToastOpen,fetchQuestions }) =>
 
     try {
       const response = await axios.put(
-        `https://edusync-backend.onrender.com/admin/updateQuestions/${moduleId}/${chapterId}/${subChapterId}`,
+        `https://edu-sync-backend.vercel.app/admin/updateQuestions/${moduleId}/${chapterId}/${subChapterId}`,
         {
           updatedQuestions: sendingQuestions,
         },

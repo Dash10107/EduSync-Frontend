@@ -29,7 +29,7 @@ const Dashboard = (props) => {
     setLoading(true);
     try {
 
-      await axios.get('https://edusync-backend.onrender.com/subadmin/classrooms/student', {
+      await axios.get('https://edu-sync-backend.vercel.app/subadmin/classrooms/student', {
         headers: {
           Authorization: localStorage.getItem("token"),
         }
@@ -55,7 +55,7 @@ const Dashboard = (props) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`https://edusync-backend.onrender.com/subadmin/classrooms/${code}/addstudents`,{},
+      const response = await axios.post(`https://edu-sync-backend.vercel.app/subadmin/classrooms/${code}/addstudents`,{},
       {
         headers:{
           Authorization: localStorage.getItem("token"), // Include your authorization token here

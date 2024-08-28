@@ -37,7 +37,7 @@ const AdminQuestionComp = (props) => {
   const fetchQuestions = async () => {
     try {
       const response = await axios.get(
-        `https://edusync-backend.onrender.com/module/allQuestions/${moduleId}/${chapterId}/${subChapterId}`,
+        `https://edu-sync-backend.vercel.app/module/allQuestions/${moduleId}/${chapterId}/${subChapterId}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -69,7 +69,7 @@ const AdminQuestionComp = (props) => {
     console.log(questions)
     try {
       const response = await axios.post(
-        `https://edusync-backend.onrender.com/admin/addQuestions/${moduleId}/${chapterId}/${subChapterId}`,
+        `https://edu-sync-backend.vercel.app/admin/addQuestions/${moduleId}/${chapterId}/${subChapterId}`,
         {
           questions: questions,
         },

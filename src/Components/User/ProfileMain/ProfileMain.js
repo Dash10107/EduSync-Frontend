@@ -27,7 +27,7 @@ const ProfileMain = () => {
         setLoading(true);
             // Make a GET request to the protected route
          await   axios
-            .get("https://edusync-backend.onrender.com/users/protected", {
+            .get("https://edu-sync-backend.vercel.app/users/protected", {
               headers: {
                 Authorization: localStorage.getItem("token"), // Include the token in the headers
               },

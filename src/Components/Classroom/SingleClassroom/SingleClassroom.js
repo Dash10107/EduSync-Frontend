@@ -19,7 +19,7 @@ const SingleClassroom = () => {
         setLoading(true);
         try {
     
-          await axios.get(`https://edusync-backend.onrender.com/subadmin/classroom/${code}`, {
+          await axios.get(`https://edu-sync-backend.vercel.app/subadmin/classroom/${code}`, {
             headers: {
               Authorization: localStorage.getItem("token"),
             }
@@ -53,7 +53,7 @@ const SingleClassroom = () => {
        
         try {
     
-          await axios.get(`https://edusync-backend.onrender.com/users/user-details/${userId}`, {
+          await axios.get(`https://edu-sync-backend.vercel.app/users/user-details/${userId}`, {
             headers: {
               Authorization: localStorage.getItem("token"),
             }
@@ -77,7 +77,7 @@ const SingleClassroom = () => {
        
         try {
     
-          await axios.post(`https://edusync-backend.onrender.com/users/user-details`,{
+          await axios.post(`https://edu-sync-backend.vercel.app/users/user-details`,{
             ids:userIds
           }, {
             headers: {

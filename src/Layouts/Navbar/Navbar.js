@@ -30,7 +30,7 @@ const Navbar = (props) => {
     // Make a GET request to the protected route
     setLoading(true);
  await   axios
-    .get("https://edusync-backend.onrender.com/users/protected", {
+    .get("https://edu-sync-backend.vercel.app/users/protected", {
       headers: {
         Authorization: localStorage.getItem("token"), // Include the token in the headers
       },

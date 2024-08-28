@@ -14,7 +14,7 @@ const SubAdminComp = () => {
         setLoading(true);
         try {
     
-          await axios.get('https://edusync-backend.onrender.com/subadmin/classrooms', {
+          await axios.get('https://edu-sync-backend.vercel.app/subadmin/classrooms', {
             headers: {
               Authorization: localStorage.getItem("token"),
             }
@@ -40,7 +40,7 @@ const SubAdminComp = () => {
     
         try {
     
-          await axios.get('https://edusync-backend.onrender.com/feedandnotice/get-feedbacks', {
+          await axios.get('https://edu-sync-backend.vercel.app/feedandnotice/get-feedbacks', {
             headers: {
               Authorization: localStorage.getItem("token"),
             }

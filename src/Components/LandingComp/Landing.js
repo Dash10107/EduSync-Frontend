@@ -17,7 +17,7 @@ const LandingComp = () => {
 
     const fetchNotices = async()=>{
       try {
-          await axios.get('https://edusync-backend.onrender.com/feedandnotice/get-notices').then(response => {
+          await axios.get('https://edu-sync-backend.vercel.app/feedandnotice/get-notices').then(response => {
             console.log("Response",response);
             
             if(response.status===200){

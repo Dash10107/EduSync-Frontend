@@ -27,7 +27,7 @@ const ChapterComp = (props) => {
   const fetchProgressPercentages = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://edusync-backend.onrender.com/progress/${moduleId}`, {
+      const response = await axios.get(`https://edu-sync-backend.vercel.app/progress/${moduleId}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -53,7 +53,7 @@ const ChapterComp = (props) => {
   const fetchChapters=async()=>{
     setLoading(true);
     try {
-      await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
+      await axios.get(`https://edu-sync-backend.vercel.app/module/chapters/${moduleId}`,{
         headers: {
           Authorization: localStorage.getItem("token"),
         }

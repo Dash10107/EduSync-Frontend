@@ -18,7 +18,7 @@ const Content = (props) => {
     const fetchModules = async()=>{
       setAllLoading(true);
 try {
-      await axios.get('https://edusync-backend.onrender.com/module/',{
+      await axios.get('https://edu-sync-backend.vercel.app/module/',{
         headers: {
           Authorization: localStorage.getItem("token"),
         }
@@ -47,7 +47,7 @@ try {
     const fetchProgress = async()=>{
       setContinueLoading(true);
       try {
-        await axios.get('https://edusync-backend.onrender.com/progress/',{
+        await axios.get('https://edu-sync-backend.vercel.app/progress/',{
           headers: {
             Authorization: localStorage.getItem("token"),
           }

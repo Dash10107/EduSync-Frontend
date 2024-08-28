@@ -21,7 +21,7 @@ const SinglePostComp = () => {
         setLoading(true);
         try {
     
-          await axios.get(`https://edusync-backend.onrender.com/subadmin/classrooms/${code}/posts/${postId}`, {
+          await axios.get(`https://edu-sync-backend.vercel.app/subadmin/classrooms/${code}/posts/${postId}`, {
             headers: {
               Authorization: localStorage.getItem("token"),
             }

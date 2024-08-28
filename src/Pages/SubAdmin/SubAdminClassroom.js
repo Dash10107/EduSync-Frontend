@@ -7,7 +7,7 @@ const SubAdminClassroom = () => {
 
   useEffect(()=>{  
       // Perform the GET request to check if the user is an admin
-      fetch('https://edusync-backend.onrender.com/subadmin/checkSubAdmin', {
+      fetch('https://edu-sync-backend.vercel.app/subadmin/checkSubAdmin', {
         method: 'GET',
         headers: {
           'Authorization': localStorage.getItem('token'),

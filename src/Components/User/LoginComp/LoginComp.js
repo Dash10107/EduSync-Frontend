@@ -63,7 +63,7 @@ const LoginComp = (props) => {
 
   const checkSubAdmin = async() => {
     // Perform the GET request to check if the user is an admin
-   await fetch('https://edusync-backend.onrender.com/subadmin/checkSubAdmin', {
+   await fetch('https://edu-sync-backend.vercel.app/subadmin/checkSubAdmin', {
       method: 'GET',
       headers: {
         'Authorization': localStorage.getItem('token'),
@@ -90,7 +90,7 @@ const LoginComp = (props) => {
 
   const checkAdmin = async() => {
     // Perform the GET request to check if the user is an admin
-   await fetch('https://edusync-backend.onrender.com/admin/checkAdmin', {
+   await fetch('https://edu-sync-backend.vercel.app/admin/checkAdmin', {
       method: 'GET',
       headers: {
         'Authorization': localStorage.getItem('token'),
@@ -138,7 +138,7 @@ const LoginComp = (props) => {
     }
     console.log(loginInfo);
     try {
-      const response = await fetch('https://edusync-backend.onrender.com/users/login', {
+      const response = await fetch('https://edu-sync-backend.vercel.app/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

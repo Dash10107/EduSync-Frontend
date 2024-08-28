@@ -16,7 +16,7 @@ const ModulesProg = (props) => {
 
   const fetchMainProgress = async () => {
     try {
-      const response = await axios.get("https://edusync-backend.onrender.com/progress/modules", {
+      const response = await axios.get("https://edu-sync-backend.vercel.app/progress/modules", {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -34,7 +34,7 @@ const ModulesProg = (props) => {
 
   const fetchChaptersProgress = async (moduleId) => {
     try {
-      const response = await axios.get(`https://edusync-backend.onrender.com/progress/${moduleId}`, {
+      const response = await axios.get(`https://edu-sync-backend.vercel.app/progress/${moduleId}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -53,7 +53,7 @@ const ModulesProg = (props) => {
 
   const fetchSubChaptersProgress = async (moduleId, chapterId) => {
     try {
-      const response = await axios.get(`https://edusync-backend.onrender.com/progress/${moduleId}/${chapterId}`, {
+      const response = await axios.get(`https://edu-sync-backend.vercel.app/progress/${moduleId}/${chapterId}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
@@ -72,7 +72,7 @@ const ModulesProg = (props) => {
 
   const fetchSubChapters = async (moduleId, chapterId) => {
     try {
-      const response = await axios.get(`https://edusync-backend.onrender.com/module/subchapters/${moduleId}/${chapterId}`, {
+      const response = await axios.get(`https://edu-sync-backend.vercel.app/module/subchapters/${moduleId}/${chapterId}`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },

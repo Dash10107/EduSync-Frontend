@@ -38,7 +38,7 @@ const handleChange = async (id, marks) => {
        
       try {
   
-        await axios.post(`https://edusync-backend.onrender.com/users/user-details    `,{
+        await axios.post(`https://edu-sync-backend.vercel.app/users/user-details    `,{
           ids:userIds
         }, {
           headers: {
@@ -66,7 +66,7 @@ const handleChange = async (id, marks) => {
       }
       try {
         const response = await axios.put(
-          `https://edusync-backend.onrender.com/subadmin/classrooms/${code}/update-existing-test/${test._id}`,
+          `https://edu-sync-backend.vercel.app/subadmin/classrooms/${code}/update-existing-test/${test._id}`,
           {
             results: result,
           },

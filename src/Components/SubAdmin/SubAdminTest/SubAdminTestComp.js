@@ -31,7 +31,7 @@ const SubAdminTestComp = (props) => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        `https://edusync-backend.onrender.com/subadmin/classrooms/${code}/addforms`,
+        `https://edu-sync-backend.vercel.app/subadmin/classrooms/${code}/addforms`,
         {
           title:title,
           questions: questions,

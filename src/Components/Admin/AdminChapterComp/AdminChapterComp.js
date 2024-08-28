@@ -27,7 +27,7 @@ const AdminChapterComp = (props) => {
   }
   const fetchChapters=async()=>{
     try {
-      await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
+      await axios.get(`https://edu-sync-backend.vercel.app/module/chapters/${moduleId}`,{
         headers: {
           Authorization: localStorage.getItem("token"),
         }
@@ -61,7 +61,7 @@ fetchChapters();
         e.preventDefault();
     
         try {
-          const response = await axios.post(`https://edusync-backend.onrender.com/admin/addChapter/${moduleId}`, {
+          const response = await axios.post(`https://edu-sync-backend.vercel.app/admin/addChapter/${moduleId}`, {
             title:chapterName,
             content:chapterDescription,
             subtopics:[]

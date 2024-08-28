@@ -15,7 +15,7 @@ const LandingComp = () => {
   // Code to ping the backend
   useEffect(() => {
     try {
-      axios.get("http://localhost:5000/").then((res) => {
+      axios.get("https://edu-sync-backend.vercel.app/").then((res) => {
         console.log(res.data.message);
       });
     } catch (error) {

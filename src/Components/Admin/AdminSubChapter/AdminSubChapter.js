@@ -23,7 +23,7 @@ const AdminSubComp = (props) => {
 
       const fetchChapters=async()=>{
         try {
-          await axios.get(`https://edusync-backend.onrender.com/module/chapters/${moduleId}`,{
+          await axios.get(`https://edu-sync-backend.vercel.app/module/chapters/${moduleId}`,{
             headers: {
               Authorization: localStorage.getItem("token"),
             }
@@ -70,7 +70,7 @@ const AdminSubComp = (props) => {
       e.preventDefault();
   
       try {
-        const response = await axios.post(`https://edusync-backend.onrender.com/admin/addSubtopic/${moduleId}/${chapterId}`, {
+        const response = await axios.post(`https://edu-sync-backend.vercel.app/admin/addSubtopic/${moduleId}/${chapterId}`, {
           name:subtopicName, 
         },
         {

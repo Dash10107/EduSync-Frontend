@@ -40,7 +40,7 @@ const FeedbackComp = () => {
     
       const fetchSubadminUsers = async () => {
         try {
-          const response = await axios.get('https://edusync-backend.onrender.com/users/subadminUsers',{      headers: {
+          const response = await axios.get('https://edu-sync-backend.vercel.app/users/subadminUsers',{      headers: {
             Authorization: localStorage.getItem("token"),
           }});
           setSubadminUsers(response.data);
@@ -66,7 +66,7 @@ const FeedbackComp = () => {
           }
           // Make a POST request to the server
           const response = await axios.post(
-            'https://edusync-backend.onrender.com/feedandnotice/post-feedback',
+            'https://edu-sync-backend.vercel.app/feedandnotice/post-feedback',
             {
               subAdminId: subAdminId,
               message: message,

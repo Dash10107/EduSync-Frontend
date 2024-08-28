@@ -27,7 +27,7 @@ const SingleCard = (props) => {
  
   // Make a PUT request to update the module details with the authorization token in the headers
   axios.put(
-    `https://edusync-backend.onrender.com/admin/updateModule/${module.id}`,
+    `https://edu-sync-backend.vercel.app/admin/updateModule/${module.id}`,
     { name: newModuleName, description: module.description },
     {
       headers: {
@@ -51,7 +51,7 @@ const SingleCard = (props) => {
   const handleDelete = async(e) => {
     e.stopPropagation();
     // Make the DELETE request to delete the chapter
-await axios.delete(`https://edusync-backend.onrender.com/admin/deleteModule/${module.id}`, {
+await axios.delete(`https://edu-sync-backend.vercel.app/admin/deleteModule/${module.id}`, {
 headers: {
   Authorization: localStorage.getItem("token"), // Replace with your authorization token
 },

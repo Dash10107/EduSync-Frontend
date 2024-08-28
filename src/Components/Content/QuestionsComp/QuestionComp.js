@@ -91,7 +91,7 @@ const   handleGoBack = ()=>{
 
     try {
       const response = await axios.post(
-        "https://edusync-backend.onrender.com/progress/",
+        "https://edu-sync-backend.vercel.app/progress/",
         formData,
         {
           headers: {
@@ -118,7 +118,7 @@ const   handleGoBack = ()=>{
     setLoading(true);
     try {
       const response = await axios.get(
-        `https://edusync-backend.onrender.com/module/questions/${moduleId}/${chapterId}/${subChapterId}`,
+        `https://edu-sync-backend.vercel.app/module/questions/${moduleId}/${chapterId}/${subChapterId}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),

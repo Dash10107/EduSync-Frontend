@@ -21,7 +21,7 @@ const Sidebar = (props) => {
     setLoading(true);
     try {
 
-      await axios.get('https://edusync-backend.onrender.com/module/', {
+      await axios.get('https://edu-sync-backend.vercel.app/module/', {
         headers: {
           Authorization: localStorage.getItem("token"),
         }
@@ -46,7 +46,7 @@ const Sidebar = (props) => {
     setLoading(true);
     try {
 
-      await axios.get('https://edusync-backend.onrender.com/subadmin/classrooms/student', {
+      await axios.get('https://edu-sync-backend.vercel.app/subadmin/classrooms/student', {
         headers: {
           Authorization: localStorage.getItem("token"),
         }

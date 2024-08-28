@@ -34,7 +34,7 @@ const SingleGrid = (props) => {
   });
       // Make a PUT request to update the chapter's subtopics with the new data
       axios.put(
-        `https://edusync-backend.onrender.com/admin/updateChapter/${moduleId}/${chapterId}`,
+        `https://edu-sync-backend.vercel.app/admin/updateChapter/${moduleId}/${chapterId}`,
         {
           subtopics:updatedSubtopics
           
@@ -66,7 +66,7 @@ const SingleGrid = (props) => {
         
         // Make a PUT request to update the chapter's subtopics with the new data (excluding the deleted subtopic)
         axios.put(
-          `https://edusync-backend.onrender.com/admin/updateChapter/${moduleId}/${chapterId}`,
+          `https://edu-sync-backend.vercel.app/admin/updateChapter/${moduleId}/${chapterId}`,
           {
             subtopics: updatedSubtopics,
           },

@@ -32,7 +32,7 @@ const AdminHomeComp = (props) => {
     const fetchModules = async()=>{
       setAllLoading(true);
 try {
-      await axios.get('https://edusync-backend.onrender.com/module/',{
+      await axios.get('https://edu-sync-backend.vercel.app/module/',{
         headers: {
           Authorization: localStorage.getItem("token"),
         }
@@ -62,7 +62,7 @@ try {
         e.preventDefault();
     
         try {
-          const response = await axios.post('https://edusync-backend.onrender.com/admin/addModule', {
+          const response = await axios.post('https://edu-sync-backend.vercel.app/admin/addModule', {
             name:moduleName,
             description:moduleName,
           },

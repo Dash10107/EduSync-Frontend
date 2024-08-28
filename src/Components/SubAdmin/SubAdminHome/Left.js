@@ -14,7 +14,7 @@ function Left({classrooms,loading,feedbacks,fetchFeedbacks,fetchClassrooms}) {
       e.preventDefault();
   
       try {
-        const response = await axios.post(`https://edusync-backend.onrender.com/subadmin/addlassrooms`,{
+        const response = await axios.post(`https://edu-sync-backend.vercel.app/subadmin/addlassrooms`,{
           name:name,
         },
         {

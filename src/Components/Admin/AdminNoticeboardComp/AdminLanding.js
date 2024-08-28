@@ -22,7 +22,7 @@ const AdminLandingComp = () => {
 
     const fetchNotices = async()=>{
       try {
-          await axios.get('https://edusync-backend.onrender.com/feedandnotice/get-notices').then(response => {
+          await axios.get('https://edu-sync-backend.vercel.app/feedandnotice/get-notices').then(response => {
             console.log("Response",response);
             
             if(response.status===200){
@@ -64,7 +64,7 @@ const AdminLandingComp = () => {
               }
           
               try {
-                const response = await axios.post(`https://edusync-backend.onrender.com/feedandnotice/add-notices`,{
+                const response = await axios.post(`https://edu-sync-backend.vercel.app/feedandnotice/add-notices`,{
                   title:name,
                   content:content
                 },
